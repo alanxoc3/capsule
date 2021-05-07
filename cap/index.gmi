@@ -10,6 +10,7 @@ Alan Morgan - gemini://alanxoc3.xyz
 A hipster indulging himself in pico-8, piano, books, gnu/linux, conlangs, and mandarin.
 
 ## 2021
+=> alanxoc3.xyz/kak-vs-nvim
 
 ## 2020
 
