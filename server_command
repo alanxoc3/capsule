@@ -1,0 +1,2 @@
+#!/bin/bash
+agate --content cap --addr "[::]:1965" --addr 0.0.0.0:1965 --hostname alanxoc3.xyz
