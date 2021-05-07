@@ -10,13 +10,12 @@ Alan Morgan - gemini://alanxoc3.xyz
 A hipster indulging himself in pico-8, piano, books, gnu/linux, conlangs, and mandarin.
 
 ## 2021
-=> gemini://alanxoc3.xyz/kak-vs-nvim.gmi kak vs nvim
+=> gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
-## 2020
+Here are the places I hang around online:
+=> https://www.lexaloffle.com/bbs/?uid=17205 alanxoc3 @ lexaloffle.com
+=> https://www.twitter.com/alanxoc3 alanxoc3 @ twitter.com
+=> https://github.com/alanxoc3 alanxoc3 @ github.com
 
-## 2019
-
-Here's where I hang around online:
-=> https://www.lexaloffle.com/bbs/?uid=17205 pico-8
-=> https://www.twitter.com/alanxoc3 twitter
-=> https://git.io/alanxoc3 github
+This website is best viewed with a Gemini client. Learn more here:
+=> https://gemini.circumlunar.space/
