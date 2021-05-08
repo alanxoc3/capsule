@@ -15,12 +15,9 @@ I don't really know how I'm organizing my blog. I think I'm making it topic base
 => gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
 ## That's It!
-Message me about cool stuff via email or twitter.
-=> https://twitter.com/alanxoc3 @alanxoc3
-=> mailto://alanxoc3@gmail.com alanxoc3@gmail.com
+=> gemini://alanxoc3.xyz/contact.gmi Find me online.
 
-This capsule orbits LEO.
-=> gemini://tilde.team/~khuxkm/leo/                                        About LEO
-=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F Next Page
-=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F Last Page
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                Random Page
+=> gemini://tilde.team/~khuxkm/leo/                                        Orbiting LEO
+=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F Next Capsule
+=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F Last Capsule
+=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                Random Capsule
