@@ -6,16 +6,15 @@
 Alan Morgan - gemini://alanxoc3.xyz                     
 ``` alanxoc3
 
-# Welcome to my capsule!
-A hipster indulging himself in pico-8, piano, books, gnu/linux, conlangs, and mandarin.
+# welcome to my capsule!
+A programming hipster who also indulges in piano, classic books, and languages.
 
 ## 2021
 => gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
-Here are the places I hang around online:
-=> https://www.lexaloffle.com/bbs/?uid=17205 alanxoc3 @ lexaloffle.com
-=> https://www.twitter.com/alanxoc3 alanxoc3 @ twitter.com
-=> https://github.com/alanxoc3 alanxoc3 @ github.com
+## that's it!
+If you like what you see here, send me an email or tweet. I'm alanxoc3 on both twitter and gmail. So... yeah!
 
-This blog is best viewed with a Gemini client. Learn more here:
+This blog is best viewed with a Gemini client. Don't know what that is? No prob:
 => https://gemini.circumlunar.space/
+
