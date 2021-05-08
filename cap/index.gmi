@@ -10,9 +10,9 @@ Alan Morgan - gemini://alanxoc3.xyz
 I am a programming hipster who also indulges in piano, classic books, and languages. Did I mention I'm cool too? No? Well I'm cool. Now you know. You want to know how I'm cool? Hey, coolness doesn't need a reason. Let's check out this blog, shall we?
 
 ## Pages
-I don't really know how I'm organizing my blog. I think I'm making it topic based right now, but with date timestamps for referenc of when the post was first created. I might change this format later.
+I don't really know how I'm organizing my blog. I think I'm making it topic based right now, but with date timestamps for reference of when the post was first created. I might change this format later.
 
-=> gemini://alanxoc3.xyz/game-jams.gmi   → 2021-05-07: kak vs nvim
+=> gemini://alanxoc3.xyz/game-jams.gmi   → 2021-05-07: game jams
 => gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
 ## That's It!
