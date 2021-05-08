@@ -1,0 +1,21 @@
+=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+
+# Game Jams
+I'm a hipster, so of course I do game jams. Really tho, game jams are only a small time commitment with a nice bonus that people could be playing your game for years to come. So that's one of the reasons why I like game jams.
+
+I've participated in a few game jams. The most intense one I've done is Ludum Dare, while the least intense ones are One Hour Game Jams.
+
+## Ludum Dare
+Ludum Dare is held twice a year. You can see more about it on their website.
+=> https://ldjam.com/
+
+### Fare Well - ld #48
+=> https://www.lexaloffle.com/bbs/?tid=42664 Play it here!
+
+The outside world is dangerous, so you must venture down to the bottom of the well. Little did you know that the well is dangerous too! That's the story behind Fare-Well, an addicting PICO-8 arcade style game. My brothers helped out with assets, while I mostly did code. I got less than 10 hours of sleep over the course of this 3 day jam, but the end result was definitely worth it.
+
+### Save The Bird - ld #46
+=> https://www.lexaloffle.com/bbs/?pid=75064 Play it here!
+
+You are a quadcopter that sees a bird fly off into danger, so you must save it. Your quadcopter friends think you've gone crazy, so they chase you. I made this game with a random dude from the UK who was looking for someone to help with music. I ended up contributing a bunch of ideas, all the music, and maybe 1/4 of the code. This was my first Ludum Dare entry, so it was exciting.
+

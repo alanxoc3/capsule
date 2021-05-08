@@ -4,17 +4,20 @@
 / _ `/ / _ `/ _ \\ \ / _ \/ __//_ < 
 \_,_/_/\_,_/_//_/_\_\\___/\__/____/ 
 Alan Morgan - gemini://alanxoc3.xyz                     
-``` alanxoc3
+```
 
-# welcome to my capsule!
-A programming hipster who also indulges in piano, classic books, and languages.
+# Welcome To A Cool Blog!
+I am a programming hipster who also indulges in piano, classic books, and languages. Did I mention I'm cool too? No? Well I'm cool. Now you know. You want to know how I'm cool? Hey, coolness doesn't need a reason. Let's check out this blog, shall we?
 
-## 2021
+## Pages
+I don't really know how I'm organizing my blog. I think I'm making it topic based right now, but with date timestamps for referenc of when the post was first created. I might change this format later.
+
+=> gemini://alanxoc3.xyz/game-jams.gmi   → 2021-05-07: kak vs nvim
 => gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
-## that's it!
-If you like what you see here, send me an email or tweet. I'm alanxoc3 on both twitter and gmail. So... yeah!
+## That's It!
+Like what you see here? Talk to me about anything on twitter.
+=> https://twitter.com/alanxoc3 @alanxoc3
 
-This blog is best viewed with a Gemini client. Don't know what that is? No prob:
+Are you confused why this blog looks so ugly? You should probably be enlightened:
 => https://gemini.circumlunar.space/
-
