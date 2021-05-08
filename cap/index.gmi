@@ -19,3 +19,5 @@ Here are the places I hang around online:
 
 This blog is best viewed with a Gemini client. Learn more here:
 => https://gemini.circumlunar.space/
+
+hello
