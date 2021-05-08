@@ -1,8 +1,9 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
-# Contact Info
-I currently work as a developer for Clearwater Analytics in Boise, Idaho, USA. If you see a cool looking skinny guy there, that might be me. On the internets, I'm always "alanxoc3", I don't think there are any imposters yet. As far as messaging platforms go, I'm pretty much only active on twitter and gmail, though you might see me on an IRC server from time to time. If you want to have a conversation, drop me a message!
+# contact info
+i currently work as a developer for clearwater analytics in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because it might be me! on the internets, i'm always "alanxoc3", i don't think there are any imposters yet. as far as messaging platforms go, i'm pretty much only active via twitter and email, though you might see me on an irc server from time to time. if you want to have a conversation, drop me a message!
 
-=> mailto:alanxoc3@gmail.com alanxoc3@gmail.com
-=> https://twitter.com/alanxoc3 twitter.com/alanxoc3
-
+```
+  email: alanxoc3@gmail.com
+twitter: alanxoc3@twitter.com
+```

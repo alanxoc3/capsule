@@ -1,11 +1,11 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # leaving
-You clicked on a link that is supposed to take you to an external gemini
+you clicked on a link that is supposed to take you to an external gemini
 capsule, but you aren't using a gemini client (basically a web browser for
-gemini capsules). If you want to continue, you need to use one. This is the
-client list from the official gemini website. It only lists some of the popular
-clients. Try these links:
-=> https://gemini.circumlunar.space/clients.html Popular Gemini clients.
-=> https://github.com/kr1sp1n/awesome-gemini Gemini clients, servers, tools, & more.
-=> https://github.com/makeworld-the-better-one/amfora I use the Amfora client.
+gemini capsules). if you want to continue, you need to use one. this is the
+client list from the official gemini website. it only lists some of the popular
+clients. try these links:
+=> https://gemini.circumlunar.space/clients.html      popular gemini clients
+=> https://github.com/kr1sp1n/awesome-gemini          gemini clients, servers, tools, & more
+=> https://github.com/makeworld-the-better-one/amfora i use the amfora client
