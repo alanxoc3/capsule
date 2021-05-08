@@ -16,8 +16,15 @@ I don't really know how I'm organizing my blog. I think I'm making it topic base
 => gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
 ## That's It!
-Like what you see here? Talk to me about anything on twitter.
+Like what you see here? Talk to me about stuff on twitter.
 => https://twitter.com/alanxoc3 @alanxoc3
 
-Does this blog seem foreign to you? If so, you should read about Project Gemini.
-=> gemini://gemini.circumlunar.space/
+Does this blog seem foreign to you? If yes, you should read about Project Gemini.
+=> gemini://gemini.circumlunar.space/ About Project Gemini
+
+This capsule orbits LEO.
+=> gemini://tilde.team/~khuxkm/leo/                                        About LEO
+=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F Next Page
+=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F Last Page
+=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                Random Page
+
