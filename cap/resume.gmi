@@ -1,0 +1,88 @@
+
+# Alan Morgan
+Boise, ID, US
+
+## CONTACT
+=> https://github.com/alanxoc3
+=> https://www.linkedin.com/in/alanxoc3
+=> https://www.lexaloffle.com/bbs/?uid=17205
+=> https://twitter.com/alanxoc3
+=> https://facebook.com/alamorg3
+=> https://youtube.com/alanxoc3
+=> https://alanxoc3.itch.io/
+=> https://patreon.com/alanxoc3
+=> https://ko-fi.com/alanxoc3
+
+## RELEVANT EDUCATION
+BYU Idaho, Rexburg ID — B. S. Computer Science
+December 2018 | 3.7 GPA in CS Courses.
+- Machine Learning, Computer Architecture, Discrete Math...
+
+## RELEVANT WORK EXPERIENCE
+Clearwater Analytics, Boise ID — Software Developer
+July 2019 - May 2021
+- Mostly backend developer.
+- GCP migration.
+
+Clearwater Analytics, Boise ID — Software Developer Intern
+July 2018 - September 2018
+- Created an interface that allows analysts to fix 3rd party client data.
+- React + Typescript application that contacts RESTful Java endpoints.
+- Frontend React + Typescript dev.
+
+Clearwater Analytics, Boise ID — Software Developer
+May 2017 - August 2017
+- Agile environment. Worked with clients to figure out their needs.
+- Completed two Angular 4 + Java projects now used in production.
+- Frontend Angular + Typescript dev.
+
+BYU Idaho, Rexburg ID — Computer Science Tutor & TA
+September 2015 - April 2018
+- Tutored C++ Procedural, OO, Algorithm, and Data Structures classes.
+- Graded for Computational Theory, an advanced CS course.
+
+## RELEVANT PERSONAL PROJECTS
+Bity-8 | 300+ hours | 3 People | Rust
+github.com/bity-8/bity-8
+Yet Another Fantasy Console! Limits cartridge size to only 256 KB, thus allowing programmers to make creative games!
+
+Concards | 120+ hours | Just Me | Golang (was C++)
+github.com/alanxoc3/concards
+Flashcard CLI application! Uses spaced repetition and has tons of features. Please check out the Github page for a much better introduction.
+
+Sock Tron | 40+ hours | 2 People | VueJS front-end, Python back-end
+github.com/QuadeMorrison/sock-tron
+Not just any tron game. This allows for up to 30 people to play in a single match from different computers. It's was running on my server.
+
+Many PICO-8  simulations and games | 300+ hours | Just Me | Lua
+lexaloffle.com/bbs/?uid=17205&mode=carts
+github.com/alanxoc3/pico-8-work
+PICO-8 is a great platforms for developers to share ideas, improve their skills, and have fun coding! Try playing some of my games at the link!
+
+
+THINGS I AM GOOD WITH
+Nginx, Webpack, Linux
+Git, SVN, Typescript, React
+Material Design
+Jira, Fisheye, Jenkins
+Vim & Emacs
+
+PROFICIENT LANGUAGES
+Python, Javascript, C, C++
+Lua, Rust, Go, Elisp
+
+ACHIEVEMENTS
+5 Semester ACM Leadership
+2 Semester Code Space Chair
+1 Semester Pico-8 Club Chair
+Graduated CTEC Java School
+Taught English in China :)
+2 Year Religious Volunteer
+50,000+ XP on Duolingo
+
+OTHER INTERESTS
+Arch Linux, Great Books,
+Mandarin, Esperanto,
+Fencing, Running,
+Piano, Outdoors,
+
