@@ -7,7 +7,12 @@
 ```
 
 # alanxoc3's capsule!
-i am a programming hipster who also indulges in piano, classic books, and languages. did i mention i'm cool too? no? well i'm cool. now you know. you want to know how i'm cool? hey, coolness doesn't need a reason. let's check out this blog, shall we?
+i am a programming hipster who also indulges in piano, classic books, and languages. did i mention i'm cool too? i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because it might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active via twitter and email, though you might see me on an irc server from time to time. if you want to have a conversation, drop me a message!
+
+```
+  email: alanxoc3@gmail.com
+twitter: alanxoc3@twitter.com
+```
 
 ## blog!
 things i write that are meant to stay static go here. so yeah, a blog.
@@ -18,14 +23,6 @@ things i write that are meant to stay static go here. so yeah, a blog.
 i write about some topics and continually update them. these are pages for those things.
 
 => gemini://alanxoc3.xyz/game-jams.gmi → game jams
-
-# contact!
-i currently work as a developer for clearwater analytics in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because it might be me! on the internets, i'm always "alanxoc3", i don't think there are any imposters yet. as far as messaging platforms go, i'm pretty much only active via twitter and email, though you might see me on an irc server from time to time. if you want to have a conversation, drop me a message!
-
-```
-  email: alanxoc3@gmail.com
-twitter: alanxoc3@twitter.com
-```
 
 ## leo!
 => gemini://tilde.team/~khuxkm/leo/                                        orbiting leo
