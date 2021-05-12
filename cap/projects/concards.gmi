@@ -1,0 +1,15 @@
+=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+
+# concards
+Concards is my CLI based flashcard program. I haven't been able to find a flashcard program that works how I want, so I made another flashcard program. But this one has some key differences than any flashcard program I've found:
+* Concards is a CLI first app, which means it is designed to interact fluently with other CLI programs.
+* Flashcards can be embedded along with your notes in a plain text file format of your choosing (txt, md, asciidoc...).
+* You can edit flashcards as you review them, with your favorite editor (preferably a cli-based editor, but it doesn't have to be one).
+* Plugins and configuration will work with shell scripting and hooks. Currently there is limited support for this.
+
+I use concards often, it has a few releases, and it has a few stars on github. You can check it out and let me know what you think.
+=> https://git.io/concards
+
+Concards is still in alpha, which means there are a few things I still plan on redesigning. But a lot of the basics will remain the same.
+
+(This page is still a WIP.)

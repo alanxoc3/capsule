@@ -7,22 +7,24 @@
 ```
 
 # alanxoc3's capsule!
-i am a programming hipster who also indulges in piano, classic books, and languages. did i mention i'm cool too? i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because it might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active via twitter and email, though you might see me on an irc server from time to time. if you want to have a conversation, drop me a message!
+i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on twitter and email, though you might see me on an irc server from time to time. if you want to have a conversation, drop me a message!
 
 ```
+twitter: @alanxoc3
   email: alanxoc3@gmail.com
-twitter: alanxoc3@twitter.com
 ```
+
+## projects!
+=> gemini://alanxoc3.xyz/projects/concards.gmi  → concards: flashcards through the cli
+=> gemini://alanxoc3.xyz/projects/ttrack.gmi    → ttrack: automated time tracking using hooks
+=> gemini://alanxoc3.xyz/projects/hatel.gmi     → hatel: turning a piano into a computer keyboard
+=> gemini://alanxoc3.xyz/projects/game-jams.gmi → game jams: games i made with time constraints
+
+## ideas!
+=> gemini://alanxoc3.xyz/ideas/pi-keyboard.gmi → pi keyboard: turning a pi 400 into a keyboard
 
 ## blog!
-things i write that are meant to stay static go here. so yeah, a blog.
-
-=> gemini://alanxoc3.xyz/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
-
-## pages!
-i write about some topics and continually update them. these are pages for those things.
-
-=> gemini://alanxoc3.xyz/game-jams.gmi → game jams
+=> gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
 ## leo!
 => gemini://tilde.team/~khuxkm/leo/                                        orbiting leo
