@@ -1,46 +1,32 @@
+=> gemini://alanxoc3.xyz ← alanxoc3.xyz
 
-# Alan Morgan
-Boise, ID, US
-
-## RELEVANT EDUCATION
-BYU Idaho, Rexburg ID — B. S. Computer Science
-December 2018 | 3.7 GPA in CS Courses.
-- Machine Learning, Computer Architecture, Discrete Math...
+# Alan Morgan | alanxoc3@gmail.com
 
 ## RELEVANT WORK EXPERIENCE
-Clearwater Analytics, Boise ID — Software Developer
-July 2019 - May 2021
-- Mostly backend developer.
-- GCP migration.
+### Dev @ Clearwater Analytics | 2019 - Now
+- Lead dev for designing, implementing, and deploying large features.
+- Transitioned legacy applications to GCP.
 
-Clearwater Analytics, Boise ID — Software Developer Intern
-July 2018 - September 2018
-- Created an interface that allows analysts to fix 3rd party client data.
-- React + Typescript application that contacts RESTful Java endpoints.
-- Frontend React + Typescript dev.
+### Intern @ Clearwater Analytics | 2017 - 2018
+- Created 1 React and 2 Angular applications over 2 internships.
 
-Clearwater Analytics, Boise ID — Software Developer
-May 2017 - August 2017
-- Agile environment. Worked with clients to figure out their needs.
-- Completed two Angular 4 + Java projects now used in production.
-- Frontend Angular + Typescript dev.
+### Tutor & TA @ BYUi | 2015 - 2018
+- Tutor for C++ courses. TA for Computational Theory.
 
-BYU Idaho, Rexburg ID — Computer Science Tutor & TA
-September 2015 - April 2018
-- Tutored C++ Procedural, OO, Algorithm, and Data Structures classes.
-- Graded for Computational Theory, an advanced CS course.
+## B. S. Computer Science @ BYUi | 2019
+- Managed weekly programming workshops too.
 
 ## RELEVANT PERSONAL PROJECTS
 Bity-8 | 300+ hours | 3 People | Rust
-github.com/bity-8/bity-8
+=> github.com/bity-8/bity-8
 Yet Another Fantasy Console! Limits cartridge size to only 256 KB, thus allowing programmers to make creative games!
 
 Concards | 120+ hours | Just Me | Golang (was C++)
-github.com/alanxoc3/concards
+=> github.com/alanxoc3/concards
 Flashcard CLI application! Uses spaced repetition and has tons of features. Please check out the Github page for a much better introduction.
 
 Sock Tron | 40+ hours | 2 People | VueJS front-end, Python back-end
-github.com/QuadeMorrison/sock-tron
+=> github.com/QuadeMorrison/sock-tron
 Not just any tron game. This allows for up to 30 people to play in a single match from different computers. It's was running on my server.
 
 Many PICO-8  simulations and games | 300+ hours | Just Me | Lua
