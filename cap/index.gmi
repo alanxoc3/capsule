@@ -9,19 +9,17 @@
 # alanxoc3's capsule!
 i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on github, twitter and email, though you might see me on an irc server from time to time too. if you want to have a conversation, drop me a message!
 
-=> gemini://alanxoc3.xyz/resume.gmi → resume
-=> https://git.io/alanxoc3          → git.io/alanxoc3
-=> mailto:alanxoc3@gmail.com        → alanxoc3@gmail.com
-=> https://twitter.com/alanxoc3     → twitter.com/alanxoc3
+=> mailto:alanxoc3@gmail.com    → alanxoc3@gmail.com
+=> https://git.io/alanxoc3      → git.io/alanxoc3
+=> https://twitter.com/alanxoc3 → twitter.com/alanxoc3
 
-## projects!
-=> gemini://alanxoc3.xyz/projects/concards.gmi  → concards: flashcards through the cli
-=> gemini://alanxoc3.xyz/projects/ttrack.gmi    → ttrack: automated time tracking using hooks
-=> gemini://alanxoc3.xyz/projects/hatel.gmi     → hatel: turning a piano into a computer keyboard
-=> gemini://alanxoc3.xyz/projects/game-jams.gmi → game jams: games i made with time constraints
-
-## ideas!
-=> gemini://alanxoc3.xyz/ideas/pi-keyboard.gmi → pi keyboard: turning a pi 400 into a keyboard
+## pages!
+=> gemini://alanxoc3.xyz/pages/resume.gmi   → resume: even i have to work sometimes
+=> gemini://alanxoc3.xyz/pages/concards.gmi → concards: flashcards through the cli
+=> gemini://alanxoc3.xyz/pages/ttrack.gmi   → ttrack: automated time tracking using hooks
+=> gemini://alanxoc3.xyz/pages/hatel.gmi    → hatel: turning a piano into a computer keyboard
+=> gemini://alanxoc3.xyz/pages/gamejams.gmi → gamejams: games i made with time constraints
+=> gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard: turning a pi 400 into a keyboard
 
 ## blog!
 => gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim

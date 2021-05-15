@@ -1,8 +1,8 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # Alan Morgan
-=> https://git.io/alanxoc3   → git.io/alanxoc3
 => mailto:alanxoc3@gmail.com → alanxoc3@gmail.com
+=> https://git.io/alanxoc3   → git.io/alanxoc3
 
 ## SKILLS
 * Languages: Go. Rust. Typescript. Lua. Perl. Bash. Python.
