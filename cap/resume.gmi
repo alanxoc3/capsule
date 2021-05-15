@@ -1,8 +1,8 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # Alan Morgan
-=> mailto:alanxoc3@gmail.com alanxoc3@gmail.com
-=> https://git.io/alanxoc3 git.io/alanxoc3
+=> https://git.io/alanxoc3   → git.io/alanxoc3
+=> mailto:alanxoc3@gmail.com → alanxoc3@gmail.com
 
 ## SKILLS
 * Languages: Go. Rust. Typescript. Lua. Perl. Bash. Python.
@@ -21,6 +21,6 @@
 * Tutor for C++ courses. TA for Computational Theory.
 * ACM leadership for 3 years.
 
-## HOBBIES
-* Tech: Arch Linux. Kakoune. Pico-8. Project Gemini.
+## INTERESTS
+* Tech:  Arch Linux. Kakoune. Pico-8. Gemini.
 * Other: Mandarin. Piano. Classic Books. Running.

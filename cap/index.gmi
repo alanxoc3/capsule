@@ -7,12 +7,12 @@
 ```
 
 # alanxoc3's capsule!
-i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on twitter and email, though you might see me on an irc server from time to time. if you want to have a conversation, drop me a message!
+i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on github, twitter and email, though you might see me on an irc server from time to time too. if you want to have a conversation, drop me a message!
 
-```
-twitter: @alanxoc3
-  email: alanxoc3@gmail.com
-```
+=> gemini://alanxoc3.xyz/resume.gmi → resume
+=> https://git.io/alanxoc3          → git.io/alanxoc3
+=> mailto:alanxoc3@gmail.com        → alanxoc3@gmail.com
+=> https://twitter.com/alanxoc3     → twitter.com/alanxoc3
 
 ## projects!
 => gemini://alanxoc3.xyz/projects/concards.gmi  → concards: flashcards through the cli
@@ -27,7 +27,7 @@ twitter: @alanxoc3
 => gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
 ## leo!
-=> gemini://tilde.team/~khuxkm/leo/                                        orbiting leo
-=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F next capsule
-=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3A%2F%2Falanxoc3.xyz%2F last capsule
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                random capsule
+=> gemini://tilde.team/~khuxkm/leo/                                        → orbiting leo
+=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → next capsule
+=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → last capsule
+=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                → random capsule
