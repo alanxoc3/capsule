@@ -1,11 +1,12 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
-# Alan Morgan | alanxoc3@gmail.com
+# Alan Morgan
+=> mailto:alanxoc3@gmail.com alanxoc3@gmail.com
 => https://git.io/alanxoc3 git.io/alanxoc3
 
 ## SKILLS
-* Languages: go, lua, rust, bash, perl, python, javascript/typescript.
-* Technologies: terraform, gcp.
+* Languages: Go. Rust. Typescript. Lua. Perl. Bash. Python.
+* Technologies: Terraform. Gcp. Docker. Linux.
 
 ## WORK
 ### Dev @ Clearwater Analytics | 2019 - Now
@@ -20,7 +21,6 @@
 * Tutor for C++ courses. TA for Computational Theory.
 * ACM leadership for 3 years.
 
-## INTERESTS
-* Mandarin. Esperanto.
-* Piano. Classic Books. Running.
-* Arch Linux. Pico-8. Kakoune. Project Gemini.
+## HOBBIES
+* Tech: Arch Linux. Kakoune. Pico-8. Project Gemini.
+* Other: Mandarin. Piano. Classic Books. Running.
