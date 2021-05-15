@@ -1,53 +1,26 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # Alan Morgan | alanxoc3@gmail.com
+=> https://git.io/alanxoc3 git.io/alanxoc3
+
 ## SKILLS
-Currently using: go & lua.
-Proficient with: rust, bash, perl, python, javascript/typescript, C/C++.
+* Languages: go, lua, rust, bash, perl, python, javascript/typescript.
+* Technologies: terraform, gcp.
 
 ## WORK
 ### Dev @ Clearwater Analytics | 2019 - Now
-- Lead dev for designing, implementing, and deploying large features.
-- Transitioned legacy applications to GCP.
-- Cloud admin for my team.
+* Lead dev for designing, implementing, and deploying large features.
+* Transitioned legacy applications to GCP.
+* Cloud admin for my team.
 
 ### Intern @ Clearwater Analytics | 2017 - 2018
-- Created 1 React and 2 Angular applications over 2 internships.
+* Created 1 React and 2 Angular applications over 2 internships.
 
-### Tutor & TA @ BYUi | 2015 - 2018
-- Tutor for C++ courses. TA for Computational Theory.
+### B. S. Computer Science, Tutor & TA @ BYUi | 2015 - 2019
+* Tutor for C++ courses. TA for Computational Theory.
+* ACM leadership for 3 years.
 
-## B. S. Computer Science @ BYUi | 2019
-- Managed weekly programming workshops too.
-
-## OTHER
-Arch Linux, Great Books, Mandarin, Esperanto, Fencing, Running, Piano
-
-## PROJECTS
-### bity-8 | Rust
-Senior Project. Fantasy Console.
-=> github.com/bity-8/bity-8
-
-### concards | Go
-How I think flashcard programs should work.
-=> github.com/alanxoc3/concards
-
-Sock Tron | 40+ hours | 2 People | VueJS front-end, Python back-end
-=> github.com/QuadeMorrison/sock-tron
-Not just any tron game. This allows for up to 30 people to play in a single match from different computers. It's was running on my server.
-
-
-THINGS I AM GOOD WITH
-
-PROFICIENT LANGUAGES
-
-ACHIEVEMENTS
-5 Semester ACM Leadership
-2 Semester Code Space Chair
-1 Semester Pico-8 Club Chair
-Graduated CTEC Java School
-Taught English in China :)
-2 Year Religious Volunteer
-50,000+ XP on Duolingo
-
-OTHER INTERESTS
+## INTERESTS
+* Mandarin. Esperanto.
+* Piano. Classic Books. Running.
+* Arch Linux. Pico-8. Kakoune. Project Gemini.
