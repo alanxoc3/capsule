@@ -1,11 +1,15 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # Alan Morgan | alanxoc3@gmail.com
+## SKILLS
+Currently using: go & lua.
+Proficient with: rust, bash, perl, python, javascript/typescript, C/C++.
 
-## RELEVANT WORK EXPERIENCE
+## WORK
 ### Dev @ Clearwater Analytics | 2019 - Now
 - Lead dev for designing, implementing, and deploying large features.
 - Transitioned legacy applications to GCP.
+- Cloud admin for my team.
 
 ### Intern @ Clearwater Analytics | 2017 - 2018
 - Created 1 React and 2 Angular applications over 2 internships.
@@ -16,35 +20,26 @@
 ## B. S. Computer Science @ BYUi | 2019
 - Managed weekly programming workshops too.
 
-## RELEVANT PERSONAL PROJECTS
-Bity-8 | 300+ hours | 3 People | Rust
-=> github.com/bity-8/bity-8
-Yet Another Fantasy Console! Limits cartridge size to only 256 KB, thus allowing programmers to make creative games!
+## OTHER
+Arch Linux, Great Books, Mandarin, Esperanto, Fencing, Running, Piano
 
-Concards | 120+ hours | Just Me | Golang (was C++)
+## PROJECTS
+### bity-8 | Rust
+Senior Project. Fantasy Console.
+=> github.com/bity-8/bity-8
+
+### concards | Go
+How I think flashcard programs should work.
 => github.com/alanxoc3/concards
-Flashcard CLI application! Uses spaced repetition and has tons of features. Please check out the Github page for a much better introduction.
 
 Sock Tron | 40+ hours | 2 People | VueJS front-end, Python back-end
 => github.com/QuadeMorrison/sock-tron
 Not just any tron game. This allows for up to 30 people to play in a single match from different computers. It's was running on my server.
 
-Many PICO-8  simulations and games | 300+ hours | Just Me | Lua
-lexaloffle.com/bbs/?uid=17205&mode=carts
-github.com/alanxoc3/pico-8-work
-PICO-8 is a great platforms for developers to share ideas, improve their skills, and have fun coding! Try playing some of my games at the link!
-
 
 THINGS I AM GOOD WITH
-Nginx, Webpack, Linux
-Git, SVN, Typescript, React
-Material Design
-Jira, Fisheye, Jenkins
-Vim & Emacs
 
 PROFICIENT LANGUAGES
-Python, Javascript, C, C++
-Lua, Rust, Go, Elisp
 
 ACHIEVEMENTS
 5 Semester ACM Leadership
@@ -56,8 +51,3 @@ Taught English in China :)
 50,000+ XP on Duolingo
 
 OTHER INTERESTS
-Arch Linux, Great Books,
-Mandarin, Esperanto,
-Fencing, Running,
-Piano, Outdoors,
-
