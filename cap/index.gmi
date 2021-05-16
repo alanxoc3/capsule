@@ -16,7 +16,13 @@ i am a programming hipster who also indulges in piano, classic books, and langua
 ## blog
 => gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07 - kak vs nvim
 
-## gemini & leo
+## site/capsule
+this site is primarily designed for browsers that implement the gemini protocol. the site is proxied for https browsing too though. some technical details:
+* hosted on an arch linux linode instance.
+* gemini server uses agate.
+* https proxy uses nginx and a modified version of kineto.
+* content is auto-updated every 15 minutes by pulling the git repo.
+
 => https://gemini.circumlunar.space/                                       → gemini - about
 => gemini://tilde.team/~khuxkm/leo/                                        → leo - about
 => gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → leo - next capsule
