@@ -17,7 +17,7 @@
 ### intern @ clearwater analytics | 2017 - 2018
 * created 1 react and 2 angular applications over 2 internships.
 
-## student, tutor & ta @ byui | 2015 - 2019
+### student, tutor & ta @ byui | 2015 - 2019
 * bachelors degree for computer science.
 * tutor for c++ courses. ta for computational theory.
 * leadership in coding clubs for 3 years.
