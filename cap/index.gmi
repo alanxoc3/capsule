@@ -6,19 +6,19 @@ i am a programming hipster who also indulges in piano, classic books, and langua
 => https://twitter.com/alanxoc3 → twitter.com/alanxoc3
 
 ## pages
-=> gemini://alanxoc3.xyz/pages/cv.gmi       → cv: even i need to work sometimes
-=> gemini://alanxoc3.xyz/pages/concards.gmi → concards: flashcards through the cli
-=> gemini://alanxoc3.xyz/pages/ttrack.gmi   → ttrack: automated time tracking using hooks
-=> gemini://alanxoc3.xyz/pages/hatel.gmi    → hatel: turning a piano into a computer keyboard
-=> gemini://alanxoc3.xyz/pages/gamejams.gmi → gamejams: games i made with time constraints
-=> gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard: turning a pi 400 into a keyboard
+=> gemini://alanxoc3.xyz/pages/cv.gmi       → cv - even i need to work sometimes
+=> gemini://alanxoc3.xyz/pages/concards.gmi → concards - flashcards through the cli
+=> gemini://alanxoc3.xyz/pages/ttrack.gmi   → ttrack - automated time tracking using hooks
+=> gemini://alanxoc3.xyz/pages/hatel.gmi    → hatel - turning a piano into a computer keyboard
+=> gemini://alanxoc3.xyz/pages/gamejams.gmi → gamejams - games i made with time constraints
+=> gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard - turning a pi 400 into a keyboard
 
 ## blog
-=> gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
+=> gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07 - kak vs nvim
 
-## gemini
-=> https://gemini.circumlunar.space/                                       → about gemini
-=> gemini://tilde.team/~khuxkm/leo/                                        → about leo
-=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → next leo capsule
-=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → last leo capsule
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                → random leo capsule
+## gemini & leo
+=> https://gemini.circumlunar.space/                                       → gemini - about
+=> gemini://tilde.team/~khuxkm/leo/                                        → leo - about
+=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → leo - next capsule
+=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → leo - last capsule
+=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                → leo - random capsule
