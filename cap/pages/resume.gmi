@@ -1,26 +1,26 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
-# Alan Morgan
-=> mailto:alanxoc3@gmail.com → alanxoc3@gmail.com
-=> https://git.io/alanxoc3   → git.io/alanxoc3
+# alan morgan
+=> mailto:alanxoc3@gmail.com   → alanxoc3@gmail.com
+=> https://github.com/alanxoc3 → github.com/alanxoc3
 
-## SKILLS
-* Languages: Go. Rust. Typescript. Lua. Perl. Bash. Python.
-* Technologies: Terraform. Gcp. Docker. Linux.
+## skills
+* languages: go. rust. typescript. lua. perl. bash. python.
+* technologies: linux. docker. terraform. gcp.
 
-## WORK
-### Dev @ Clearwater Analytics | 2019 - Now
-* Lead dev for designing, implementing, and deploying large features.
-* Transitioned legacy applications to GCP.
-* Cloud admin for my team.
+## work
+### dev @ clearwater analytics | 2019 - now
+* lead dev for designing, implementing, and deploying large features.
+* transitioned legacy applications to gcp.
+* cloud admin for my team.
 
-### Intern @ Clearwater Analytics | 2017 - 2018
-* Created 1 React and 2 Angular applications over 2 internships.
+### intern @ clearwater analytics | 2017 - 2018
+* created 1 react and 2 angular applications over 2 internships.
 
-### B. S. Computer Science, Tutor & TA @ BYUi | 2015 - 2019
-* Tutor for C++ courses. TA for Computational Theory.
-* ACM leadership for 3 years.
+### b. s. computer science, tutor & ta @ byui | 2015 - 2019
+* tutor for c++ courses. ta for computational theory.
+* acm leadership for 3 years.
 
-## INTERESTS
-* Tech:  Arch Linux. Kakoune. Pico-8. Gemini.
-* Other: Mandarin. Piano. Classic Books. Running.
+## interests
+* tech:  arch linux. kakoune. pico-8. gemini.
+* other: mandarin. piano. classic books. running.

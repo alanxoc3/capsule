@@ -1,9 +1,9 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # hatel
-Hatel is a program & keyboard layout that uses midi input to generate keystrokes. Currently I have all the basic latin letters defined as well as a few punctuation type things. I'm the only user right now and I'm still practicing this layout. Once I can type all the letters at a decent speed, I will spec out numbers & symbols.
+hatel is a program & keyboard layout that uses midi input to generate keystrokes. currently i have all the basic latin letters defined as well as a few punctuation type things. i'm the only user right now and i'm still practicing this layout. once i can type all the letters at a decent speed, i will spec out numbers & symbols.
 
-You can see find the code on github:
+you can see find the code on github:
 => https://github.com/alanxoc3/hatel
 
-(This page is still a WIP.)
+(this page is still a wip.)

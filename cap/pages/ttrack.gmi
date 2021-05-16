@@ -1,15 +1,15 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
 # ttrack
-In April 2021, I was trying to find a program that can track how long I did things. But I had a few requirements:
-* The program shouldn't have a daemon.
-* There should be a simple & lightweight command that can be called through plugins/hooks to update the time.
-* I only care about seeing how long I did something at a daily level (practiced piano for 1 hour that day, or programmed for 30 mins that day).
-* Results should be stored in plain text and multiple files so that it works well with git.
+in april 2021, i was trying to find a program that can track how long i did things. but i had a few requirements:
+* the program shouldn't have a daemon.
+* there should be a simple & lightweight command that can be called through plugins/hooks to update the time.
+* i only care about seeing how long i did something at a daily level (practiced piano for 1 hour that day, or programmed for 30 mins that day).
+* results should be stored in plain text and multiple files so that it works well with git.
 
-I've been working on implementing a time tracking program. Currently some of the bullet points are implemented, but not all of them. I'm currently calling ttrack through hooks with concards, hatel, and kakoune. That said, it's probably not ready for random people to be using it yet.
+i've been working on implementing a time tracking program. currently some of the bullet points are implemented, but not all of them. i'm currently calling ttrack through hooks with concards, hatel, and kakoune. that said, it's probably not ready for random people to be using it yet.
 
-Here's the source code anyways:
+here's the source code anyways:
 => https://github.com/alanxoc3/ttrack
 
-(This page is still a WIP.)
+(this page is still a wip.)

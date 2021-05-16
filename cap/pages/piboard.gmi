@@ -3,10 +3,10 @@
 # pi keyboard
 i'm not sure if this is a good idea or not, but i'll write down some thoughts anyways. i have a raspberry pi 400 and i really like the way that the keyboard is designed. the keyboard is compact and just plain feels good. what if it was a keyboard though? as i'm typing these thoughts, i have the pi 400 connected to my laptop draining power to see what kind of power consumption it would take if i were to use it as a keyboard in a mobile setting.
 
-if it was a keyboard, i'd probably make it a bluetooth keyboard because that's easier and it's less coords. I will already need a coord connecting to an ac outlet or my computer to get power. i don't want to have two coords if i do this. the problems I'll need to figure out with bluetooth though are a way to auto connect once the pi gets power (plugged into the computer). Also being able to ssh into the pi would be nice too. I'd probably disable internet connection by default on the pi, since it's meant to just give me keystrokes in a mobile setting.
+if it was a keyboard, i'd probably make it a bluetooth keyboard because that's easier and it's less coords. i will already need a coord connecting to an ac outlet or my computer to get power. i don't want to have two coords if i do this. the problems i'll need to figure out with bluetooth though are a way to auto connect once the pi gets power (plugged into the computer). also being able to ssh into the pi would be nice too. i'd probably disable internet connection by default on the pi, since it's meant to just give me keystrokes in a mobile setting.
 
 some links to things that can help out this idea:
-=> https://nano.dannyvacar.ca/post/2019-12-13-raspberry-pi-ssh-over-bluetooth/ SSH over bluetooth
+=> https://nano.dannyvacar.ca/post/2019-12-13-raspberry-pi-ssh-over-bluetooth/ ssh over bluetooth
 => https://bbs.archlinux.org/viewtopic.php?id=179312 connecting 2 computers with an ethernet cable (i tried it and it works)
 => https://github.com/quangthanh010290/keyboard_mouse_emulate_on_raspberry pi emulates as a bluetooth keyboard
 
