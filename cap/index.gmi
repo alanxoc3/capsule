@@ -17,7 +17,6 @@ i am a programming hipster who also indulges in piano, classic books, and langua
 => gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07 - kak vs nvim
 
 ## site/capsule
-this site is primarily designed for browsers that implement the gemini protocol. the site is proxied for https browsing too though. some technical details:
 * hosted on an arch linux linode instance.
 * gemini server uses agate.
 * https proxy uses nginx and a modified version of kineto.
