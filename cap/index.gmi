@@ -16,8 +16,9 @@ i am a programming hipster who also indulges in piano, classic books, and langua
 ## blog
 => gemini://alanxoc3.xyz/blog/kak-vs-nvim.gmi → 2021-03-07: kak vs nvim
 
-## leo
-=> gemini://tilde.team/~khuxkm/leo/                                        → orbiting leo
-=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → next capsule
-=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → last capsule
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                → random capsule
+## gemini
+=> https://gemini.circumlunar.space/                                       → about gemini
+=> gemini://tilde.team/~khuxkm/leo/                                        → about leo
+=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → next leo capsule
+=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3a%2f%2falanxoc3.xyz%2f → last leo capsule
+=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                → random leo capsule
