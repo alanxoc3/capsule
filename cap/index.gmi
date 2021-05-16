@@ -1,20 +1,12 @@
-```
-       __                       ____
- ___ _/ /__ ____ __ _____  ____|_  /
-/ _ `/ / _ `/ _ \\ \ / _ \/ __//_ <
-\_,_/_/\_,_/_//_/_\_\\___/\__/____/
-       gemini://alanxoc3.xyz
-```
-
-# alanxoc3's capsule!
-i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me! on the internets, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on github, twitter and email, though you might see me on an irc server from time to time too. if you want to have a conversation, drop me a message!
+# alan morgan!
+i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me! on the internet, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on github, twitter and email, though you might see me on an irc server from time to time too. if you want to have a conversation, drop me a message!
 
 => mailto:alanxoc3@gmail.com    → alanxoc3@gmail.com
 => https://github.com/alanxoc3  → github.com/alanxoc3
 => https://twitter.com/alanxoc3 → twitter.com/alanxoc3
 
 ## pages!
-=> gemini://alanxoc3.xyz/pages/resume.gmi   → resume: even i have to work sometimes
+=> gemini://alanxoc3.xyz/pages/cv.gmi       → cv: even i need to work sometimes
 => gemini://alanxoc3.xyz/pages/concards.gmi → concards: flashcards through the cli
 => gemini://alanxoc3.xyz/pages/ttrack.gmi   → ttrack: automated time tracking using hooks
 => gemini://alanxoc3.xyz/pages/hatel.gmi    → hatel: turning a piano into a computer keyboard
