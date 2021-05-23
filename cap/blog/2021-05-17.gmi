@@ -1,6 +1,5 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
-# patch stuff 
 for work today i had to make identical changes to 2 separate branches. the problem is that one branch moved all the files i was changing to a different directory. i knew this could be solved with the patch command, but i didn't know exactly how. now i know how.
 
 one think i learned is that the `git diff` format is the same format as `diff`, so it works with the patch command. i guess that should be common sense, but it wasn't something i actually knew for certain before. the next thing i learned was about the patch command, specifically the `-l` and `-p` options. `-p` lets you pass a number that will remove leading directories specified in the patch file. git diff always puts a leading `a/` and `b/` directory on the diff, so i needed to pass a `-p1`. the `-l` command ignores whitespace. i thought `-l` would take care of carriage returns too, but it didn't, so i had to pipe the git diff output through `dos2usix` too.

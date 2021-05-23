@@ -1,6 +1,5 @@
 => gemini://alanxoc3.xyz ← alanxoc3.xyz
 
-# kak vs nvim
 yesterday, i mentioned that i started using kakoune a few months ago in a youtube thread. someone then asked me what the differences are between kakoune and neovim. i ended up writing a consideral amount of thoughts of the pros and cons of neovim vs kakoune. so i'll share that in a blog post too!
 
 kakoune is not for everyone, but here are some of the pros and cons for me.
