@@ -14,7 +14,8 @@ welcome to my capsule! i am a programming hipster who also indulges in piano, cl
 => gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard - turning a pi 400 into a keyboard
 
 ## blog
-=> gemini://alanxoc3.xyz/blog/2021-05-23.gmi → 2021-05-24 - the republic book 1
+=> gemini://alanxoc3.xyz/blog/2021-05-26.gmi → 2021-05-26 - the apology
+=> gemini://alanxoc3.xyz/blog/2021-05-25.gmi → 2021-05-25 - the republic book 1
 => gemini://alanxoc3.xyz/blog/2021-05-23.gmi → 2021-05-23 - github actions
 => gemini://alanxoc3.xyz/blog/2021-05-19.gmi → 2021-05-19 - mandarin exchange
 => gemini://alanxoc3.xyz/blog/2021-05-17.gmi → 2021-05-17 - patch stuff
