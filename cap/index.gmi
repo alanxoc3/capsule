@@ -25,7 +25,7 @@ welcome to my capsule! i am a programming hipster who also indulges in piano, cl
 
 ## site
 * hosted on an arch linux linode instance.
-* gemini server uses agate.
+* gemini server uses agate in a docker container.
 * https proxy uses nginx and a modified version of kineto.
 * content is auto-updated every 15 minutes by pulling the git repo.
 
