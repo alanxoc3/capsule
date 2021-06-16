@@ -43,8 +43,8 @@ Description=Updates the folder for git. Meant to be called by a timer.
 ExecStartPre=git fetch
 ExecStart=git merge
 WorkingDirectory=${REPO_DIR}
-User=REPO_USER
-Group=REPO_GROUP
+User=${REPO_USER}
+Group=${REPO_GROUP}
 
 [Install]
 WantedBy=multi-user.target
