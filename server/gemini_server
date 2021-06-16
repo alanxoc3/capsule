@@ -1,3 +1,5 @@
 #!/bin/bash
-docker build /capsule
-docker run -p 1965:1965 -v /capsule/cap:/capsule
+REPO_DIR=${1:-"/capsule"}
+echo "Directory to use is: '${REPO_DIR}'."
+docker build ${REPO_DIR} -t prod-gemini
+docker run -p 1965:1965 -v ${REPO_DIR}/.certificates:/certificates -v ${REPO_DIR}/cap:/capsule prod-gemini
