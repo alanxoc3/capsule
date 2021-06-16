@@ -1,3 +1,3 @@
 #!/bin/bash
-echo "Current Directory:" $(pwd)
-agate --content cap --addr "[::]:1965" --addr 0.0.0.0:1965 --hostname alanxoc3.xyz
+docker build /capsule
+docker run -p 1965:1965 -v /capsule/cap:/capsule
