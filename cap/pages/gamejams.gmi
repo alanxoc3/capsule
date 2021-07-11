@@ -15,7 +15,7 @@ for ld #48. the outside world is dangerous, so you must venture down to the bott
 for ld #46. you are a quadcopter that sees a bird fly off into danger, so you must save it. your quadcopter friends think you've gone crazy, so they chase you. i made this game with a random dude from the uk who was looking for someone to help with music. i ended up contributing a bunch of ideas, all the music, and maybe 1/4 of the code. this was my first ludum dare entry, so it was exciting.
 
 ## one hour game jam
-i was introduced to one hour game jams in college. some guys were giving a presentation and they said that they liked to play one hour game jam games, but they didn't really make any games for it. over the years, i've made a few games for the one hour game jam. all of them are arcade style games. some of the older games at the bottom of this list are terrible, but the newer ones at the top are a bit better. also, i accidentally deleted one of the games, so i omitted that one from the list.
+i was introduced to one hour game jams in college. some guys were giving a presentation and they said that they liked to play one hour game jam games, but they didn't really make any games for it. over the years, i've made a few games for the one hour game jam. all of them are arcade style games. some of the older games at the bottom of this list are terrible, but the newer ones at the top are a bit better.
 
 => https://www.lexaloffle.com/bbs/?tid=41890 neglected bear
 => https://www.lexaloffle.com/bbs/?tid=41433 candle rain
@@ -30,4 +30,13 @@ i was introduced to one hour game jams in college. some guys were giving a prese
 todo
 
 ## one time jams
+i joined a few random jams on itch.io and in other places.
+
+=> https://alanxoc3.itch.io/alien-rock-turtle-and-the-escape-from-area-51 alien rock turtle and the escape from area 51
+i made this with 2 of my brothers. my other brother likes unity instead of pico-8, so we did it in unity. that was my first time using unity and it was just like i expected, the fun of game development goes away with the slowness of navigating the ide. nevertheless, we made a simple game in 3 hours, though it really took 8+ hours if you count all the technical problems we had.
+
+=> https://alanxoc3.itch.io/heytherekitty hey there kitty
+i made this with my brother for a 4 hour game jam. it's just about a kitty that jumps around. it looks cute, but there isn't much gameplay in it.
+
 => https://www.lexaloffle.com/bbs/?tid=37212 guitar mike
+i did a game jam with only myself. after reading about how the sprites in "prince of persia" were rotoscoped versions of the developer and his brother, i decided to rotoscope myself for this 2 day long game jam.
