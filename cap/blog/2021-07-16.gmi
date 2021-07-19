@@ -1,0 +1,15 @@
+=> gemini://alanxoc3.xyz ← alanxoc3.xyz 
+
+i had a situation at work where i wanted to edit two files that were very similar. i could have used a macro on one file and applied it to the other. but i thought there must be a better way. so i searched if tmux could sync input between panes and sure enough it can.
+
+=> https://blog.sanctum.geek.nz/sync-tmux-panes/ sync tmux panes blogpost
+
+the command to sync text is:
+
+```
+:setw synchronize-panes
+```
+
+run the same command again to untoggle the synchronize mode.
+
+that blog also mentions it can be useful to ssh into multiple systems that share a similar structure.
