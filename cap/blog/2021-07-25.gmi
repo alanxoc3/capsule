@@ -1,0 +1,15 @@
+#- updates to gemini server
+
+today i created a bash script that preprocesses my gemtext files, automating some things i was doing manually before. before today, i was manually adding a header link back to the main page on all my pages. but now that is automatically added to all my pages. i also made it so i don't have to touch the index page at all if i add new pages. these are really small things that i'm sure have been solved by people before, but my scripts are customized for my capsule.
+
+if you look at my github's index.gmi, you can see something like this:
+
+```
+{{pages}}
+```
+
+the "pages" word is a directory name. my bash script will look for all .gmi files in that directory, get the first header, and create links with each one's header text.
+
+i also created another header type to help me type less. this gemini post has the text "#- updates to gemini server" as the header. my bash script is changing that to "# <basename of filename> - updates to gemini server". the filename is just a date (2021-07-25.gmi), so the end result is pretty nice.
+
+that's what i did this evening. it makes me want to post more things, because making a new post takes less manual work now.
