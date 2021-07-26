@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# STEP 1: Create a temp dir.
+TEMP_DIR=$(mktemp -d)
+
+# STEP 2: Compile the project into the temp dir.
+cp -r ./blog $TEMP_DIR
+
+# STEP 3: Safely apply changes to cap directory and cleanup tmp directory.
+rsync --delete -r $TEMP_DIR/blog .cap
+rm -r $TEMP_DIR
