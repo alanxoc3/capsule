@@ -2,7 +2,7 @@
 
 # STEP 1: Create a temp dir with all the files.
 TEMP_DIR=$(mktemp -d)
-cp -r ./blog/* $TEMP_DIR/
+cp -r ./cap/* $TEMP_DIR/
 
 # STEP 2: Compile/edit files in temp dir.
 
