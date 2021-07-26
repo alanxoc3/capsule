@@ -1,12 +1,8 @@
 # capsule
-My capsule located at gemini://alanxoc3.xyz.
+My capsule is located at gemini://alanxoc3.xyz and proxied at [https://alanxoc3.xyz](https://alanxoc3.xyz).
 
-Learn more about Gemini [here](https://gemini.circumlunar.space/).
+Server setup scripts can be found in [my dotfiles](https://github.com/alanxoc3/dotfiles).
 
-## install to arch linux server
-To set the website/capsule up with systemd on an arch linux server, run:
-```
-./server/install_to_server
-```
+Learn more about gemini [here](https://gemini.circumlunar.space/).
 
-That won't take care of everything, but it still covers a lot of ground.
+`./compile` will copy the `./cap` directory to `./.cap`, compiling my modified gemtext format to actual gemtext.

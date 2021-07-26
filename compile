@@ -7,12 +7,16 @@ cp -r ./cap/* $TEMP_DIR/
 # STEP 2: Compile/edit files in temp dir.
 pushd $TEMP_DIR
 
-# Replace #- in all .gmi files.
-ALL_GEMINIFILES="$(find -type f -regex '.*\.gmi')"
+ALL_GEMINI_FILES=$(find -type f -regex '.*\.gmi' -not -name 'index.gmi')
 while read -r gmi; do
     FILENAME="$(basename -s .gmi $gmi)"
+
+    # Put header info on every file.
+    sed -Ei '1s;^;=> gemini://alanxoc3.xyz ← alanxoc3.xyz\n\n;' "$gmi"
+
+    # Replace #- in all .gmi files.
     sed -Ei 's/^#- (.*)$/# '"$FILENAME"' - \1/g' "$gmi"
-done <<< $ALL_GEMINIFILES
+done <<< $ALL_GEMINI_FILES
 
 # Replace {{...}} in index.gmi
 DIRS="$(grep -Eo '\{\{(\w+)\}\}' ./index.gmi | sed -E 's/\{\{(\w+)\}\}/\1/g')"

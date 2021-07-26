@@ -1,7 +1,7 @@
 #- alan morgan
 
-=> mailto:alanxoc3@gmail.com   → alanxoc3@gmail.com
-=> https://github.com/alanxoc3 → github.com/alanxoc3
+=> mailto:alanxoc3@gmail.com   alanxoc3@gmail.com
+=> https://github.com/alanxoc3 github.com/alanxoc3
 
 ## skills
 * languages: go. rust. typescript. lua. perl. bash. python.
@@ -10,8 +10,7 @@
 ## work
 ### dev @ clearwater analytics | 2019 - now
 * lead dev for designing, implementing, and deploying large features.
-* transitioned legacy applications to gcp.
-* cloud admin for my team.
+* migrated legacy applications to gcp.
 
 ### intern @ clearwater analytics | 2017 - 2018
 * created 1 react and 2 angular applications over 2 internships.

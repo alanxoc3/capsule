@@ -1,14 +1,12 @@
 # alan morgan
 welcome to my capsule! i am a programming hipster who also indulges in piano, classic books, and languages. i currently work and live in boise, idaho, usa. if you see a cool looking dude in that city, go ahead and talk to him because he might be me. on the internet, i'm always "alanxoc3". as far as messaging platforms go, i'm pretty much only active on github, twitter and email, though you might see me on an irc server from time to time too. if you want to have a conversation, drop me a message.
 
-=> mailto:alanxoc3@gmail.com    → alanxoc3@gmail.com
-=> https://github.com/alanxoc3  → github.com/alanxoc3
-=> https://twitter.com/alanxoc3 → twitter.com/alanxoc3
+=> mailto:alanxoc3@gmail.com    alanxoc3@gmail.com
+=> https://github.com/alanxoc3  github.com/alanxoc3
+=> https://twitter.com/alanxoc3 twitter.com/alanxoc3
 
 ## pages
 {{pages}}
-
-# => gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard - turning a pi 400 into a keyboard
 
 ## blog
 {{blog}}
@@ -19,6 +17,6 @@ welcome to my capsule! i am a programming hipster who also indulges in piano, cl
 * https proxy uses nginx and a modified version of kineto.
 * content is auto-updated every 15 minutes by pulling the git repo.
 
-=> https://gemini.circumlunar.space/                                       → gemini - about
-=> gemini://tilde.team/~khuxkm/leo/                                        → leo - about
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi                                → leo - random capsule
+=> https://gemini.circumlunar.space/        gemini - about
+=> gemini://tilde.team/~khuxkm/leo/         leo - about
+=> gemini://tilde.team/~khuxkm/leo/rand.cgi leo - random capsule
