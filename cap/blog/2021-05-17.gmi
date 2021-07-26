@@ -1,4 +1,4 @@
-=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+#- patch stuff
 
 for work today i had to make identical changes to 2 separate branches. the problem is that one branch moved all the files i was changing to a different directory. i knew this could be solved with the patch command, but i didn't know exactly how. now i know how.
 

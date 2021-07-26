@@ -1,6 +1,5 @@
-=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+#- games i made with time constraints
 
-# game jams
 i'm a hipster, so of course i do game jams. really tho, game jams are only a small time commitment with a nice bonus that people could be playing your game for years to come. so that's one of the reasons why i like game jams.
 
 i've participated in a few game jams. the most intense one i've done is ludum dare, while the least intense ones are one hour game jams. also, i pretty much only do game dev with pico-8. i've touched a lot of the other game dev tools/frameworks in the past, but none of them seemed very cool to me. since i'm cool, i can't develop without a cool framework and pico-8 just happens to be that cool framework for me. you get it, right?

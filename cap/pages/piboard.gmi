@@ -1,6 +1,5 @@
-=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+#- turning a pi 400 into a keyboard
 
-# pi keyboard
 i'm not sure if this is a good idea or not, but i'll write down some thoughts anyways. i have a raspberry pi 400 and i really like the way that the keyboard is designed. the keyboard is compact and just plain feels good. what if it was a keyboard though? as i'm typing these thoughts, i have the pi 400 connected to my laptop draining power to see what kind of power consumption it would take if i were to use it as a keyboard in a mobile setting.
 
 if it was a keyboard, i'd probably make it a bluetooth keyboard because that's easier and it's less coords. i will already need a coord connecting to an ac outlet or my computer to get power. i don't want to have two coords if i do this. the problems i'll need to figure out with bluetooth though are a way to auto connect once the pi gets power (plugged into the computer). also being able to ssh into the pi would be nice too. i'd probably disable internet connection by default on the pi, since it's meant to just give me keystrokes in a mobile setting.

@@ -1,6 +1,5 @@
-=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+#- turning a piano into a computer keyboard
 
-# hatel
 hatel is a program & keyboard layout that uses midi input to generate keystrokes. currently i have all the basic latin letters defined as well as a few punctuation type things. i'm the only user right now and i'm still practicing this layout. once i can type all the letters at a decent speed, i will spec out numbers & symbols.
 
 you can see find the code on github:

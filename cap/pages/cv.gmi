@@ -1,6 +1,5 @@
-=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+#- alan morgan
 
-# alan morgan
 => mailto:alanxoc3@gmail.com   → alanxoc3@gmail.com
 => https://github.com/alanxoc3 → github.com/alanxoc3
 

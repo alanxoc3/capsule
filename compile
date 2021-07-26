@@ -5,6 +5,7 @@ TEMP_DIR=$(mktemp -d)
 cp -r ./cap/* $TEMP_DIR/
 
 # STEP 2: Compile/edit files in temp dir.
+sed -i
 
 # STEP 3: Safely apply changes to .cap dir.
 rsync --delete -r $TEMP_DIR/ .cap/

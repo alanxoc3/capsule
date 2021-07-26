@@ -6,23 +6,12 @@ welcome to my capsule! i am a programming hipster who also indulges in piano, cl
 => https://twitter.com/alanxoc3 → twitter.com/alanxoc3
 
 ## pages
-=> gemini://alanxoc3.xyz/pages/cv.gmi       → cv - even i need to work sometimes
-=> gemini://alanxoc3.xyz/pages/concards.gmi → concards - flashcards through the cli
-=> gemini://alanxoc3.xyz/pages/ttrack.gmi   → ttrack - automated time tracking using hooks
-=> gemini://alanxoc3.xyz/pages/hatel.gmi    → hatel - turning a piano into a computer keyboard
-=> gemini://alanxoc3.xyz/pages/gamejams.gmi → gamejams - games i made with time constraints
-=> gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard - turning a pi 400 into a keyboard
+{{pages}}
+
+# => gemini://alanxoc3.xyz/pages/piboard.gmi  → piboard - turning a pi 400 into a keyboard
 
 ## blog
-=> gemini://alanxoc3.xyz/blog/2021-07-16.gmi → 2021-07-16 - sync tmux pane input
-=> gemini://alanxoc3.xyz/blog/2021-06-04.gmi → 2021-06-04 - the clouds
-=> gemini://alanxoc3.xyz/blog/2021-06-03.gmi → 2021-06-03 - crito
-=> gemini://alanxoc3.xyz/blog/2021-05-26.gmi → 2021-05-26 - the apology
-=> gemini://alanxoc3.xyz/blog/2021-05-25.gmi → 2021-05-25 - the republic book 1
-=> gemini://alanxoc3.xyz/blog/2021-05-23.gmi → 2021-05-23 - github actions
-=> gemini://alanxoc3.xyz/blog/2021-05-19.gmi → 2021-05-19 - mandarin exchange
-=> gemini://alanxoc3.xyz/blog/2021-05-17.gmi → 2021-05-17 - patch stuff
-=> gemini://alanxoc3.xyz/blog/2021-03-07.gmi → 2021-03-07 - kak vs nvim
+{{blog}}
 
 ## site
 * hosted on an arch linux linode instance.

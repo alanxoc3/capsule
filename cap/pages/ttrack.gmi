@@ -1,6 +1,5 @@
-=> gemini://alanxoc3.xyz ← alanxoc3.xyz
+#- automated time tracking using hooks
 
-# ttrack
 in april 2021, i was trying to find a program that can track how long i did things. but i had a few requirements:
 * the program shouldn't have a daemon.
 * there should be a simple & lightweight command that can be called through plugins/hooks to update the time.
