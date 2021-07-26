@@ -5,7 +5,37 @@ TEMP_DIR=$(mktemp -d)
 cp -r ./cap/* $TEMP_DIR/
 
 # STEP 2: Compile/edit files in temp dir.
-sed -i
+pushd $TEMP_DIR
+
+# Replace #- in all .gmi files.
+ALL_GEMINIFILES="$(find -type f -regex '.*\.gmi')"
+while read -r gmi; do
+    FILENAME="$(basename -s .gmi $gmi)"
+    sed -Ei 's/^#- (.*)$/# '"$FILENAME"' - \1/g' "$gmi"
+done <<< $ALL_GEMINIFILES
+
+# Replace {{...}} in index.gmi
+DIRS="$(grep -Eo '\{\{(\w+)\}\}' ./index.gmi | sed -E 's/\{\{(\w+)\}\}/\1/g')"
+while read -r DIR; do
+    TEXT=""
+
+    pushd $DIR
+    NUMBER_FILES=$(ls | grep -E '^[0-9].*' | sort -r)
+    LETTER_FILES=$(ls | grep -E '^[^0-9].*' | sort)
+    FILES="$NUMBER_FILES $LETTER_FILES"
+    while read -r file; do
+        HEADER=$(sed -nE 's/^# (.*)$/\1/p' $file | head -n 1)
+        TEXT="${TEXT}\n=> gemini://alanxoc3.xyz/${DIR}/${file} $HEADER"
+    done <<< $FILES
+    popd
+
+    TEXT=$(echo -n "$TEXT" | awk '{ print substr( $0, 3 ) }')
+
+    echo -n "'$DIR'"
+    sed -Ei 's|\{\{'"$DIR"'\}\}|'"$TEXT"'|g' ./index.gmi
+done <<< $DIRS
+
+popd
 
 # STEP 3: Safely apply changes to .cap dir.
 rsync --delete -r $TEMP_DIR/ .cap/
