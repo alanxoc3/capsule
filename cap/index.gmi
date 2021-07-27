@@ -1,4 +1,4 @@
-# alan morgan
+# alanxoc3 | alan morgan
 i am a hipster who likes: piano, pico-8, classic books, arch linux, kakoune, cli apps, & learning mandarin. i currently live and work in boise usa with my wife and cat.
 
 ## proj
@@ -10,6 +10,6 @@ here is my random blog about various things:
 {{blog}}
 
 ## foot
-the random links you always wanted to click:
+the funny smelling links you always wanted to click:
 => gemini://tilde.team/~khuxkm/leo/rand.cgi random leo capsule
-=> gemini://alanxoc3.xyz/cv.gmi             cv & contact
+=> gemini://alanxoc3.xyz/cv.gmi cv & contact
