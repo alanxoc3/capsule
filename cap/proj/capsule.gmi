@@ -1,4 +1,4 @@
-# about alanxoc3.xyz
+#- about alanxoc3.xyz
 
 Here are the specs for this capsule:
 * hosted on an arch linux linode instance.

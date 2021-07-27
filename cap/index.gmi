@@ -9,6 +9,8 @@ these are projects i somewhat actively work on:
 here is my random blog about various things:
 {{blog}}
 
+## foot
+this foot has the links that didn't belong anywhere else:
 => gemini://alanxoc3.xyz/cv.gmi             cv & contact
 => https://gemini.circumlunar.space/        about gemini
 => gemini://tilde.team/~khuxkm/leo/rand.cgi random leo capsule
