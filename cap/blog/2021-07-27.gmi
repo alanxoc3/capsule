@@ -1,6 +1,7 @@
 #- here documents & here strings
 
 this is a bash post. i knew about here documents in bash, but i didn't know what it is called. a here document is something like this:
+
 ```
 cat << eof
 hello world
@@ -8,12 +9,14 @@ eof
 ```
 
 it tells bash to redirect the current input to stdin, until you reach the token defined right after the `<<`. but the other day i wanted to replace stdin with the content of an environment variable. the approach i came up with was:
+
 ```
 avar="hello world"
 echo "$avar" | cat
 ```
 
 but there is another, arguably better, way to do that with a here string:
+
 ```
 avar="hello world"
 cat <<< $avar
