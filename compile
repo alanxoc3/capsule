@@ -28,7 +28,7 @@ while read -r DIR; do
     LETTER_FILES=$(ls | grep -E '^[^0-9].*' | sort)
     FILES="$NUMBER_FILES $LETTER_FILES"
     while read -r file; do
-        HEADER="$(sed -nE 's/^# (.*)$/\1/p' $file | head -n 1)"
+        HEADER=$(grep -Em 1 '^#' $file | sed -nE 's/^#\s?(.*)$/\1/p')
         TEXT="${TEXT}\n=> gemini://alanxoc3.xyz/${DIR}/${file} $HEADER"
     done <<< $FILES
     popd
