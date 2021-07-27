@@ -1,5 +1,5 @@
 # alan morgan
-i am a hipster who likes: piano, pico-8, classic books, arch linux, kakoune, cli apps, & learning mandarin. i currently live and work in boise usa with my wife and cat. enjoy my capsule!
+i am a hipster who likes: piano, pico-8, classic books, arch linux, kakoune, cli apps, & learning mandarin. i currently live and work in boise usa with my wife and cat.
 
 ## proj
 these are projects i somewhat actively work on:
@@ -10,7 +10,6 @@ here is my random blog about various things:
 {{blog}}
 
 ## foot
-this foot has the links that didn't belong anywhere else:
-=> gemini://alanxoc3.xyz/cv.gmi             cv & contact
-=> https://gemini.circumlunar.space/        about gemini
+the random links you always wanted to click:
 => gemini://tilde.team/~khuxkm/leo/rand.cgi random leo capsule
+=> gemini://alanxoc3.xyz/cv.gmi             cv & contact

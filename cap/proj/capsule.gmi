@@ -1,7 +1,11 @@
 #- about alanxoc3.xyz
 
-Here are the specs for this capsule:
+this website is actually a gemini capsule. it is written for the gemini protocol, but proxied to https. gemini a modern protocol that enforces simplicity and privacy, reminiscent of the early web. read more about gemini here:
+=> https://gemini.circumlunar.space/ read about gemini here
+
+here are the specs for this capsule:
 * hosted on an arch linux linode instance.
 * gemini server uses agate in a docker container.
 * https proxy uses nginx and a modified version of kineto.
-* content is auto-pulled from git repo every 15 minutes.
+* content pulls from git repo every 15 minutes.
+* bash script pre-processes files before served.
