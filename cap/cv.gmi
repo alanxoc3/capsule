@@ -12,7 +12,7 @@
 ### dev @ clearwater analytics | 2019 - now
 * lead dev designing, implementing, and deploying large features.
 * led my division in creating dockerized tests for legacy applications.
-* migrated webservice from on-prem to gcp cloud.
+* migrated webservices from on-prem to gcp cloud.
 
 ### intern @ clearwater analytics | 2017 - 2018
 * created 1 react and 2 angular applications over 2 internships.

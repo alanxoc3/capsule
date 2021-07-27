@@ -6,10 +6,9 @@ these are projects i somewhat actively work on:
 {{proj}}
 
 ## blog
-here is my random blog about various things:
+here is my random blog about my various interests:
 {{blog}}
 
-## foot
-the funny smelling links you always wanted to click:
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi random leo capsule
-=> gemini://alanxoc3.xyz/cv.gmi cv & contact
+## info
+feel free to contact me about whatever:
+=> gemini://alanxoc3.xyz/cv.gmi contact & cv
