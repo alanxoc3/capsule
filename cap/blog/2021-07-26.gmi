@@ -1,0 +1,17 @@
+#- amfora search alias
+
+i realized that amfora blogs have a lot of great content for terminal/cli type stuff. so i made a bash function that lets me quickly search through gemini blogs using the geminispace search engine.
+
+here is are those aliases/functions:
+
+```
+urlencode() { python -c "$(echo -e 'import sys,urllib.parse as ul;\nprint(ul.quote(sys.argv[1]))')" "$*" }
+ams() { amfora "gemini://geminispace.info/search?$(urlencode $@)" }
+```
+
+the basics of the urlencode function came from this stack overflow post:
+=> https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding
+
+i modified it a bit to make it a bit more usable. besides that, the rest is pretty straight forward. `ams` stands for "amfora search".
+
+i'll try to make gemini my first goto place before i open ddg.gg.
