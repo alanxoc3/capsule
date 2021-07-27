@@ -31,6 +31,9 @@ todo
 ## one time jams
 i joined a few random jams on itch.io and in other places.
 
+=> https://alanxoc3.itch.io/mission-impopsic mission impopsicle
+i made this with my brother for a jam with an ice cream theme. you are a secret-agent ninja penguin on a unicycle and must defeat ice cream terrorists.
+
 => https://alanxoc3.itch.io/alien-rock-turtle-and-the-escape-from-area-51 alien rock turtle and the escape from area 51
 i made this with 2 of my brothers. my other brother likes unity instead of pico-8, so we did it in unity. that was my first time using unity and it was just like i expected, the fun of game development goes away with the slowness of navigating the ide. nevertheless, we made a simple game in 3 hours, though it really took 8+ hours if you count all the technical problems we had.
 
