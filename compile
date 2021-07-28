@@ -1,5 +1,8 @@
 #!/bin/bash
 
+NL='
+'
+
 # STEP 1: Create a temp dir with all the files.
 TEMP_DIR=$(mktemp -d)
 cp -r ./cap/* $TEMP_DIR/
@@ -19,7 +22,6 @@ while read -r gmi; do
 done <<< $ALL_GEMINI_FILES
 
 # Replace {{...}} in index.gmi
-DIRS="$(grep -Eo '\{\{(\w+)\}\}' ./index.gmi | sed -E 's/\{\{(\w+)\}\}/\1/g')"
 while read -r DIR; do
     TEXT=""
 
@@ -28,16 +30,20 @@ while read -r DIR; do
     LETTER_FILES=$(ls | grep -E '^[^0-9].*' | sort)
     FILES="$NUMBER_FILES $LETTER_FILES"
     while read -r file; do
-        HEADER=$(grep -Em 1 '^#' $file | sed -nE 's/^#\s?(.*)$/\1/p')
-        TEXT="${TEXT}\n=> gemini://alanxoc3.xyz/${DIR}/${file} $HEADER"
+        HEADER=$(grep -Em 1 '^#' $file | sed -nE 's/^#\s*(.*)$/\1/p')
+        TEXT="${TEXT}"'=> gemini://alanxoc3.xyz/'"${DIR}/${file} ${HEADER}${NL}"
     done <<< $FILES
     popd
 
-    TEXT=$(echo -n "$TEXT" | awk '{ print substr( $0, 3 ) }')
+    TEXT_TMP_FILE=$(mktemp)
+    head -c -1 <<< $TEXT > $TEXT_TMP_FILE
 
-    echo -n "'$DIR'"
-    sed -Ei 's|\{\{'"$DIR"'\}\}|'"$TEXT"'|g' ./index.gmi
-done <<< $DIRS
+    DIR_TEXT='\{\{'"$DIR"'\}\}'
+    sed -Ei "/$DIR_TEXT/{
+        s/$DIR_TEXT//g
+        r $TEXT_TMP_FILE
+    }" ./index.gmi
+done <<< $(grep -Eo '\{\{(\w+)\}\}' ./index.gmi | sed -E 's/\{\{(\w+)\}\}/\1/g')
 
 popd
 
