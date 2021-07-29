@@ -1,0 +1,42 @@
+#- raw text replacement shell function
+
+i had a goal today to come up with a shell script that just replaces raw text. i'll go through my iterations of trying to do this.
+
+## sed
+my first approach was using sed:
+
+```
+rf_sed() { sed "s/$1/$2/g"; }
+echo 'aba' | rf_sed 'b' 'a' # OK: aaa
+echo 'aba' | rf_sed 'b' '/' # BAD
+echo 'aba' | rf_sed 'b' '&' # BAD: aba
+echo 'aba' | rf_sed 'b' '\' # BAD
+```
+
+the solution is pretty simple, but ampersands, backslashes, and the sed delimiter character will break this. i experimented a bit more with sed using the `r` (replace) command, but i didn't make much progress with that approach. based on my research, i think the only way for sed to work in all cases is to escape all the special characters that may be interpreted by sed. that is by no means an elegant solution though, so i moved on to another tool.
+
+## awk
+next is awk:
+
+```
+rf_awk() { awk '{gsub(/'"$1"'/,x)}{print}' "x=$2"; }
+echo 'aba' | rf_awk 'b' 'a' # OK: aaa
+echo 'aba' | rf_awk 'b' '/' # OK: a/a
+echo 'aba' | rf_awk 'b' '&' # BAD: aba
+echo 'aba' | rf_awk 'b' '\' # BAD: aa
+```
+
+this simple awk script works better than sed, but the first parameter still suffers with delimiter problems. the second parameter however doesn't have problems with the forward slash, but it does have problems with backslashes and ampersands. i think awk can do the trick though, if you loop through characters in the line. i don't consider writing a loop that goes by character to be very elegant though.
+
+## perl
+and lastly, perl:
+
+```
+rf_perl() { a="$1" b="$2" perl -pe 's/$ENV{"a"}/$ENV{"b"}/ge'; }
+echo 'aba' | rf_perl 'b' 'a' # OK: aaa
+echo 'aba' | rf_perl 'b' '/' # OK: a/a
+echo 'aba' | rf_perl 'b' '&' # OK: a&a
+echo 'aba' | rf_perl 'b' '\' # OK: a\a
+```
+
+finally, i came up with a solution i consider elegant and that works in all cases. and that's it!
