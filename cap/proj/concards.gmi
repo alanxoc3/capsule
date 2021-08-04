@@ -137,3 +137,38 @@ answer hash is all answers put together. chaining isn't a thing.
 
 ## New thought
 What if I deprecate the `|` symbol? I mostly use the "::" anyways. If I do that, then the syntax is cleaner, and there could be a keybinding to exclude that thing.
+
+#: testing
+:: answer
+:#
+
+## A while later, my ideas
+Record the number of answers, as well as the hash of all answers chained together in alphabetical order, removing duplicates. Alphabetical order, because loading could change.
+
+But answers are displayed in load order. Well. Answers are displayed in the order on the card. Then there could be a bunch of meta-answers. Should those meta answers be in load order or alphabetical? I think the server should pass them in load order. The client can decide if it should be alphabetical or not. The server should also remove duplicates.
+
+The history needs to know whether the answers for a card were modified, added, or removed. The number of answers helps with that, but it still isn't absolute.
+
+q-hash all-a-hash num-of-a
+
+Old format has all this info for a card:
+
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 2020-11-21T03:47:12Z 4 1 3 sm2
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 4 1 3 1
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 4 1 3 1
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 4 1 3 1
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 4 1 3 1
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 4 1 3 1
+YKB4BOBAU5WkkyLdhaah YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z 4 1 3 1
+
+new format reduces this by over 50%. Plus there is more useful information now.
+
+YKB4BOBAU5WkkyLdhaah 2020-11-21T03:47:12Z
+2020-11-21T01:47:11Z y AAAAAAAAU5WkkyLdhaah
+2020-11-21T03:47:12Z y
+2020-11-21T03:47:19Z y
+2020-11-21T03:49:18Z y AAAAAAAAU5WkkyLdhaah AAAAAAAAU5WkkyLdhaah
+2020-11-21T03:87:16Z n AAAAAAAAU5WkkyLdhaah AAAAAAAAU5WkkyLdhaah AAAAAAAAU5WkkyLdhaah AAAAAAAAU5WkkyLdhaah
+2020-11-21T12:47:13Z y
+
+what are the options for algorithm support? there could be 1 executable script that gets run with everything. you would decide the algorithm based on context. or you would just use the same algorithm no matter what.
