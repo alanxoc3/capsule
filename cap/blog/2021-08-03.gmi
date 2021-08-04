@@ -1,0 +1,25 @@
+#- ide-less idea for java dev
+
+i love using the terminal. i don't have any specific metrics, but i'm guessing that i spend 60% of my screen time each day looking at just a terminal window. i love the look of terminals, but i also love the simplicity of the unix philosophy that comes with it. the fact that there are so many well written applications that do only one thing well enables me to quickly write powerful scripts.
+
+=> gemini://jsreed5.org/log/2021/202103/20210305-do-one-thing.gmi do one thing
+
+though my love for commandline apps is clear, i unwantingly use the intellij ide every work day in some capacity. i have to do a lot of java development for my job and i haven't met a single java developer who doesn't use a gui-based ide. i don't enjoy using ides because they try to do everything, which is the opposite of the unix philosophy. one of the biggest downsides to this is that i can't take parts of the ide i like and leave out parts i don't like.
+
+i currently need intellij for only three tasks:
+* debugging
+* handling imports
+* goto definition
+* auto-completion for external libraries
+
+i'm aware that language servers can help a lot with these points, but i'd like to explore a solution to my problem that involves tools that do one thing, combined with general text manipulation:
+
+if there was a fast cli tool for java (maven specifically) that printed all the possible imports for the project along with filenames of where the source code is located, managing imports, gotos, and autocompletion could all be done with mere text manipulation.
+
+debugging is more tricky, i might be able to use jdb. i would just have to understand it more. generally, if a debugger gives me a stack trace and class names, i could use the theoretical tool mentioned above to find the source code for those classes and inspect things there.
+
+=> https://docs.oracle.com/javase/7/docs/technotes/tools/windows/jdb.html java debugger (jdb)
+
+if there were good tools for just those 2 things, my life would be so much easier. unfortunately, the solution would be a little more complex for large java projects, because unpacking all those source files from jars would be a nightmare. instead of providing files with the original import tool idea, there might have to be a separate tool that maps import paths to maven dependencies and yet another tool that creates a source file given a maven dependency and import file path.
+
+but given those ideas, manipulating java code without an ide and without a language server would be so much easier.
