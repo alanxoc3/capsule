@@ -6,7 +6,7 @@ i love using the terminal. i don't have any specific metrics, but i'm guessing t
 
 though my love for commandline apps is clear, i unwantingly use the intellij ide every work day in some capacity. i have to do a lot of java development for my job and i haven't met a single java developer who doesn't use a gui-based ide. i don't enjoy using ides because they try to do everything, which is the opposite of the unix philosophy. one of the biggest downsides to this is that i can't take parts of the ide i like and leave out parts i don't like.
 
-i currently need intellij for only three tasks:
+i currently need intellij for only a few tasks:
 * debugging
 * handling imports
 * goto definition
