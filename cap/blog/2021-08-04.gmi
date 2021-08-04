@@ -1,0 +1,26 @@
+#- an intro to jq
+
+i heard about the jq command sometime last year and i've had it installed for many months now, but i didn't need to use it until today.
+
+=> https://github.com/stedolan/jq jq on github
+
+installation with pacman is straightforward:
+
+```
+sudo pacman -S jq
+```
+
+i'm guessing jq stands for "json query", but i couldn't find a source for that to know for sure. some nice things that i noticed immediately when i started using jq are:
+* syntax highlighting
+* pretty prints json (like `python -m json.tool`)
+* great documentation
+
+one of the main reasons to use jq is for json filtering. Here are some simple examples: 
+```
+json='{"a": {"b": ["c", "d", {"e": "f"}]}}'
+
+echo $json | jq .         # prints: {"a": {"b": ["c", "d", {"e": "f"}]}}
+echo $json | jq .a        # prints: {"b": ["c", "d", {"e": "f"}]}
+echo $json | jq .a.b[0]   # prints: "c"
+echo $json | jq .a.b[2].e # prints: "f"
+```
