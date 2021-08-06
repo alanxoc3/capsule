@@ -1,0 +1,76 @@
+#- tmux capture pane
+
+something i've found myself doing a lot is running a command twice, just so i can edit the text a second time. another thing i found myself doing a lot is using my mouse to copy a url or file from the screen. luckily, i'm always in a tmux session and tmux has a cool `capture-pane` command, so i used that to my advantage and came up with some cool solutions.
+
+my first solution solves the problem of navigating/editing the output of a previously run command. i'm aware of tmux's copy mode ("prefix+["), but the copy mode has a limited set of vim keybindings so it's not very pleasant to use. anytime someone tries to reimplement vim bindings, i get the feeling they should just allow someone to use their editor. so instead of opening copy mode, i created a kakoune mode for tmux. just copy this into your tmux.conf:
+
+```
+bind-key -T prefix k capture-pane -eJS - \;
+    run-shell 'TTF=$(mktemp);
+        tmux save-buffer $TTF;
+        tmux delete-buffer;
+        tmux split-window -Z sh -c "(cat $TTF; rm $TTF) | kak"
+        '
+```
+
+the `-eJS -` part of capture-pane joins lines that go off the screen, uses all of the history instead of only the viewable screen, and keeps color codes. i want to keep color codes, because i'm using a great kakoune plugin:
+
+=> https://github.com/eraserhd/kak-ansi kak-ansi by eraserhd
+
+to solve the second problem, i created a shell script:
+
+```
+#!/bin/bash
+# tsl - tmux screen list. prints all the tokens currently visible on the screen.
+tmux capture-pane -eJ
+
+TTF=$(mktemp)
+tmux save-buffer $TTF
+tmux delete-buffer
+
+grep -o -E '\S+' $TTF | awk '{gsub(/:$/,"")}!x[$0]++{print}'
+
+rm $TTF
+```
+
+that command is kind of like ls, but instead if listing files, it lists all words on the screen. i'm also removing ":"s from the end of words, because i don't find it helpful. combining the command with fzf in a zsh keybinding makes all the difference:
+
+```
+kb_tmux_screen_list() {
+    local val
+    read -A val <<< $(tsl \
+        | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" fzf -m "$@" \
+        | tr '\n' ' ' | awk '{gsub(/ +$/,"")}{print}' \
+    )
+
+    if [[ -z "$val" ]]; then
+        zle redisplay
+        return 0
+    fi
+
+    LBUFFER="${LBUFFER}${(@q-)val}"
+    local ret=$?
+    zle reset-prompt
+    return $ret
+}
+zle     -N    kb_tmux_screen_list
+bindkey '\ez' kb_tmux_screen_list
+```
+
+now alt-z will use fuzzy filtering to insert text. using this with my clipboard tool makes copying words from the screen to the clipboard without a mouse very easy:
+
+```
+#!/bin/bash
+# ccl - copy clipboard. single interface for copying to the clipboard on mac or linux.
+copyfunc() { [[ "$(uname)" =~ Darwin ]] && pbcopy || xclip -selection clipboard; }
+
+if [ -t 0 ]; then
+    echo -n "$@" | copyfunc
+else
+    cat - | copyfunc
+fi
+```
+
+of course, there are plenty of improvements i can make to this process. what i've shown in this past is a good start. my latest improvements to this process can always be found in my dotfiles:
+
+=> https://github.com/alanxoc3/dotfiles my dotfiles
