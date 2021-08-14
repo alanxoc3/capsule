@@ -1,0 +1,52 @@
+#- inc & dec in kakoune
+
+vim has a less well-known feature that can increment or decrement a number with <ctrl>+a and <ctrl>+x that is especially useful when writing macros. i'm using kakoune now and that feature is not included. it also shouldn't be included because kakoune is a text editor that integrates with posix tools, not a simple calculator.
+
+at first i was appending numbers with "+1" and piping the equation into `bc`. that ruins numbers with a leading zero and it adds an intermediate step that modifies the buffer, so it's not a great solution.
+
+after searching a bit, i found a kakoune plugin meant to increment and decrement text. i couldn't get it working though.
+
+=> https://gitlab.com/Screwtapello/kakoune-inc-dec screwtapello's kakoune plugin
+
+i then realized this problem is better suited to be an external program. so i made a simple script that performs arithmetic on the first number of a line in standard input. leading zeros are preserved as well as non-number text. that said, the solution currently only handles positive integers and the parameter syntax could be improved.
+
+this solution is actually composed of two separate scripts. the first one implements an echo that does not accept dash arguments or escape characters just to make the second script more robust.
+
+```
+#!/bin/bash
+# recho - raw echo. same as echo, but raw text. no dash arguments.
+cat <<< "$@"
+```
+
+and this next one is a perl command that preserves text and uses bc with recho to manipulate numbers. for most (or maybe all) usecases, replacing `recho` with `echo` works fine.
+
+```
+#!/bin/bash
+# arith - arithmetic. applies simple arithmetic from args to first number of each line in stdin.
+perl -E '
+while (<STDIN>) {
+    s/(\d+)/sprintf("%.".length($1)."d", qx(recho $1$ARGV[0] | bc))/e;
+} continue {
+    print
+}
+' -- "$*"
+```
+
+here are some shell examples of using this arith script:
+
+```
+> arith '+1' <<< "a0003b c d"
+a0004b c d
+> arith '*2' <<< "a0003b c d"
+a0006b c d
+> arith / 10 <<< "a0030b 23 c d"
+a0003b 23 c d```
+```
+
+again, it breaks with negative numbers and doesn't work with hex/binary/decimal. but it's a good start. i'll probably add more functionality if i realize i need it.
+
+i also learned that the zsh, bash, and sh all have different internal implementations of echo. so that's nice. it's a pain to find the documentation for each one. it's also annoying that my distro has an echo executable as well, so i don't know which echo is actually running. this describes the echo problem in more detail:
+
+=> https://unix.stackexchange.com/questions/65803/why-is-printf-better-than-echo/65819#65819 the problems of echo
+
+that's it for this post.
