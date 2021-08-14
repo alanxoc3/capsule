@@ -34,6 +34,7 @@ while read -r DIR; do
         TEXT="${TEXT}"'=> gemini://alanxoc3.xyz/'"${DIR}/${file} ${HEADER}${NL}"
     done <<< $FILES
     popd > /dev/null
+    TEXT=${TEXT::-1}
 
     a="{{$DIR}}" b="$TEXT" perl -i -pe 's/$ENV{"a"}/$ENV{"b"}/ge' ./index.gmi
 done <<< $(grep -Eo '\{\{(\w+)\}\}' ./index.gmi | sed -E 's/\{\{(\w+)\}\}/\1/g')
