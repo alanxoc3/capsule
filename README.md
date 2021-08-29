@@ -1,5 +1,5 @@
 # capsule
-My capsule is located at gemini://alanxoc3.xyz and proxied at [https://alanxoc3.xyz](https://alanxoc3.xyz).
+My capsule is located at gemini://xoc3.io and proxied at [https://xoc3.io](https://xoc3.io).
 
 Server setup scripts can be found in [my dotfiles](https://github.com/alanxoc3/dotfiles).
 

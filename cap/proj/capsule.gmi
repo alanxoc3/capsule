@@ -1,4 +1,4 @@
-#- about alanxoc3.xyz
+#- about xoc3.io
 
 this website is actually a gemini capsule. it is written for the gemini protocol, but proxied to https. gemini a modern protocol that enforces simplicity and privacy, reminiscent of the early web. read more about gemini here:
 => https://gemini.circumlunar.space/
