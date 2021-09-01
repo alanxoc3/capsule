@@ -1,0 +1,19 @@
+#- urlencode & urldecode
+
+i've been up to a lot of things recently including:
+* brushing up on my rust
+* practicing hatel
+* improving my dotfiles
+* migrating this capsule from alanxoc3.xyz to xoc3.io
+
+but unrelated to all of that, this post is about 3 nearly identical python snippets i improved upon from finding on stack overflow:
+
+```
+alias urlencode='python3 -c "import urllib.parse, sys; print(urllib.parse.quote(\" \".join(sys.argv[1:]) if len(sys.argv) > 1 else sys.stdin.read()[0:-1]))"'
+alias urlencodeslash='python3 -c "import urllib.parse, sys; print(urllib.parse.quote(  \" \".join(sys.argv[1:]) if len(sys.argv) > 1 else sys.stdin.read()[0:-1], \"\"))"'
+alias urldecode='python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(\" \".join(sys.argv[1:]) if len(sys.argv) > 1 else sys.stdin.read()[0:-1]))"'
+```
+
+these aliases do what they say. the first one encodes text to url encoding. the second one encodes, but will also encode slashes too. and the third one decodes url encoding into plain text. all 3 aliases work with either cli args or reading from stdin. i looked this up because i was using a lot of curl for work recently and found myself needing to urlencode/decode things a bunch. it's always nice to add another small tool to your cli belt.
+
+=> https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding here is that stack overflow post
