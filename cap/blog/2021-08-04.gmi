@@ -16,6 +16,7 @@ i'm guessing jq stands for "json query", but i couldn't find a source for that t
 * great documentation
 
 one of the main reasons to use jq is for json filtering. Here are some simple examples: 
+
 ```
 json='{"a": {"b": ["c", "d", {"e": "f"}]}}'
 
