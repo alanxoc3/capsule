@@ -3,6 +3,7 @@
 => mailto:alanxoc3@gmail.com    alanxoc3@gmail.com
 => https://github.com/alanxoc3  github.com/alanxoc3
 => https://twitter.com/alanxoc3 twitter.com/alanxoc3
+=> gemini://xoc3.io/gpg.txt gpg public key
 
 ## skills
 * languages: go. rust. java. lua. bash. python. etc...
