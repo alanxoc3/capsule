@@ -1,0 +1,49 @@
+#- play midi on linux
+
+i've been doing more midi related things lately. here is how i play midi on linux.
+
+audio group. ensure your user is a part of the audio group first. to add yourself to that group, run usermod:
+
+```
+usermod -a -G audio $USER
+```
+
+install a soundfont. the only soundfont file format i'm aware of is the `.sf2` format. you can try random .sf2 files from online, but i like freepats the most.
+
+=> http://freepats.zenvoid.org/ freepats homepage
+=> https://archlinux.org/packages/?name=freepats-general-midi freepats arch package
+
+install timidity++. timidity++ is used to emulate midi hardware.
+
+=> https://archlinux.org/packages/community/x86_64/timidity++ arch timidity++ package 
+
+update timidity++ config. once timidity is installed, add your .sf2 file path to the timidity config file:
+
+```
+echo soundfont /usr/share/soundfonts/freepats-general-midi.sf2 >> /etc/timidity/timidity.cfg
+```
+
+install alsa-utils. midi hardware support is actually built into the linux kernel, but we need a binary the alsa project maintains that interacts with the built in midi support:
+
+=> https://archlinux.org/packages/extra/x86_64/alsa-utils arch alsa-utils package
+
+emulate midi hardware. this command tells timidity to act as midi hardwar for alsa:
+
+```
+timidity -ia
+```
+
+play midi. use the alsa utility to connect to the emulated hardware and play the midi file.
+
+```
+aplaymidi -l # prints the available midi ports
+aplaymidi -p 128:0 midifile.mid # 128:0 is a midi port, use the output from aplaymidi -l to figure this out
+```
+
+if you have a midi output device, you can actually skip most of these steps and just run aplaymidi!
+
+some links that helped me understand this process:
+
+=> https://wiki.archlinux.org/title/MIDI arch midi guide
+=> https://wiki.archlinux.org/title/Timidity%2B%2B arch timidity guide
+=> http://www.tedfelix.com/linux/linux-midi.html ted's midi guide
