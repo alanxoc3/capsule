@@ -1,0 +1,74 @@
+#- all about bash vars
+
+bash has a few ways to set vars and a few different var scopes. i'll go over a few concepts and provide examples for each one in this post.
+
+## start with the basics
+
+there are 3 var scopes in bash. local, global, and exported. use the 'local' keyword to create local vars. local vars are only available in the same scope they're declared in. here is an example:
+
+```
+func() { local x='hello world'; echo $x; }
+func    # prints 'hello world'
+echo $x # prints nothing
+```
+
+bash vars are global by default, so here is another example without the local keyword.
+
+```
+func() { x='hello world'; echo $x; }
+func    # prints 'hello world'
+echo $x # prints 'hello world'
+```
+
+the difference between global and exported variables is that exported variables are also available in subshells. use the 'export' keyword to declare an exported variable:
+
+```
+x='hello world'
+bash -c 'echo $x' # prints nothing
+
+export x='hello world'
+bash -c 'echo $x' # prints 'hello world'
+```
+
+## careful with quoting
+
+global variables are generally only available in the current shell, but declaring a global variable right before a command acts as exporting the variable just for the specific command.
+
+```
+x='hello world' bash -c 'echo $x' # prints 'hello world'
+bash -c 'echo $x' # prints nothing
+```
+
+single vs double quotes are important when using this syntax. here is a tricky example:
+
+```
+x='hello world'  bash -c 'echo $x' # prints 'hello world'
+x='hello world'  bash -c "echo $x" # prints nothing
+x='hello world'; bash -c "echo $x" # prints 'hello world'
+```
+
+## numeric vars
+
+vars in bash are all strings, but you can do some arithmetic:
+
+```
+((x=1+5)) # or: let x=1+5
+echo $x # prints '6'
+```
+
+bash doesn't support decimals with the numeric syntax, but zsh does. bash also allows you to switch a numeric variable to a string, but zsh doesn't:
+
+```
+bash -c '((x=1+5))    ; echo $x' # prints '6'
+zsh  -c '((x=1+5))    ; echo $x' # prints '6'
+bash -c '((x=1.1+5.5)); echo $x' # error
+zsh  -c '((x=1.1+5.5)); echo $x' # prints '6.6'
+
+bash -c '((x=6)); x=hello    ; echo $x' # prints 'hello'
+zsh  -c '((x=6)); x=hello    ; echo $x' # prints '0'
+
+zsh -c '((x=6)); set x=hello; echo $x'      # prints '6'
+zsh -c '((x=6)); unset x; x=hello; echo $x' # prints 'hello'
+```
+
+that's it for now. have fun shell scripting.
