@@ -31,6 +31,9 @@ todo
 ## one time jams
 i joined a few random jams on itch.io and in other places.
 
+=> https://davery22.itch.io/last-battle-of-angry-square last battle of angry square
+i made this with my coworker for weekly game jam 217. it was his first pico-8 game, but he got the hang of it pretty quickly. angry square must hold out as long as it can in its last battle against inevitable square-shaped oblivion.
+
 => https://alanxoc3.itch.io/mission-impopsic mission impopsicle
 i made this with my brother for a jam with an ice cream theme. you are a secret-agent ninja penguin on a unicycle and must defeat ice cream terrorists.
 

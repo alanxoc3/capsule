@@ -27,10 +27,10 @@ install alsa-utils. midi hardware support is actually built into the linux kerne
 
 => https://archlinux.org/packages/extra/x86_64/alsa-utils arch alsa-utils package
 
-emulate midi hardware. this command tells timidity to act as midi hardwar for alsa:
+emulate midi hardware. this command tells timidity to act as midi hardware for alsa:
 
 ```
-timidity -ia
+timidity -iA
 ```
 
 play midi. use the alsa utility to connect to the emulated hardware and play the midi file.
