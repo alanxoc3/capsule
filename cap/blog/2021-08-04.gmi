@@ -11,6 +11,7 @@ sudo pacman -S jq
 ```
 
 i'm guessing jq stands for "json query", but i couldn't find a source for that to know for sure. some nice things that i noticed immediately when i started using jq are:
+
 * syntax highlighting
 * pretty prints json (like `python -m json.tool`)
 * great documentation

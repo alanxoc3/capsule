@@ -3,16 +3,19 @@
 i was trying to add a continuous integration pipeline to my ttrack project. previously i was using travis-ci for my concards repo. as i started implementing travis-ci, i ran into a problem related to how travis-ci currently has both a `.com` and `.org` url. after trying to diagnose the issue for a bit, i ended up looking into github actions and deciding to switch to that instead. i like the file syntax for github actions more, it's integrated into github, and it's also generally faster than travis-ci.
 
 for both my concards and ttrack repos, i set up a build and release action. both repos have pretty much identical actions. here are links to those actions for each repo:
+
 => https://github.com/alanxoc3/concards/tree/1878e68215786262795a7706dbcab58c505432a2/.github/workflows concards github workflow
 => https://github.com/alanxoc3/ttrack/tree/5b9e340144d983e4b9c346f1793fb4fc0160be35/.github/workflows   ttrack github workflow
 
 ## the build action
+
 * triggers on any non-tag push
 * builds the go project
 * runs tests with coverage
 * sends coverage to coveralls.io
 
 ## the release action
+
 * triggers on creating a release through the github ui
 * builds the go project for multiple architectures using gox
 * creates a checksum file that has checksums for each executable

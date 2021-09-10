@@ -9,6 +9,7 @@ socrates and his old friend, cephalus, began talking about how they haven't seen
 cephalus has to go, so his son, polemarchus, continues the conversation. polemarchus agrees with his dad that justice must be the repayment of debts. as socrates does throught the entire conversation, he begins to use logic, reasoning, and analogies to come to an agreement of whether a theory is true or not.
 
 the types of questions that are posed throughout the conversation between socrates and polemarchus include the following:
+
 * if you are borrowing a sword from a friend and he wants the sword back when he isn't in his right mind, should you return it?
 * is it just to give friends good things and enemies bad things?
 * when is justice most useful?
@@ -21,6 +22,7 @@ the types of questions that are posed throughout the conversation between socrat
 after coming to a conclusion that justice is not what they initially thought, another man in the room, thrasymachus, angrily accused socrates for not trying hard enough to come up with a definition of justice. thrasymachus' definition of justice was that justice is simply the benefit of the stronger. socrates reasoned with thrasymachus for the rest of book 1.
 
 besides the occasionaly insults that thrasymachus directed at socrates, some of the topics they went over in their dialogue include:
+
 * are rulers stronger than their subjects?
 * what does it mean to be stronger?
 * are rulers infallible?

@@ -10,6 +10,7 @@ ams() { amfora "gemini://geminispace.info/search?$(urlencode $@)" }
 ```
 
 the basics of the urlencode function came from this stack overflow post:
+
 => https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding
 
 i modified it a bit to make it a bit more usable. besides that, the rest is pretty straight forward. `ams` stands for "amfora search".

@@ -23,4 +23,5 @@ cat <<< $avar
 ```
 
 i never noticed the `<<<` here string syntax before, so i thought i'd share. you can find some more information on here strings and here documents here:
+
 => http://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Here-Documents
