@@ -1,0 +1,5 @@
+#- second spiky chance
+
+i made a terrible game for the one hour game jam #159. just touch the spike and die. i guess i was experimenting with collision more than actually trying to make a game. you can play it here if you want:
+
+=> https://www.lexaloffle.com/bbs/?tid=31270

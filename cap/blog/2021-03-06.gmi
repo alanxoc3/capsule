@@ -1,0 +1,5 @@
+#- neglected bear
+
+i made a game for the one hour game jam #306. you must fight the teddy bear you neglected. i'm pretty proud of being able to draw a good teddy bear and a decent song along with writing the code in an hour. check it out here:
+
+=> https://www.lexaloffle.com/bbs/?tid=41890

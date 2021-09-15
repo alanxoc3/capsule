@@ -1,0 +1,5 @@
+#- flag away dash
+
+i made a game for the one hour game jam #275. a little dude must dodge that chase him. it's not the best 1 hour game, but it is a game. i actually made this while my cousin was having an online wedding reception thing during covid. i obviously didn't pay much attention to that. you can try it out here:
+
+=> https://www.lexaloffle.com/bbs/?tid=39057

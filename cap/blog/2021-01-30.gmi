@@ -1,0 +1,5 @@
+#- five bye five
+
+i made a game for the one hour game jam #301. dodge circles by jumping between squares in a grid. this was my first one hour game jam after a while. it also starts a streak of some pretty good one hour game jams. the game play is decent and the music isn't too bad. play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=41338

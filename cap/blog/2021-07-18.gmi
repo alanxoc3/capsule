@@ -1,0 +1,5 @@
+#- mission impopsicle
+
+i made this with my brother for a jam with an ice cream theme. i did code, he did sprites. we both came up with the idea. you are a secret-agent ninja penguin on a unicycle and must defeat ice cream terrorists.
+
+=> https://alanxoc3.itch.io/mission-impopsic

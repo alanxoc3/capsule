@@ -1,0 +1,5 @@
+#- candle rain
+
+i made a game for the one hour game jam #302. keep the candle safe from rain by staying underneath the umbrella. for this entry, i think i did pretty good with the sprites. the rain doesn't look good though and the song is too annoying. i got feedback that the gameplay is good. also, there is a secret if you can get your score above 100. play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=41433

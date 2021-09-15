@@ -1,0 +1,5 @@
+#- wizzy
+
+i made a game for the one hour game jam #160. a wizzard can jump on dragons. i was at a friends house and didn't have my computer on me, so i asked him if i could use his computer for an hour to make this game. i used a previous game jam game as a template for this one. this is more than a collision experiment than a game, but you can still play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=31303

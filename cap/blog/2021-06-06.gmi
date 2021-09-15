@@ -1,0 +1,5 @@
+#- alien rock turtle and the escape from area 51
+
+i made a ridiculous game with my brother who can do unity and the brother who can do sprites. this was my first time using unity and it was just like i expected, the fun of game development goes away with the slowness of navigating the ide. nevertheless, we made a simple game in 3 hours, though it really took 8+ hours if you count all the technical problems we had.
+
+=> https://alanxoc3.itch.io/alien-rock-turtle-and-the-escape-from-area-51

@@ -1,27 +1,26 @@
-#- resume
-extra things about me i'm willing to share with the public.
+# contact & cv
 
-## contact
+cv stands for curriculum vitae, which is latin for "course of life".
+
 => mailto:alanxoc3@gmail.com    alanxoc3@gmail.com
 => https://github.com/alanxoc3  github.com/alanxoc3
 => https://twitter.com/alanxoc3 twitter.com/alanxoc3
 => gemini://xoc3.io/gpg.txt     gpg public key
 
-## experience
+## professional experience
+
 ### dev @ clearwater analytics | 2019 - now
+
 * lead dev designing, implementing, and deploying large features.
 * led my division in creating dockerized tests for legacy applications.
 * helped migrate webservices to the cloud.
 
 ### intern @ clearwater analytics | 2017 - 2018
+
 * created 1 react and 2 angular applications over 2 internships.
 
 ### student, tutor & ta @ byui | 2015 - 2019
+
 * bachelors degree for computer science.
 * tutor for c++ courses. ta for computational theory.
 * leadership in coding clubs for 3 years.
-
-## interests
-* tech: terminal. kakoune. pico-8. gemini.
-* other: mandarin. piano. classic books.
-

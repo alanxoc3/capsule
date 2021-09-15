@@ -1,0 +1,5 @@
+#- guitar mike
+
+i did a game jam with only myself. after reading about how the sprites in "prince of persia" were rotoscoped versions of the developer and his brother, i decided to rotoscope myself for this 2 day long game jam. you can play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=37212

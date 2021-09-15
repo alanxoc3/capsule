@@ -1,0 +1,5 @@
+#- save the bird
+
+i helped make a game for ludum dare #46. you are a quadcopter that sees a bird fly off into danger, so you must save it. your quadcopter friends think you've gone crazy, so they chase you. i made this game with a random dude from the uk who was looking for someone to help with music. i ended up contributing a bunch of ideas, all the music, and maybe 1/4 of the code. this was my first ludum dare entry, so it was exciting.
+
+=> https://ldjam.com/events/ludum-dare/46/save-the-bird-1 save the bird

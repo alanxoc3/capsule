@@ -1,0 +1,5 @@
+#- fare well
+
+i made a game for ludum dare #48. the outside world is dangerous, so you must venture down to the bottom of the well. little did you know that the well is dangerous too! that's the story behind fare-well, an addicting pico-8 arcade style game. my brothers helped out with assets, while i mostly did code. i got less than 10 hours of sleep over the course of this 3 day jam, but the end result was definitely worth it. play it here:
+
+=> https://ldjam.com/events/ludum-dare/48/fare-well

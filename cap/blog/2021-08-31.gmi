@@ -1,6 +1,7 @@
 #- urlencode & urldecode
 
 i've been up to a lot of things recently including:
+
 * brushing up on my rust
 * practicing hatel
 * improving my dotfiles

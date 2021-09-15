@@ -1,0 +1,5 @@
+#- stoplight gogogo
+
+my first one hour game jam entry was for one hour game jam #157. i made this with some friends in college. the theme was "one button", but the website also shows "go go go" when the jam starts, so we misinterpreted the theme to be "go go go". even though this game isn't very good, it somehow has more comments than some of my later entries. play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=31198

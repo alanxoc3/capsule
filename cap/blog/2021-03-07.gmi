@@ -13,6 +13,7 @@ kakoune is built with shell integration in mind. one way to demonstrate this is 
 kakoune makes use of multiple cursors instead of visual selection or global search and replace. in my experience so far, multiple cursors are much more fun than global search and replace. i'm pretty sure they can do everything visual selection can do. plus they can do other cool things, like rotating all text multiple cursor selections, which is something i don't know if other ide multiple cursor implementations can handle. you can also filter through your selections, which isn't really a concept in vim.
 
 plus there are a bunch of nice small things like:
+
 * easy shell integration with the pipe character, instead of the ":%!" thing in vim.
 * macros default to one register, so just type "q" to playback your macro, instead of "@q".
 * modes outside of normal & insert have a menu that shows and describes keybindings. this makes it easy to add documentation for user and plugin keybindings.
