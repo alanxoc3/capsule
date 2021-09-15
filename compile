@@ -29,7 +29,7 @@ while read -r DIR; do
     NUMBER_FILES=$(ls | grep -E '^[0-9].*' | sort -r)
     LETTER_FILES=$(ls | grep -E '^[^0-9].*' | sort)
     FILES="$NUMBER_FILES $LETTER_FILES"
-    TODAY_FILE=$(date "+%Y-%m-%d").gmi
+    TODAY_FILE=$(date -u "+%F").gmi
     while read -r file; do
         if [[ $file > $TODAY_FILE ]]; then
             rm $file
