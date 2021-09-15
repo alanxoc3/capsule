@@ -1,0 +1,14 @@
+#- test coverage for live app idea
+
+i just had this idea, thought it was cool, shared it with my coworkers, and searched to see if anyone else had tried it before for golang. it turns out that someone has tried it:
+
+=> https://www.elastic.co/blog/code-coverage-for-your-golang-system-tests golang code coverage at elastic
+
+the idea is that you can write tests in a nice scripting language like bash or python, the tests would test against the actual output of a special live instance of your application, and the live instance of your application is special because it generates code coverage for any code that is executed in it. i think a cool benefit of this idea is that it decouples tests from the language. for example, you could change which language your application is written in, but keep all the tests. another benefit is that you would be forced to write all your tests from a user's perspective (from public apis), instead of being allowed to write tests for implementation details.
+
+somewhat related, i think it would be really cool if there was a standard for code coverage file formats, regardless of the language the code was written in. i feel like a coverage standard could be as simple as specifying all the areas that could be tested and all the areas that actually are tested from a plain text file perpective.
+
+a coworker mentioned that using cypress and istanbul together for ui testing is very similar to what i describe in this blog post.
+
+=> https://istanbul.js.org/ istanbul - js code coverage
+=> https://www.cypress.io/ cypress - web app test framework

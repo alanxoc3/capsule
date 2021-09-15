@@ -1,14 +1,8 @@
 # alanxoc3 | alan morgan
-i am a hipster who likes: piano, pico-8, classic books, arch linux, kakoune, cli apps, & learning mandarin. i currently live and work in boise usa with my wife and cat.
+i am a hipster who likes: piano, pico-8, classic books, arch linux, kakoune, cli apps, & learning mandarin.
+i currently live and work in boise usa with my wife and cat.
 
-## proj
-these are projects i somewhat actively work on:
-{{proj}}
+=> x contact & cv
 
 ## blog
-here is my random blog about my various interests:
 {{blog}}
-
-## info
-feel free to contact me about whatever:
-=> gemini://xoc3.io/cv.gmi contact & cv

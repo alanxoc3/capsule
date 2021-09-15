@@ -1,4 +1,4 @@
-#- turning a pi 400 into a keyboard
+#- pi 400 as a keyboard
 
 i'm not sure if this is a good idea or not, but i'll write down some thoughts anyways. i have a raspberry pi 400 and i really like the way that the keyboard is designed. the keyboard is compact and just plain feels good. what if it was a keyboard though? as i'm typing these thoughts, i have the pi 400 connected to my laptop draining power to see what kind of power consumption it would take if i were to use it as a keyboard in a mobile setting.
 
@@ -10,5 +10,3 @@ some links to things that can help out this idea:
 => https://github.com/quangthanh010290/keyboard_mouse_emulate_on_raspberry pi emulates as a bluetooth keyboard
 
 if i do go through with this idea, i could have my keyboard layout on the pi instead of on my computer (i use dvorak, not qwerty). it could be kind of like those cool customizable mechanical keyboards some people have. i could also integrate my hatel layout into the pi. so i would just connect a usb midi coord into the pi 400, then i could type with either the keyboard or the piano. it also means i could use the same keyboard for both work and home.
-
-this page is my thought space, so i'll just record my ideas/thoughts about it here. my progress will go here too.

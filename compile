@@ -29,9 +29,14 @@ while read -r DIR; do
     NUMBER_FILES=$(ls | grep -E '^[0-9].*' | sort -r)
     LETTER_FILES=$(ls | grep -E '^[^0-9].*' | sort)
     FILES="$NUMBER_FILES $LETTER_FILES"
+    TODAY_FILE=$(date "+%Y-%m-%d").gmi
     while read -r file; do
-        HEADER=$(grep -Em 1 '^#' $file | sed -nE 's/^#\s*(.*)$/\1/p')
-        TEXT="${TEXT}"'=> gemini://xoc3.io/'"${DIR}/${file} ${HEADER}${NL}"
+        if [[ $file > $TODAY_FILE ]]; then
+            rm $file
+        else
+            HEADER=$(grep -Em 1 '^#' $file | sed -nE 's/^#\s*(.*)$/\1/p')
+            TEXT="${TEXT}"'=> gemini://xoc3.io/'"${DIR}/${file} ${HEADER}${NL}"
+        fi
     done <<< $FILES
     popd > /dev/null
     TEXT=${TEXT::-1}

@@ -1,19 +1,17 @@
-#- alan morgan
+#- resume
+extra things about me i'm willing to share with the public.
 
+## contact
 => mailto:alanxoc3@gmail.com    alanxoc3@gmail.com
 => https://github.com/alanxoc3  github.com/alanxoc3
 => https://twitter.com/alanxoc3 twitter.com/alanxoc3
-=> gemini://xoc3.io/gpg.txt gpg public key
+=> gemini://xoc3.io/gpg.txt     gpg public key
 
-## skills
-* languages: go. rust. java. lua. bash. python. etc...
-* technologies: docker. terraform. gcp. etc...
-
-## work
+## experience
 ### dev @ clearwater analytics | 2019 - now
 * lead dev designing, implementing, and deploying large features.
 * led my division in creating dockerized tests for legacy applications.
-* migrated webservices from on-prem to gcp cloud.
+* helped migrate webservices to the cloud.
 
 ### intern @ clearwater analytics | 2017 - 2018
 * created 1 react and 2 angular applications over 2 internships.
@@ -26,3 +24,4 @@
 ## interests
 * tech: terminal. kakoune. pico-8. gemini.
 * other: mandarin. piano. classic books.
+

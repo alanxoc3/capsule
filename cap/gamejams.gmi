@@ -1,0 +1,120 @@
+cat << EOF >> 2021-03-06.gmi
+#- neglected bear
+
+i made a game for the one hour game jam #306. you must fight the teddy bear you neglected. i'm pretty proud of being able to draw a good teddy bear and a decent song along with writing the code in an hour. check it out here:
+
+=> https://www.lexaloffle.com/bbs/?tid=41890
+EOF
+
+cat << EOF >> 2021-02-06.gmi
+#- candle rain
+
+i made a game for the one hour game jam #302. keep the candle safe from rain by staying underneath the umbrella. for this entry, i think i did pretty good with the sprites. the rain doesn't look good though and the song is too annoying. i got feedback that the gameplay is good. also, there is a secret if you can get your score above 100. play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=41433
+EOF
+
+cat << EOF >> 2021-01-30.gmi
+#- five bye five
+
+i made a game for the one hour game jam #301. dodge circles by jumping between squares in a grid. this was my first one hour game jam after a while. it also starts a streak of some pretty good one hour game jams. the game play is decent and the music isn't too bad. play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=41338
+EOF
+
+cat << EOF >> 2020-08-01.gmi
+#- flag away dash
+
+i made a game for the one hour game jam #275. a little dude must dodge that chase him. it's not the best 1 hour game, but it is a game. i actually made this while my cousin was having an online wedding reception thing during covid. i obviously didn't pay much attention to that. you can try it out here:
+
+=> https://www.lexaloffle.com/bbs/?tid=39057
+EOF
+
+cat << EOF >> 2018-05-19.gmi
+#- wizzy
+
+i made a game for the one hour game jam #160. a wizzard can jump on dragons. i was at a friends house and didn't have my computer on me, so i asked him if i could use his computer for an hour to make this game. i used a previous game jam game as a template for this one. this is more than a collision experiment than a game, but you can still play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=31303
+EOF
+
+cat << EOF >> 2018-05-12.gmi
+#- second spiky chance
+
+i made a terrible game for the one hour game jam #159. just touch the spike and die. i guess i was experimenting with collision more than actually trying to make a game. you can play it here if you want:
+
+=> https://www.lexaloffle.com/bbs/?tid=31270
+EOF
+
+cat << EOF >> 2018-05-05.gmi
+#- danger zone
+
+i made something for the one hour game jam #158. it's not a game though. when i made this i spent the whole hour working on the music for the game, so i just submitted the song. i think the song is pretty catchy. listen to it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=31238
+EOF
+
+cat << EOF >> 2018-04-28.gmi
+#- stoplight gogogo
+
+my first one hour game jam entry was for one hour game jam #157. i made this with some friends in college. the theme was "one button", but the website also shows "go go go" when the jam starts, so we misinterpreted the theme to be "go go go". even though this game isn't very good, it somehow has more comments than some of my later entries. play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=31198
+EOF
+
+cat << EOF >> 2021-09-06.gmi
+#- last battle of angry square
+
+i made a game with my coworker for weekly game jam 217. it was his first pico-8 game, but he got the hang of it pretty quickly. angry square must hold out as long as it can in its last battle against inevitable square-shaped oblivion.
+
+=> https://davery22.itch.io/last-battle-of-angry-square
+EOF
+
+cat << EOF >> 2021-07-18.gmi
+#- mission impopsicle
+
+i made this with my brother for a jam with an ice cream theme. i did code, he did sprites. we both came up with the idea. you are a secret-agent ninja penguin on a unicycle and must defeat ice cream terrorists.
+
+=> https://alanxoc3.itch.io/mission-impopsic
+EOF
+
+cat << EOF >> 2021-06-06.gmi
+#- alien rock turtle and the escape from area 51
+
+i made a ridiculous game with my brother who can do unity and the brother who can do sprites. this was my first time using unity and it was just like i expected, the fun of game development goes away with the slowness of navigating the ide. nevertheless, we made a simple game in 3 hours, though it really took 8+ hours if you count all the technical problems we had.
+
+=> https://alanxoc3.itch.io/alien-rock-turtle-and-the-escape-from-area-51
+EOF
+
+cat << EOF >> 2021-06-05.gmi
+#- hey there kitty
+
+i made a game for the 4 hour game jam. my brother made the sprites and i spent all my time trying to make the game really smooth. in the end, there wasn't actually much gameplay, but the game looks like it could be really good. it's just about a kitty that jumps around, while you read the story. you can jump around as a kitty here:
+
+=> https://alanxoc3.itch.io/heytherekitty
+EOF
+
+cat << EOF >> 2021-05-03.gmi
+#- fare well
+
+i made a game for ludum dare #48. the outside world is dangerous, so you must venture down to the bottom of the well. little did you know that the well is dangerous too! that's the story behind fare-well, an addicting pico-8 arcade style game. my brothers helped out with assets, while i mostly did code. i got less than 10 hours of sleep over the course of this 3 day jam, but the end result was definitely worth it. play it here:
+
+=> https://ldjam.com/events/ludum-dare/48/fare-well
+EOF
+
+cat << EOF >> 2020-03-30.gmi
+#- guitar mike
+
+i did a game jam with only myself. after reading about how the sprites in "prince of persia" were rotoscoped versions of the developer and his brother, i decided to rotoscope myself for this 2 day long game jam. you can play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=37212
+EOF
+
+cat << EOF >> 2020-04-21.gmi
+#- save the bird
+
+i helped make a game for ludum dare #46. you are a quadcopter that sees a bird fly off into danger, so you must save it. your quadcopter friends think you've gone crazy, so they chase you. i made this game with a random dude from the uk who was looking for someone to help with music. i ended up contributing a bunch of ideas, all the music, and maybe 1/4 of the code. this was my first ludum dare entry, so it was exciting.
+
+=> https://ldjam.com/events/ludum-dare/46/save-the-bird-1 save the bird
+EOF
+
