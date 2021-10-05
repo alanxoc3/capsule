@@ -1,0 +1,26 @@
+#- thoughts on shells
+
+i was introduced to the "nushell" today.
+
+=> https://www.nushell.sh/ nushell
+
+i like some of what i read in the documentation, but i don't agree with the driving philosophy behind it.
+
+the primary purpose of a shell should be to make executing programs and manipulating their output easy and flexible.
+
+some traits i think shells should follow:
+
+* no datatype other than strings
+* have streams & piping operators that work well with at least stdin, stdout, & stderr
+* only have builtins when logically necessary, not to improve performance
+* ability to bind key mappings to commands
+
+consistency between commands isn't important if there is good documentation available for each command. nushell tries to make commands consistent, but they do this by rewriting a bunch of things as builtins. if the things they wrote were stand alone executables, their code could more easily be used by other shells.
+
+well, that's my rant. unrelated, i was also exposed to tldr-pages recently too:
+
+=> https://github.com/tldr-pages/tldr tldr pages
+
+it's just cheatsheets for the command line. i like that idea. i'm not sure if i'll get into it or not though. i currently use my shell aliases as a cheatsheet. here is a command that uses cheatsheets too:
+
+=> https://github.com/denisidoro/navi navi
