@@ -1,0 +1,15 @@
+#- a healthy dose of dungeon
+
+i made a game for ludum dare #49. this is my third ludum dare. my second one where i was the lead programmer. like the last ludum dare, i got less than 4 hours of sleep all 3 days. the theme of this ludum dare was "unstable". my little brother is my graphics guy, so he made all the sprites and tiles. i made the music and did most of the code. my co-worker was interested in joining, so he helped out with the code. he's new to pico-8, so he wasn't able to contribute as much as he would have liked, but i think he will join me making more pico-8 games in the future.
+
+the game is about an insane person trapped in a dungeon. after getting through the dungeon, you realize that you are actually an insane person in an insane ward. the monsters you killed were actually people.
+
+for this game, i think we nailed the graphics, mechanics, story idea, and music. if i had more time, i would like to add a dialogue/text system and improve some enemies.
+
+see the game submission here:
+
+=> https://ldjam.com/events/ludum-dare/49/a-healthy-dose-of-dungeon
+
+and play it here:
+
+=> https://www.lexaloffle.com/bbs/?tid=44877
