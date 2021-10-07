@@ -1,14 +1,8 @@
 # alanxoc3 | alan morgan
 
-i am a hipster (he/him) who likes:
-
 * tech: cli apps. kakoune. pico-8. arch linux. gemini.
 * other: mandarin. piano. classic books.
 
-if you want to contact me:
+{{blog}}
 
 => gemini://xoc3.io/cv.gmi contact & cv
-
-else:
-
-{{blog}}
