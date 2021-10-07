@@ -1,14 +1,14 @@
 # alanxoc3 | alan morgan
 
-i am a dude (he/him) who likes:
+i am a hipster (he/him) who likes:
 
-* tech: cli apps. kakoune. pico-8. gemini.
+* tech: cli apps. kakoune. pico-8. arch linux. gemini.
 * other: mandarin. piano. classic books.
 
-if you want to contact or hire a hipster, check this out:
+if you want to contact me:
 
 => gemini://xoc3.io/cv.gmi contact & cv
 
-otherwise, try reading my blog:
+else:
 
 {{blog}}
