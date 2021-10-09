@@ -4,9 +4,9 @@ html {
 }
 
 body {
-	max-width: 920px;
 	margin: 0 auto;
 	padding: 1rem 2rem;
+	width: 500px;
 }
 
 blockquote {
@@ -17,6 +17,7 @@ blockquote {
 }
 
 ul {
+    list-style: square;
 	margin-left: 0;
 	padding: 0;
 }
@@ -34,8 +35,17 @@ a {
 }
 
 a:before {
-	content: '⇒';
-	color: #999;
+	content: '→';
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
+	position: absolute;
+	left: -1.25rem;
+}
+
+article > p:first-child > a:first-child:before {
+	content: '←';
+	color: #000;
 	text-decoration: none;
 	font-weight: bold;
 	position: absolute;
