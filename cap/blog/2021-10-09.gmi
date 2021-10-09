@@ -1,6 +1,6 @@
 #- slight updates to capsule
 
-the http version of xoc3.io is now monospaced. i passed in a css file to kineto to do that. i also added a unicode line box drawing character at the bottom of the blog to divide the links from a contact/cv page. i simplified the index page to not include any descriptions besides my main interests.
+the http version of xoc3.io is now monospaced. i passed in a css file to kineto to do that. i also added a unicode line box drawing character at the bottom of the blog to divide the links from a contact/cv page. i changed the arrow/link unicode character. i switched from circle to square bullet points. i simplified the index page to not include any descriptions besides my main interests.
 
 do you care about this? probably not. but i think it's cool. it feels nice to have a simpler blog that looks pretty good with gemini and html. gemini forces the website to be very simple too. i had my blog in jekyll before and spent too much time debating over what looks good and what doesn't. i really do think that constraints breed creativity. by having the constraints that gemini gives me, i'm able to focus on the things that really matter and i am much more satisfied with my personal blog in the end.
 
