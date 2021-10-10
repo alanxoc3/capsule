@@ -1,6 +1,10 @@
 # This is a meta file for agate.
 
-# Files without any extension are considered gemini files.
+# All files are gmi files by default in the root dir.
 *: text/gemini;charset=UTF-8
-blog/*: text/gemini;charset=UTF-8
+
+# All files are gmi files by default in the root dir.
+**/*: text/gemini;charset=UTF-8
+
+# Text files in the root dir are different though.
 *.txt: text/plain;charset=UTF-8
