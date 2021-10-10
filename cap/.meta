@@ -1,4 +1,4 @@
 # This is a meta file for agate.
 
 # Files without any extension are considered gemini files.
-**: text/gemini;charset=UTF-8;lang=en-US
+cv: text/gemini;charset=UTF-8
