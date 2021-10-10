@@ -1,4 +1,5 @@
 # leaving
+
 you clicked on a link that is supposed to take you to an external gemini capsule, but you aren't using a gemini client (basically a web browser for gemini capsules). if you want to continue, you need to use one. try these links:
 
 => https://gemini.circumlunar.space/clients.html      popular gemini clients
