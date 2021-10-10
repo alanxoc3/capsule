@@ -7,4 +7,4 @@
 
 ────────────────────────────────────────────────────────────
 
-=> gemini://xoc3.io/cv.gmi contact & cv
+=> gemini://xoc3.io/cv contact & cv

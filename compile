@@ -13,6 +13,7 @@ pushd $TEMP_DIR > /dev/null
 
 ALL_GEMINI_FILES=$(find -type f -regex '.*\.gmi' -not -name 'index.gmi')
 while read -r gmi; do
+    DIR="$(dirname $gmi)"
     FILENAME="$(basename -s .gmi $gmi)"
 
     # Put header info on every file.
@@ -20,6 +21,10 @@ while read -r gmi; do
 
     # Replace #- in all .gmi files.
     sed -Ei 's/^#- (.*)$/# '"$FILENAME"' - \1/g' "$gmi"
+
+    # Remove extension from all gemini files.
+    mv "$gmi" "$DIR/$FILENAME"
+    echo "$gmi"
 done <<< $ALL_GEMINI_FILES
 
 # Replace {{...}} in index.gmi
@@ -30,7 +35,7 @@ while read -r DIR; do
     NUMBER_FILES=$(ls | grep -E '^[0-9].*' | sort -r)
     LETTER_FILES=$(ls | grep -E '^[^0-9].*' | sort)
     FILES="$NUMBER_FILES $LETTER_FILES"
-    TODAY_FILE=$(date -u "+%F").gmi
+    TODAY_FILE=$(date -u "+%F")
     while read -r file; do
         if [[ $file > $TODAY_FILE ]]; then
             rm $file
