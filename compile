@@ -23,8 +23,7 @@ while read -r gmi; do
     sed -Ei 's/^#- (.*)$/# '"$FILENAME"' - \1/g' "$gmi"
 
     # Remove extension from all gemini files.
-    mv "$gmi" "$DIR/$FILENAME"
-    echo "$gmi"
+    cp "$gmi" "$DIR/$FILENAME"
 done <<< $ALL_GEMINI_FILES
 
 # Replace {{...}} in index.gmi
