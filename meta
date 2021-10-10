@@ -3,4 +3,4 @@
 # Files without any extension are considered gemini files.
 *: text/gemini;charset=UTF-8
 blog/*: text/gemini;charset=UTF-8
-# *.txt: text/plain;charset=UTF-8
+*.txt: text/plain;charset=UTF-8
