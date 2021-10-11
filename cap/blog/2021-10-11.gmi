@@ -1,0 +1,170 @@
+#- setting up an email server
+
+today i set up the basics for an email server. receiving emails works fine, but sending emails doesn't because i'm waiting on a support request from linode to unblock outgoing smtp ports. though i don't have a complete mail setup yet, i'll go over the basics of what i learned.
+
+## dns stuff
+
+i use linode to host all my personal stuff, so the first thing i did is check linode docs.
+
+=> https://www.linode.com/docs/guides/running-a-mail-server/ linode mail server doc
+
+i made sure i have a dns a record, mx record, and rdns setup. for just receiving emails, i think only the "a" and "mx" records are needed. i don't actually know that for sure though.
+
+## mail server implementations
+
+initially i tried mailcow because the dockerized setup intrigued me. after fiddling with the setup for a while, i realized it isn't for me. one big reason is that mailcow includes a web interface and i'm wanting to install my mail server on the same server that hosts my blog. i also wouldn't use the web interface as i am a very command-line driven person.
+
+=> https://mailcow.email/ mailcow
+
+i looked at some other all-in-one solutions, but ultimately decided to go the separate applications route.
+
+really, an email server only needs one program. the job of this program is to listen on smtp ports and store any emails it receives into files. that's exactly what postfix & opensmtpd do. i went with postfix because it seems more common, but i may switch to opensmtpd one day.
+
+=> http://www.postfix.org/ postfix homepage
+=> https://github.com/OpenSMTPD/OpenSMTPD opensmtpd github
+
+## intro to postfix
+
+install for postfix on arch linux is obvious:
+
+```
+sudo pacman -S postfix
+```
+
+there are 2 important files you should configure when setting up postfix:
+
+* /etc/postfix/main.cf
+* /etc/postfix/aliases
+
+i think these are all the things i changed from the defaults in /etc/postfix/main.cf:
+
+```
+home_mailbox = Mail/
+mydomain = xoc3.io
+myhostname = xoc3.io
+smtp_tls_security_level = may
+```
+
+i got those values from going through the archlinux postfix wiki and maybe from some other sources that i can't remember too.
+
+=> https://wiki.archlinux.org/title/Postfix archlinux postfix wiki
+
+the wiki also talks about the /etc/postfix/aliases file, so you may want to read that too.
+
+archlinux packages postfix as a systemd service, so starting postfix in the background is very simple.
+
+```
+sudo systemctl start postfix
+```
+
+once postfix is running, you can send an email to one of the users on the system or one of the users in the /etc/postfix/aliases file. if your configuration is similar to mine, there are 3 directories i know of that can show you new emails:
+
+* /var/mail/
+* /var/spool/mail/
+* /home/<user>/Mail
+
+you can also send emails with postfix's sendmail command. here is an example usage that includes a subject header:
+
+```
+echo -e "Subject: testing\nthe body" | sendmail alan@xoc3.io
+```
+
+if you don't have outgoing smtp ports open, you can at least send an email to someone on your own server.
+
+also, mutt works with this postfix setup. so you could technically stop here with a basic mail server setup. just ssh into the server when you want to check you email and open up mutt.
+
+=> http://www.mutt.org/ mutt homepage
+
+## intro to dovecot
+
+i agree that having to ssh into the email server and use mutt isn't ideal. a better way is to have another server that is meant for email clients like outlook, thunderbird, mutt again, and himalaya. there are 2 protocols i'm aware of that most email clients support. those are pop3 and imap. i'm only going to talk about imap in this section.
+
+=> https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/pop3-and-imap4/pop3-and-imap4 microsoft explains pop3 vs imap
+
+dovecot is a server that implements the imap, pop3, and other protocols. this program is kind of like a file retrieval program, but specifically for email related things. unfortunately, the archlinux setup for dovecot is pretty annoying. i'll highlight what to watch out for.
+
+install is easy like always:
+
+```
+sudo pacman -S dovecot
+```
+
+but that's where it stops being easy. if you try to start the systemd service, you'll notice that there are no configuration files in the /etc/dovecot directory. For some reason, the package maintainers thought it was a good idea to not automatically put the configuration files into /etc. luckily, the archlinux wiki explains how to populate these configuration files by coping from /usr/share/doc/dovecot/example-config/. i went through the first few sections of the archlinux wiki page including generating the dh parameters too. just make sure you follow the instructions closely.
+
+=> https://wiki.archlinux.org/title/Dovecot archlinux dovecot wiki
+
+once dovecot is configured and running (just use systemctl to run it), you can test that it's working in a few ways.
+
+### testing dovecot with telnet
+
+connecting to dovecot locally doesn't require encryption, so you can just use telnet. if you can login, then it's probably working fine:
+
+```
+> telnet localhost 143
+# Trying ::1... Connected to localhost. OK...
+a login <username> <password>
+OK...  Logged in
+```
+
+### testing dovecot with openssl
+
+imap uses two standard ports. 143 is for non-encrypted traffic. 993 is for imaps, or encrypted ssl traffic. you definitely want external applications to connect encrypted. you can check that the ssl encryption is setup correctly by using openssl. first check that port 993 is accessible from your client computer:
+
+```
+nmap xoc3.io -p 993
+```
+
+then check for a certificate coming from that port. if there is a BEGIN_CERTIFICATE/END_CERTIFICATE section, that means the server is correctly setup with ssl:
+
+```
+openssl s_client -connect xoc3.io:993 2>/dev/null </dev/null
+```
+
+## setting up himalaya
+
+himalaya is a pretty new email cli app that's still under heavy development. i haven't use it much yet, but i really like what i've seen so far. so many email and irc clients have tuis that you have to get used to. himalaya has a cli, not a tui, so it's much more scriptable with other commands and easier to use in my opinion.
+
+=> https://github.com/soywod/himalaya himalaya github page
+
+it's in the pacman repos, so install is just:
+
+```
+sudo pacman -S himalaya
+```
+
+the wiki describes the config file syntax. i noticed that the smtp fields are required, but they can be blank. here is what the "xoc3" portion of my config file looks like:
+
+```
+[xoc3]
+default = true
+email = "alan@xoc3.io"
+
+imap-host = "xoc3.io"
+imap-port = 993
+imap-login = "alan"
+imap-passwd-cmd = "pass show xoc3.io/alan"
+```
+
+once i setup the config file, himalaya wouldn't run because the server's certificate was self signed. to get around this, you need to add the certificate to your trusted certificates. i tried using the "openssl trust" command, but it didn't work. in the end, this is what worked for me. i'd love to know if there is a better way to do this:
+
+```
+export URL=xoc3.io
+export PORT=993
+get_ssl_cert() {
+    openssl s_client -connect "$1:$2" 2>/dev/null </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+}
+
+get_ssl_cert $URL $PORT | sudo sh -c "cat > /etc/ssl/certs/$URL-imap.pem"
+sudo chmod uag+xr /etc/ssl/certs/$URL-imap.pem
+sudo openssl rehash
+```
+
+after that, just run "himalaya list" to see your email inbox!
+
+## conclusion
+
+that's everything i wanted to share. here are some other helpful links that i referenced to get everything working and figured out.
+
+=> https://www.jvt.me/posts/2019/12/04/openssl-certs-dir-setup/ a good article on some ssl internals
+=> https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/index.html a much more more advanced self-host guide
+=> gemini://gemini.omarpolo.com/post/opensmtd-dovecot-virtual-users.gmi a useful gemini post about dovecot
