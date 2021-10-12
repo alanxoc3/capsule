@@ -1,0 +1,24 @@
+#- more email server learnings
+
+i got the ports open from linode
+
+```
+# usage: check_dns_a_record <domain.name>
+check_dns_a_record() { dig +short $1; }
+
+# usage: check_rdns <domain.name>
+check_rdns() { dig -x $(check_dns_a_record $1) +short; }
+```
+
+=> https://www.dmarcanalyzer.com/spf/spf-record/
+
+virtual domain lets me have email accounts not associated with users on the system.
+
+=> https://www.serverwatch.com/guides/adding-users-and-aliases-for-postfix/
+
+=> https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/index.html
+
+setting up opensmtpd now
+sudo pacman -S opensmtpd
+
+https://superuser.com/questions/605521/the-simplest-way-to-set-up-a-secure-imap-email-server

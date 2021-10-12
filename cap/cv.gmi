@@ -2,7 +2,7 @@
 
 cv stands for curriculum vitae, which is latin for "course of life".
 
-=> mailto:alanxoc3@gmail.com    alanxoc3@gmail.com
+=> mailto:alan@xoc3.io          alan@xoc3.io
 => https://github.com/alanxoc3  github.com/alanxoc3
 => https://twitter.com/alanxoc3 twitter.com/alanxoc3
 => gemini://xoc3.io/gpg.txt     gpg public key
