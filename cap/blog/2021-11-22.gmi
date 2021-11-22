@@ -1,0 +1,31 @@
+#- tmux keylogger
+
+here is a shameless self promotion about a little script i made a few weeks ago. that script is called "tmux key log" or "tkl". just run "tkl" and you can have a little key logger running in your tmux status bar. this is super nice if you give presentations through the terminal, which is why i made it.
+before i began work on this script, i saw one tmux keylogger script, but i think the developer was really just trying to see if it could be implemented in bash instead of creating something super useful. anyways, here is that project:
+
+=> https://github.com/concise/tmux-keylogger tmux keylogger implementation in bash
+
+i wrote my script in python using the "keyboard" library, which you can find here:
+
+=> https://github.com/boppreh/keyboard keyboard library
+
+i made sure it worked on both arch linux and darwin. i actually found 2 bugs in the keyboard library for darwin, so i fixed those bugs in some prs:
+
+=> https://github.com/boppreh/keyboard/pull/501 added linux feature to darwin
+=> https://github.com/boppreh/keyboard/pull/502 darwin fix for dvorak layout
+
+some nice features of this little script:
+
+* unicode is used to represent some keystrokes (eg: arrow keys are ←↑→↓)
+* there is only 1 python dependency and the script is only 1 file
+* ctrl, alt/option, super/cmd, and shift are all supported
+* everything is saved in memory, instead of to a file
+* only the last 40-ish keystrokes are saved in memory
+
+here is an asciinema recording so you can see it for yourself:
+
+=> https://asciinema.org/a/450566 tkl demo
+
+and finally, here is that script you must be super excited about now:
+
+=> https://github.com/alanxoc3/dotfiles/blob/main/bin/tkl tkl code
