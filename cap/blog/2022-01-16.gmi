@@ -1,0 +1,41 @@
+#- goals and removing distractions
+
+january 2021, i set goals for the year in a different way. instead of trying to accomplish things like "finish making a game" or "read all these books", i created time based goals. so over the course of a year, i should work on x for x amount of hours. as last year was my first year setting goals like this, i changed the goals many times throughout the year so that it aligned with what i could actually accomplish. they weren't stable until the beginning of october. these are the times i set and accomplished by that time:
+
+```
+20h: study flashcards
+30h: practice piano
+40h: read/listen to books
+40h: practice typing with a piano
+70h: exercise or cleaning
+70h: writing (journal, gemini, thoughts...)
+300h: code outside of work
+```
+
+some of my results at the end of the year weren't very big. like for the piano one, 30 hours for the whole year averages out to be only about 5 minutes a day. there are a few reasons this isn't bigger:
+
+* daily life things (commute, sleep, family, travel)
+* distractions from the internet (news, feeds, tv shows, videos, games)
+
+i can only control daily life things so much, but most of the time i wasted last year wasn't from there. most of the time was from that second category. even though i think i wasted quite a bit of time last year, i'm still proud of what i accomplished. i averaged working on my goals over 1.5 hours each day last year, despite a full time job and a 1.5 hour commute for half the year.
+
+one more thing is that i've automated the time tracking for a lot of those different goals. so when i play piano, i actually have the keyboard hooked up to my computer. a timer starts when midi signals come in and stops when there is no activity for a few seconds. so my time logging is much more accurate than just setting a traditional timer.
+
+now that i have a year of experience with time based goals, i've set more challenging time based goals for this year. i also have more scripts to help keep track of my goals this time around. but if i want to actually achieve my goals, i need to get rid of distractions.
+
+one way to get rid of distractions is to limit my time online. i read ploum's post about offpunk the other week and it inspired me to also limit my time offline this year.
+
+=> gemini://rawtext.club/~ploum/2022-01-03-offpunk.gmi ploum's offline gemini browser
+
+i created a script similar to one ploum described. this script commits my active git projects, backs up some files, pulls my emails using himalaya, and runs offpunk to pull gemini articles from antenna. my rules for being offline will be less strict than ploum's. here they are:
+
+* i can use the internet during work and on my work computer
+* i can use the internet on my phone or someone else's computer
+* i can use the internet for studying related to my goals
+* i can run my syncing script once or twice a day
+
+this works well for me because i already don't use my phone or other computers very much since my computer is customized a bunch and that makes it slow and annoying to use other devices. also, i kinda have to be online a lot for work. finally, i'm allowing myself to use the internet when i study specific topics because not using the internet for that is kinda a waste of time.
+
+i'm also not doing anything crazy like turning my router off. i don't expect myself to always follow those rules, but i do hope i follow them most days so i have more time to actually focus on my time based goals this year.
+
+i really enjoy simplicity. i enjoy removing distractions from my life. i also enjoy reading many of the capsules here in the gemini space. i get more motivation when reading from more like-minded people here. and that's it for this post.
