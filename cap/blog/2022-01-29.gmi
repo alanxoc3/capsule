@@ -1,0 +1,123 @@
+#- old notes about quotes and articles
+
+sometime in 2020, i received work emails containing quotes and links to different articles. at that time, i thought it would be cool to research the quotes and take notes from those articles. here are those quotes and notes, only slightly abridged from what i wrote in 2020.
+
+## drm vs irm
+
+=> https://www.skyhighnetworks.com/cloud-security-blog/what-is-information-rights-management-irm/
+
+from that article, i understood the difference between drm and irm.
+
+digital rights management is used to protect copyrighted material from being distributed in an unauthorized way.
+
+information rights management is used to protect sensitive information contained in a document.
+
+## better programming
+
+=> https://medium.com/better-programming/things-that-you-can-do-to-improve-code-quality-c746c30e7521
+
+that article lists 6 ways to improve code quality:
+
+1. pull request
+2. continuous integration
+3. coding conventions
+4. testing
+5. analyze bugs
+6. complexity measurements
+
+a cool quote from the article:
+
+> "the only real mistake is the one from which we learn nothing." -- henry ford
+
+and a cool concept was about cyclomatic complexity.
+
+=> https://en.wikipedia.org/wiki/Cyclomatic_complexity cyclomatic complexity on wikipedia
+
+cyclomatic complexity uses loops & control structures in code to determine how complex source code is.
+
+## clean code
+
+=> https://www.oreilly.com/library/view/clean-code/9780136083238/
+
+i haven't read this book, but it looks interesting, because it shows code and asks about what is right and what is wrong with the code.
+
+## machine learning quotes
+i got some quotes from a slide deck from a work email. originally, the quotes had no sources, so i went further and found the sources for them. my goal was to find/read primary sources for all the quotes, but i could only find primary sources for some of them. i went so far as to purchase a jstor membership to be able to read one of the primary sources.
+
+### ten microsofts
+
+> "if you invent a breakthrough in artificial intelligence, so machines can learn, that is worth 10 microsofts." -- bill gates
+
+=> https://www.nytimes.com/2004/03/01/business/microsoft-amid-dwindling-interest-talks-up-computing-as-a-career.html quote source
+
+bill gates did indeed say this quote. he said it as he was presenting at a college during the dot com crash, when students were reconsidering taking up computer science as a major. some people claim that bill gate's statement was actually an understatement, meaning that machine learning today is actually worth much, much more than 10 microsofts.
+
+i was not able to get an actual primary source, instead, i was able to get a secondary source from steve lohr attributing the quote to bill gates.
+
+### die without an ai strategy
+
+> "if you don’t have an ai strategy, you’re going to die in the world that’s coming." -- devin wenig
+
+=> https://www.forbes.com/sites/shoptalk/2017/03/28/6-key-takeaways-from-shoptalk-2017-an-insiders-perspective/#5cc5ad0624ab quote source
+
+as i was researching this quote, i learned about shoptalk. shoptalk is just a conference that many e-commerce companies will attend to see what the future for e-commerce is. amazon and devin wenig from ebay are among some of the companies that may have representatives to this conference. it makes me wonder if my dev leader was also there, as he was working for amazon at the time. also, the conference videos themselves don't seem to be accessible to the general public, so it's pretty lucky i was able to find this quote from the keynote talk thanks to zia wigder. zia wigder was most likely at the shoptalk conference, as she is an employee for shoptalk, so this is most likely a secondary source.
+
+### ai with customers
+
+> "by 2025, an estimated 95% of customer interactions will be supported by ai technology." -- blake morgan
+
+=> https://www.forbes.com/sites/blakemorgan/2018/02/08/10-customer-experience-implementations-of-artificial-intelligence/#7bc046032721 quote source
+
+i don't have much to say about this quote. blake morgan seems to be a speaker of some sort. this is also a primary source, because blake morgan is the one who wrote the article.
+
+### darwin's famous quote
+
+> "according to darwin's origin of species, it is not the most intellectual of the species that survives; it is not the strongest that survives; but the species that survives is the one that is able to best adapt and adjust to the changing environment in which it finds itself." -- leon c. megginson
+
+=> https://www.jstor.org/stable/42866937 quote source
+
+no, darwin did not actually say this. leon c megginson from lsu said this in 1963, as he was paraphrasing darwin. in the slide deck i got this quote from, it mis-referenced darwin as the one who said it. context is key, that first part "according to darwin's origin of species" really shows that this quote was not meant to be from darwin at all, but megginson was just paraphrasing darwin.
+
+also, i didn't know what quiescent meant in megginson's paper. now i know. it means "being at rest".
+
+
+### to make much of time
+as i was reading that same paper by megginson, i came across a quote from a poem i had never heard before.
+
+> "gather ye rosebuds while ye may, old time is still a-flying: and this same flower that smiles to-day to-morrow will be dying." -- robert herrick
+
+so i went on to find the whole poem, entitled "to the virgins, to make much of time":
+
+> gather ye rosebuds while ye may,
+> old time is still a-flying:
+> and this same flower that smiles to-day
+> to-morrow will be dying.
+>
+> the glorious lamp of heaven, the sun,
+> the higher he's a-getting,
+> the sooner will his race be run,
+> and nearer he's to setting.
+>
+> that age is best which is the first,
+> when youth and blood are warmer;
+> but being spent, the worse, and worst
+> times still succeed the former.
+>
+> then be not coy, but use your time,
+> and while ye may go marry:
+> for having lost but once your prime
+> you may for ever tarry.
+
+=> https://archive.org/details/cu31924012961623 quote source
+
+the source i found for this quote is from a 1957 reprint from f w moorman, which includes the original title page from robert herrick. it's not a physical primary source, but it's probably very credible. according to wikipedia, j r r tolkien succeeded moorman as a professor after moorman died.
+
+## warren buffett misquoted
+
+> "honesty is a very expensive gift, don't expect it from cheap people." -- warren buffett
+
+well, as usual, i wanted to find the source to the quote, and i couldn't find anything. i spent a few hours doing time based searches on google to try to find where the quote came from. eventually, a found a single article from an etymologist named barry popik, who did the same thing and tried to find the source of this quote. in his "big apple" blog post, he concluded that the source of the quote probably originated from an online image, and spread that way.
+
+=> https://www.barrypopik.com/index.php/new_york_city/entry/honesty_is_a_very_expensive_gift/ blog post from barry popik
+
+the blog post has a list of the first occurrences of the quote he could find. i was able to find some of those on google too. i was curious enough, so i actually went the extra mile and messaged one of the people who first mentioned the quote on twitter. after a while, i got a reply back and he said he didn't know where he heard it from either and it was probably from some conference he attended. i also felt very awkward after the fact for sending that message to a complete stranger. i don't want to do it again.
