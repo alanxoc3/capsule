@@ -8,9 +8,7 @@ with that said, over the past few weeks i've come up with the basic design for a
 
 the ax shell (pronounced "axe" or "acks") is an acronym for "[a]nother e[x]cellent [shell]". this shell strives to preserve the unix philosophy, while straying from normal posix shell standards. when i say "unix philosophy", the definition i'm referring to is from doug mcilroy:
 
-```
-this is the unix philosophy: write programs that do one thing and do it well. write programs to work together. write programs to handle text streams, because that is a universal interface.
-```
+"this is the unix philosophy: write programs that do one thing and do it well. write programs to work together. write programs to handle text streams, because that is a universal interface."
 
 a few of the design highlights of the ax shell are:
 
@@ -124,24 +122,9 @@ ls *[fd -0I --exact-depth 2]
 ```
 
 ## conclusion
-i need to spend some time today doing something else rather than writing a blog post the entire day now. you can see that even with this current basic syntax, a powerful shell can be constructed. email me at alan@xoc3.io if you have questions or feedback about this. i'll start prototyping this shell when i consider the design to be complete, which will probably not be for many months at least.
-
 some things i can think of right now that still need to be hashed out are:
 * process handling
 * what to do with standard error
 * finalizing the list of builtins
 
-here are some more ideas of environment variables and builtins that i may or may not add in the future:
-
-```
-!err    [arg]...            -- print args to stderr, separating with null character
-!ret    [arg]...            -- return multiple error codes
-!hook   key cmd...          -- define command to  hook (add to dir, ret, and hist)
-!prompt cmd                 -- set the ps1 prompt to the stdout of a command
-!help   builtin...          -- prints help information for ax builtins
-
-{AX_DIR}    -- history of directories
-{AX_RET}    -- history of return codes, codes are separated by spaces
-{AX_HIST}   -- history of commands
-{AX_BUFFER} -- what is currently typed in the command line buffer
-```
+i need to spend some time today doing something else rather than working on this blogpost now. you can see that even with a basic syntax, a powerful shell can be constructed. email me at alan@xoc3.io if you have questions or feedback about this. i'll start prototyping this shell when i consider the design to be complete, which will probably not be for many months at least.
