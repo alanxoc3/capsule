@@ -17,7 +17,7 @@ while read -r gmi; do
     FILENAME="$(basename -s .gmi $gmi)"
 
     # Put header info on every file.
-    sed -Ei '1s;^;=> gemini://xoc3.io xoc3.io\n\n;' "$gmi"
+    sed -Ei '1s;^;=> gemini://xoc3.io back to xoc3.io\n\n;' "$gmi"
 
     # Replace #- in all .gmi files.
     sed -Ei 's/^#- (.*)$/# '"$FILENAME"' - \1/g' "$gmi"

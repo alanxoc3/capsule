@@ -88,25 +88,27 @@ as i was reading that same paper by megginson, i came across a quote from a poem
 
 so i went on to find the whole poem, entitled "to the virgins, to make much of time":
 
-> gather ye rosebuds while ye may,
-> old time is still a-flying:
-> and this same flower that smiles to-day
-> to-morrow will be dying.
->
-> the glorious lamp of heaven, the sun,
-> the higher he's a-getting,
-> the sooner will his race be run,
-> and nearer he's to setting.
->
-> that age is best which is the first,
-> when youth and blood are warmer;
-> but being spent, the worse, and worst
-> times still succeed the former.
->
-> then be not coy, but use your time,
-> and while ye may go marry:
-> for having lost but once your prime
-> you may for ever tarry.
+```
+gather ye rosebuds while ye may,
+old time is still a-flying:
+and this same flower that smiles to-day
+to-morrow will be dying.
+
+the glorious lamp of heaven, the sun,
+the higher he's a-getting,
+the sooner will his race be run,
+and nearer he's to setting.
+
+that age is best which is the first,
+when youth and blood are warmer;
+but being spent, the worse, and worst
+times still succeed the former.
+
+then be not coy, but use your time,
+and while ye may go marry:
+for having lost but once your prime
+you may for ever tarry.
+```
 
 => https://archive.org/details/cu31924012961623 quote source
 
