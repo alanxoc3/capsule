@@ -52,7 +52,13 @@ done <<< $(grep -Eo '\{\{(\w+)\}\}' ./index.gmi | sed -E 's/\{\{(\w+)\}\}/\1/g')
 popd > /dev/null
 
 # STEP 3: Safely apply changes to .cap dir.
-rsync --delete --include '.*' -r $TEMP_DIR/ .cap/
+RSYNC_CHANGES=$(rsync -cir --delete "$TEMP_DIR/" .cap/)
 
-# STEP 4: Cleanup the temp dir.
+# STEP 4: If there were changes, send a push to antenna.
+if [[ -n "$RSYNC_CHANGES" ]]; then
+    echo "CHANGES DETECTED ($(date -u +%F)). SENDING PUSH TO ANTENNA..."
+    echo 'gemini://warmedal.se/~antenna/submit?xoc3.io' | ncat --ssl warmedal.se 1965
+fi
+
+# STEP 5: Cleanup the temp dir.
 rm -r $TEMP_DIR
