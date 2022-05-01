@@ -1,0 +1,501 @@
+# issues and fixes for ax shell proposal
+
+## reference
+Help on implementing pipes: https://stackoverflow.com/questions/13636252/c-minishell-adding-pipelines/
+
+eof is not a character. it's the status of the file descriptor. eof is hit, then sigpipe. you would need to ignore sigpipe for it not to affect your process. 
+
+read on coprocs (named pipes kinda)
+https://newbedev.com/how-do-you-use-the-command-coproc-in-various-shells
+
+## handling ctrl+z (interrupt)
+ctrl+z sends the sigtstp (terminal stop) signal to the process. that process doesn't then is stopped and doesn't resume until a sigcont. this means the ax shell probably needs to handle this.
+
+another thing, i want only one thing to be able to attach itself to stdout at one time. background processes can't write 
+
+sigstop cannot be ignored. sigtstp can be ignored. both are resumed with sigcont.
+
+the ampersand runs in the background. when you close your shell, those tasks are stopped too.
+
+the "nohup" command can be used to run a command in the background. output can be sent to a file.
+
+since only one thing can print to the screen at one time. i don't want parallel commands to print to the screen. they can print to /dev/null, unless you manually are redirecting output to a file. or you bring the process to the foreground.
+
+read on job control: https://unix.stackexchange.com/questions/509188/does-a-shell-which-does-not-support-job-control-has-the-concept-of-foreground-an
+
+the ampersand says it should be run in the background, but it is still connected to the terminal. if you want something completely not connected to the terminal, maybe start it with "setsid(1)".
+
+Sooo.. now what? job control makes everything confusing. I wish I could survive without it. I wish it was handled somewhere else. When you ctrl+z, sigtstp is sent, the shell could just immediately send sigcont, so stopped processes are not supported. You'd need to kill it.
+
+A command could be used to start a process in the background. It doesn't have to be a builtin.
+
+DONE: Study up on this: https://en.wikipedia.org/wiki/Process_group
+TODO: Study on this: https://www.win.tue.nl/~aeb/linux/lk/lk-10.html
+
+    One may use the command ps j to see PPID (parent process ID), PID (process
+    ID), PGID (process group ID) and SID (session ID) of processes. With a shell
+    that does not know about job control, like ash, each of its children will be in
+    the same session and have the same process group as the shell. With a shell
+    that knows about job control, like bash, the processes of one pipeline. like
+
+    % cat paper | ideal | pic | tbl | eqn | ditroff > out
+    form a single process group.
+
+Processes can change their own group. And the parent of a process can change the process group of children. No other process can change a process group.
+
+Ok. In a session, only one process group can be active and therefore write to stdout or read from stdin. What if the shell handled multiple process groups, but did not attach any of those process groups to sessions? Maybe a separate command could attach it to a session (if possible, prob not)?
+
+A process group is "orphaned" when the leader terminates. The leader is the first process of the group.
+
+This is weird functionality:
+    If termination of a process causes a process group to become orphaned, and some member is stopped, then all are sent first SIGHUP and then SIGCONT.
+
+Sighup means the terminal was disconnected. It could be sent by a physical terminal being disconnected or emulated terminal being disconnected.
+
+The kernel does not allow background process groups 
+
+If the parent process dies, the parent pid is now init (aka systemd, or #1).
+
+All signals except sigkill and sigstop can be caught/ignored/blocked.
+
+It's convention for a PGID to be the same number as the PID of the first member of the group.
+
+This will show the PID, PPID, PGID, and PSID:
+
+    ps j
+
+What is TPGID?
+
+There are 4 signals: PID, PPID, PGID, SID
+- Process         ID: id of the process
+- Process Parent  ID: id of the process that spawned this process
+- Process Group   ID: used for signals, signal sent to group is sent to all processes (defaults to parent's process group)
+- Process Session ID: used for shells, if shell dies, these die
+
+pid, pgid, and psid are sometimes all the same.
+
+You can set your "PSID".
+
+PID     PPID    PGID    PSID
+2818610 2818603 2818610 2818610 zsh              -- PID = PGID = PSID         -- makes sense. 
+2818615 2818610 2818615 2818610 startx           -- PID = PGID & PPID = PSID  -- i'm in a session (if shell dies i die) and i have sub-groups
+ 867110       1  867108  819515 sxhkd            -- 
+ 961755  961258  961223  961223 QtWebEngineProc  -- PGID = PSID
+      1       0       1       1 systemd          -- only two things (probably systemd) has a parent id of 0.
+      2       0       0       0 kthreadd         -- these would have started at boot time
+    258       2       0       0 card0-crtc2      -- every time PGID is 0, PSID is always also zero (empirically)
+
+I really don't want job control. I need to put all things in a pipe into a single process group though. 
+
+I should make this use case easy, might require a separate command though:
+- run multiple commands in parallel and write the output of each to the same file.
+
+Not sure if possible, but I did just think of an ideal (like a week later).
+
+Only one process group is active at any time. If you "ctrl-z" on something, the
+kernel will send a stop signal, then the will see that the process is alive and
+send a hangup signal, meaning the terminal has been disconnected from the
+process. If the process is still alive, maybe send a forceful kill signal.
+
+If you want to be able to stop a process and resume it, maybe there could be
+another command for that. It would basically keep track of the pdid in a file.
+Not sure exactly how it would work. Maybe change the session on the process to
+something else unless the process is resumed.
+
+I really don't like the idea of a "paused" process. I also don't like the idea
+of multiple processes writing to the same output. And I also don't like the
+idea of having 2 output streams (stderr and stdout).
+
+What is my opinion on return codes? in programming languages, there are
+exceptions and returns. Something like a daemon can't depend on stdout, but it
+can depend on the return code. Is there a use case for both capturing stdout
+and return code.
+
+This is really clean:
+() -- out/array
+{builtin}
+
+echo hello | !split ($var) (tee file)
+echo hello | !out hi
+
+!out (echo hi; echo bye | first) | $var
+!if (echo test | !ret) (echo hi)
+
+null (Fe
+
+ind 0, -1, 
+
+echo hello (echo hello world|!1)
+
+blah | !out # default
+blah | !err # drops stdout & prints stderr in realtime
+blah | !oe  # out and err to out
+blah | !ret | $var ''
+
++err  | !err | !err
+blah | !out | !err | !
+
+
+$var -- stdout
+blah | $var -- stderr
+blah | $var -- return
+
+$var x y z # do these have any difference?
+!var x y z
+
+$ hello world # out
+$var kkkk
+! 
+
+if (blah | !ret)
+
+echo hello | !if 
+
+| !err varname | !out varname
+
+!if [command to generate conditions] # does array make sense with if?
+
+
+$ret (blah)
+!if {return value} ()
+
+$rets (!ret)
+
+!get (command) err varname ret varname
+!if () (looks at return codes)
+
+ignore err & ret
+
+
+{.} -- stdout of previous process group
+{!} -- stderr of previous process group
+{?} -- return codes of previous process group
+
+!out (echo hello) {.} | hello
+echo {.}
+!out {.}
+
+(
+
+9kk
+
+!capture (ai ya) out err ret
+
+()
+(<{}>)
+
+(echo hi; echo yo; echo no; yoyo | cat) # rets: 
+
+($var)
+
+() output of last
+[] err of last
+{} var
+
+!if {out}
+
+!(do the command) out
+
+!err
+!out
+!ret
+
+()  -- nothing
+1() -- out
+2() -- err
+12() -- out and err
+
+*^() -- ret arr
+
+*|  -- pipe stdout and stderr
+!builtin
+ !  -- 
+^%
+^'
+^"
+^#  -- rest of line is comment ignore null character
+
+are semicolons needed? (only for single line things, but how often does that happen?
+
+echo {echo hi . echo bye} {
+
+
+
+Things that change the meaning of the next character:
+
+* change (array)
+Above things: *^`'"
+# *'" are set
+^`
+# `[] = string (include [ and ]) 
+# *[] = array
+
+echo `([echo hi] (echo yo) # (hi 0
+echo `(echo hello) # (echo hello)
+
+echo x*{!out `{{echo hello}} `]a b c} # xa xb xc
+
+$'var hello' [echo hello world]
+$error <echo error>
+
+echo <<echo>> # prints "echo"
+echo <<echo>> # prints
+
+echo {^{echo echo}^} # prints "{echo}"
+echo 5 % 2  i`{{echo echo}`} # prints "{echo}" `
+
+echo `
+hello`
+world`
+% this is the end. # \nhello\nworld\n this is the end.
+
+stdout to stderr # can be done with an external program
+stderr to stdout # can be done with <>
+stderr and stdout # If there were a fifth bracket, that could be good...
+pipe doesn't need any weird mode
+
+!allow-stderr
+
+Maybe get rid of return code.
+!out *{err} errcho hello | cat
+
+!set err t
+!set out f
+
+*{ret}
+
+noerr # ignores stderr
+
+echo hello | !err # out to err
+echo hello | !nil # out to err
+echo hello | !out # noop
+
+!err {}
+
+*^jj
+{var}
+(extract output)
+
+
+Things that happen afterwards is weird. Capturing multiple things is weird (can it be made normal?).
+Implicit variables is weird.
+
+One line should not affect the other line at all unless env vars are set
+
+$var1 err out ret err-and-out
+
+!run (cmd)
+
+echo hello # echos to stdout, stderr, 
+
+!out
+!nil
+!err
+
+!{ret}
+![] hi
+
+is it annoying to see stderr in the output?kkk
+
+!{
+
+{
+*% testing testing
+
+<()>
+{PATH}
+{{ 
+{stdout} [stderr] (ret)
+`var`
+<var>
+
+!idk
+
+!{}
+!<>
+!()
+!
+
+a way to filter env vars right before they're passed to a function/pipeline.
+
+a thing. that filter could be used with path.
+
+!{} echo hello world | !split {cat} {cat:echo:echo} {cat:echo}
+
+| !ret
+
+## handling stderr
+extra pipe character?
+capture all stderr into buffer and have builtin to show buffer output?
+
+first rule. the screen only has one view, so you can only output to standard out.
+
+but programs can output to out or err. err is dropped by default.
+
+| = out & err
+|out
+|err
+|hello
+
+(0 = stdin, 1 = stdout, 2 = stderr, 3 = specific)
+
+wherever i'm going with this, pipes would be required to be their own word. also, pipes other than out and err 
+
+merging pipes makes sense. but what about splitting pipes? splitting a pipe is probably useful, but how could it function?
+
+## how do you make an alias for an existing command
+example in bash:
+
+```
+alias ls="ls --color"
+```
+
+AX_BIN=/tmp/ax-1234
+PATH=/tmp/ax-1234:/usr/bin
+
+## nested ax shells and AX_BIN
+if you nest ax shells, 
+
+## create process in background
+there are two meanings of "process in background":
+* run in background but kill when shell exits
+* run in background and keep alive when shell exits
+
+maybe the shell could just support the first meaning. an external command could provide the ability to do the second.
+
+```
+daemonize cmd arg1 arg2...
+```
+
+actually, it may be possible for both to be supported in an external command. maybe... maybe not though. i was thinking of an option for the "daemonize" program to listen for it's parent process and killing the sub process if the parent process is killed. but that also means that the daemonize program needs to continue running. so it would need to spawn 2 threads instead of just one. this is getting more complex, so it may not be an option.
+
+## key bindings
+are keybindings just a way to run commands and put the output where the cursor is? no. keybindings can be used to manipulate any text in the edit buffer. wish there was a keybinding standard... is it possible to separate the keybinding logic into a separate program?
+
+should the current buffer be in an environment variable?
+
+better definition... keybindings need to be able to control both the cursor and the input buffer. so you execute filters on the buffer. one idea:
+
+stdin is the buffer. the null character is the cursor.
+stdout is the new buffer. the null character again is the cursor.
+
+with that approach, you could have multiple cursors. not sure if that's good or bad... history might be an array and that can't accept null, so cursor positions are not preserved. they weren't preserved before though, so that's fine.
+
+you cannot have an "active" multiple cursor. you can just have multiple cursors.
+
+some defaults:
+* letters show letters after the cursor(s)
+* shift+enter (newline)
+* enter (execute)
+
+## reserved characters
+here is a list of all reserved characters. there is no escaping supported. instead of escaping, you should use one of the many string options.
+
+```
+builtins, variables, pipes, statements, comments:
+*  -- modify reserved character to behave different
+!  -- builtin
+$  -- create var/array
+|  -- pipe stdout
+;  -- separate statements
+#  -- rest of line is comment ignore null character
+
+parameter strings:
+`  -- escapes next character
+^  -- here doc string (ignore null character)
+%  -- rest of line is string (ignore null character)
+'' -- string (ignore null character)
+"" -- string (ignore null character)
+
+command substitutions:
+ *  -- modify transform one of the captures below to an array
+[ ] -- exec & capture stdout (ignore stderr & return)
+< > -- exec & capture stderr (ignore stdout & return)
+( ) -- exec & capture return (ignore stdout & stderr)
+{ } -- capture variable
+```
+
+## builtins
+builtins must always be prepended with a "!". it's easy to tell whether something is an executable or just a builtin with this required prefix. unlike normal commands, builtins can:
+
+* conditionally parse command substitutions
+* receive stderr, and stdout through pipes
+
+this allows for if and loop constructs to be represented as builtins, as well as redirecting stderr and stdout. there may be more builtins in the future, but the list of builtins will remain fixed at some point and cannot be extended by ax shell users.
+
+```
+!out    [arg]...            -- print args to stdout, separating with null character
+!err    [arg]...            -- print args to stderr
+!ret    [arg]...            -- return return codes
+!cd     [dir]               -- change into a directory
+!exit   [err]               -- leave the shell, returning optional error code
+!if     [test expr]... expr -- conditional, then is printed to stdout
+!loop   [test expr]... expr -- conditional loop, thens are printed to stdout
+```
+
+## env vars
+the ax shell doesn't distinguish exported variables with local variables. only exported environment variables are supported. here are a few of the environment variables that the ax shell populates for you:
+
+```
+{AX_BIN}    -- the temporary directory that is prepended to the PATH variable
+```
+
+## examples
+as of now, that's the complete syntax for the ax shell. though the list of builtins is not complete and the syntax is still subject to change, the shell is already very powerful as these examples will show.
+
+```
+# cd into /tmp/dir:
+!cd /tmp/dir
+
+# print the text "hello world" with no trailing newline:
+!out 'hello world'
+
+# or use an external program to do the same thing:
+echo -n 'hello world'
+
+# instead of aliases or functions, add to the path like this:
+!out "#!/bin/ax" "!out {2}" | tr \0 \n | tee {AX_BIN}/print-second
+
+# here is how you could make a shortcut for the above alias snippet using standard posix shell commands:
+!out ^EOF
+    #!/bin/ax
+    $AX_BIN [!out {PATH} | awk -F: '{print $2}' | tr -d \n]
+    !out "#!/bin/ax" "!out {2}" | tr \0 \n | tee {AX_BIN}/{1}
+    !exit 0
+EOF | sed -E s/^ +//g | tee {AX_BIN}/alias
+
+# and using the above shortcut, you could end up creating aliases like this:
+alias print-second %!out {2}
+
+# if we had a few imaginary shell commands available, you can imagine the alias shortcut to be a bit more elegant:
+!out ^EOF
+    #!/bin/ax
+    $AX_BIN [range 2 *[!out {PATH} | tr : \0]]
+    !out "#!/bin/ax" "!out {2}" | tr \0 \n | tee {AX_BIN}/{1}
+EOF | trim | tee {AX_BIN}/alias
+
+# here is what a conditional might look like. test is not a builtin, it's a standard unix command:
+!if (test -n {VAR}) [echo var is non-empty] [echo var is empty]
+
+# in this example, the program will sleep for 1 second until the variable is set:
+!loop (test -z {VAR}) [sleep 1s]
+
+# here is an if elseif statement:
+!if (test -n {V1}) [echo V1 is non-empty]
+    (test -n {V2}) [echo V2 is non-empty but V1 is empty]
+                   [echo both V1 and V2 are empty]
+
+# there is no globbing in ax. instead of "ls */*" like in bash, use a command to get the argument list:
+ls *[find -print0 -mindepth 2 -maxdepth 2 -not -path '*/.*']
+
+# or if you have "fd", the above syntax is much more sane to work with:
+ls *[fd -0I --exact-depth 2]
+```
+
+## conclusion
+some things i can think of right now that still need to be hashed out are:
+* process handling
+* what to do with standard error
+* finalizing the list of builtins
+
+i need to spend some time today doing something else rather than working on this blogpost now. you can see that even with a basic syntax, a powerful shell can be constructed. email me at alan@xoc3.io if you have questions or feedback about this. i'll start prototyping this shell when i consider the design to be complete, which will probably not be for many months at least.
