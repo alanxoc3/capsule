@@ -1,0 +1,308 @@
+#- the ax shell v0.1
+
+i wrote up an idea for a new unix shell a month ago. since then i have refined the idea more. you can see my original iteration here:
+
+=> gemini://xoc3.io/blog/2022-03-20 the ax shell proposal
+
+reach out to me here if you have feedback: alan@xoc3.io
+
+## overview
+the ax shell (pronounced "axe" or "acks") is an acronym for "[a]n e[x]treme [shell]". this shell strives to take the unix philosophy to the extreme. doing so means that many posix shell standards are ignored. here are a few of the design highlights of ax:
+
+"straight forward syntax". the entire syntax should be reasonably easy to memorize. this is very unlike many unix shells currently available. after years of using bash/zsh, i still don't know all the quoting/expansion rules. not to mention that the man pages for each is massive.
+
+"text is the only datatype". having only one datatype simplifies the shell language and encourages the use of other command line programs. arrays are represented by splitting on the null character and booleans are represented with an empty/non-empty string. mathematical operations should be done through a program suited for math.
+
+"executables extend functionality". the list of builtins is fixed and there is no support for aliases, functions, or plugins. this implies that by improving your ax shell experience, you improve the experience of every other unix shell.
+
+anyways, let's continue with the specification. i'm assuming previous knowledge with an existing unix shell.
+
+## basics
+ax shares many core traits with other unix shells. here is an example of commands, comments, builtins, quoting, and pipes:
+
+```
+# following should produce the same output:
+echo hello world
+echo   hello   world
+echo 'hello world'
+echo "hello world"
+echo 'he'llo' "wo"r'ld'
+echo -n hello; echo ' world'
+echo hello | awk '{print $1 " world"}'
+echo -n hello world! | tr ! \n
+
+# builtin commands are prepended by a colon:
+sudo su   # switch user to root
+:cd /root # change to the /root directory
+ls        # print file contents of that directory
+```
+
+a few things to note from the above example:
+* text between quotes is not evaluated in any way
+* echo is not a shell builtin
+* builtins (like :cd) are prefixed with a colon character
+* backslash doesn't need to be quoted
+
+## nulls
+one can easily join arguments together with the "?" syntax. by default, the "?" syntax joins arguments with the null character between each one, but "?" also supports joining arguments with any string:
+
+```
+# prints "hello\0world" with no trailing newline,
+# \0 means the null character:
+? hello world
+
+# using tr is one way to convert the null character to something else.
+# this prints "hello,world":
+? hello world | tr \0 ,
+
+# the "?" syntax has that functionality builtin though.
+# this prints "hello,world":
+?, hello world
+
+# one more example, prints "hello . world":
+?' . ' hello world
+```
+
+"?" defaults to splitting with the null character because of a unique property the null character has on unix systems. null is the only character that unix systems don't allow in environment variables, filenames, and command arguments. but the null character can of course be part of stdin and stdout.
+
+ax has a few different syntaxes for converting the stdout of a command to program arguments. the null character plays a key role in each one:
+* () - only get the text up to right before the first null character
+* [] - split on null character and unpack each item as a separate argument
+* {} - same as "[]", but remove all empty strings
+
+here is another way to think about the capture syntaxes when you are trying to decide which one to use:
+* () - expands to only 1 argument
+* [] - expands to 1 or more arguments
+* {} - expands to 0 or more arguments
+
+```
+# prints "hello world" to demonstrate the () syntax.
+echo (? hello world) (? world hello)
+
+# prints "hello kitty" again to demonstrate the () syntax.
+echo (? hello world)' kitty'
+
+# prints "bar foobar barbar"
+echo [? '' foo bar]bar
+
+# expands to: mv file file.backup
+mv file[? '' .backup]
+
+# ax doesn't support globbing like other shells.
+# here is a way to imitate the bash equivalent of "cat *":
+cat [ls | tr \n \0 | head -c -1]
+
+# the "head -c -1" was needed because ls produces a trailing newline.
+# the following is slightly easier to work with:
+cat {ls | tr \n \0}
+
+# equivalent to "ls ./*/" in bash (find and fd):
+ls {find -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' -print0}
+ls {fd --exact-depth 1 -0It d}
+
+# equivalent to "ls */*" in bash:
+ls {find -print0 -mindepth 2 -maxdepth 2 -not -path '*/.*'}
+ls {fd -0I --exact-depth 2}
+```
+
+## strings
+briefly mentioned earlier, "" or '' can be used to include text in a single argument. both "" and '' in ax behave in the same way as '' in bash. that is, there is no shell expansion or even escape codes supported between the quotes.
+
+use the "~" syntax in ax to create a string that allows any text besides a certain delimiter you specify within it. the "~" syntax is similar to heredocs in bash. example:
+
+```
+# these are equivalent:
+? 'hello world' | tee file.txt;
+? ~ hello world ~ | tee file.txt;
+? ~// hello world //~ | tee file.txt;
+? ~EOF
+hello world
+EOF~ | tee file.txt;
+
+# for demonstration puposes, these are equivalent:
+? ''
+? ~ ~
+? ~  ~
+
+# and these are equivalent:
+? ' '
+? ~   ~
+```
+
+as shown in the example above, the text after the first "~" and before the whitespace character is the delimiter that is also used to end the string. the end delimiter must be the same as the start delimiter, but with a whitespace character before it and a "~" after.
+
+use the grave "`" to escape a single character. here are some examples with escaping characters:
+
+```
+# escape builtin
+# that program probably doesn't exist in your PATH, but at least it's possible.
+`:cd hello
+
+# escape a space
+# prints "ab"
+echo a` b # prints "helloworld"
+
+# escape a newline
+# prints "a b"
+echo a `
+b
+
+# escape any special symbol:
+# prints: ` ' " ? : | ; # ~ { } [ ] ( ) $ %
+echo `` `' `" `? `: `| `; `# `~ `{ `} `[ `] `( `) `$ `%
+
+# the grave does nothing if added before any other character:
+# prints a a . .
+echo `a a `. .
+```
+
+## vars
+in ax, a command prefixed with "$" is actually a local variable. commands prefixed with "%" are environment variables. variable commands ignore stdin. variables commands with no arguments simply return their value, with arguments their value is set with null in between each argument and printed to stdout. here are some examples:
+
+```
+# set the "FILE" variable, write to the file, and print the output
+echo hello | tee ($FILE file.txt) | true
+cat ($FILE)
+
+# ls each directory in the path
+ls {%PATH | tr : \0}
+
+# cd into the user's "Downloads" directory
+:cd (%HOME)/Downloads
+
+# create a directory with an executable file, add the directory to the path, and run the new command
+mkdir -p ($LOCALBIN (%HOME)/.local/bin)
+? "#!/bin/ax" "echo it works!" | tr \0 \n | tee ($LOCALBIN)/testenv | true
+chmod u+x ($LOCALBIN)/testenv
+%PATH ($LOCALBIN):(%PATH)
+testenv # prints: "it works!"
+
+# $ and % themselves are also variables for the lazy:
+$ hello
+% world
+?' ' ($) (%)
+```
+
+environment variables in the ax shell may contain the null character, but subprocesses will only get the text before the null character as a value. local and environment variables can be deleted by setting their value to the empty string:
+
+```
+# environment variables don't pass data after null to subprocess
+%PATH /bin /usr/bin | tr \0 : # prints "/bin:/usr/bin"
+env | grep '^PATH=' # prints "PATH=/bin"
+
+# set empty string to env var for subprocess:
+%envvar '' ''
+env | grep '^envvar=' # prints "envvar="
+
+# delete env var for subprocess:
+%envvar ''
+env | grep '^envvar=' # has no output
+
+# applications often use environment variables to find config files.
+# falling back to different environment variables is simple with ax.
+# the following will print the first directory that has a non-empty environment variable:
+cat (? {%APP_CONFIG_DIR}/config {%XDG_CONFIG_HOME}/app/config {%HOME}/.config/app/config /etc/app.conf)
+```
+
+## builtins
+builtins are prefixed with a ":". each builtin has special properties unique to that builtin. starting with ":cd" and ":exit":
+
+```
+:cd /var/cache # absolute dir
+:cd man # relative dir
+:cd .. # back a dir
+:cd . # do nothing
+:cd # cd to %HOME
+
+:exit # exits the shell with code "0"
+:exit 0 # also exits with code "0"
+:exit '' # also exits with code "0"
+:exit blah # non-empty/invalid number has a code of 1
+:exit 255 # 255 is the max return code allowed (0 is the min)
+```
+
+ax has a few builtins that work with pipes, namely ":err", ":ret", and ":nil":
+
+```
+# "cat -S" isn't valid, so it will print an error message.
+# normally the error is ignored by the capture group,
+# but ":err" says to merge stderr with stdout.
+echo (cat -S | :err)
+
+# ":nil" throws away stdout:
+echo hello world | :nil
+
+# we can get just stderr by combining ":nil" with ":err":
+echo (cat -S | :nil | :err)
+
+# :ret returns error codes from the previous command/pipeline in reverse order:
+cat -S; :ret # prints "1"
+cat -S | cat | cat; ?' ' [:ret] # prints "1 0 0"
+```
+
+and finally, there are a few control builtins: ":fork", ":loop", and ":if. these builtins have a special property of being able to conditionally parse captures:
+
+```
+# the stdout from file is duplicated and both the "tee" and "awk" commands are run in parallel.
+# the pipeline won't stop until both the tee and awk commands are finished:
+cat file | :fork ('tee /tmp/blah | :nil') (awk '{print "test: " $1}')
+
+# :if and :loop parse an empty string as false and a non-empty string as true:
+:if true (echo hello) # prints hello
+:if (cat file.txt) (echo file is non-empty) (echo file is empty)
+
+# here is an if elseif statement:
+:if ($V1) (echo V1 is ($V1)) `
+    ($V2) (echo V2 is ($V2)) `
+          (echo both V1 and V2 are empty)
+
+# loop forever, printing then sleeping
+:loop 'forever :)' (echo looping; sleep 1s)
+
+# in this example, the program will continuously sleep for 1 second at a time until the variable is set:
+:loop (:if ($VAR) '' t) (sleep 1s); echo variable is finally set
+```
+
+## reference
+here are all the special characters in the ax shell:
+
+```
+ #  -- rest of line is ignored
+ ;  -- separates statements
+' ' -- string between quotes
+" " -- string between quotes
+ |  -- pipes output between expressions
+( ) -- capture stdout from expression
+[ ] -- unpack arguments
+ ?  -- prefix for joining
+ $  -- prefix for local variables
+ %  -- prefix for environment variables
+ `  -- escape next character
+ ~  -- string between ~XYZ ... XYZ~
+```
+
+here are all the builtins:
+
+```
+:cd   -- change directory
+:exit -- exit shell
+:err  -- stderr to stdout
+:ret  -- get return codes of previous command
+:nil  -- ignore stdout
+:fork -- run commands in parallel and wait
+:loop -- loop on condition
+:if   -- conditionally execute statements
+```
+
+## conclusion
+alright, i need to get on with my life again. i spent most of my friday and saturday working on this document. i'll probably come back to this in another month for v0.2.
+
+some todos for v0.2:
+* explain process handling ideas
+* hook system (for shortcuts)
+* rethink current "builtins"
+* consider "exec" builtin
+* add more examples
+* explain .axrc
+* commandline arguments
+* add a "faq" section

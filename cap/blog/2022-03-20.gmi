@@ -1,5 +1,9 @@
 #- the ax shell proposal
 
+a newer version of this document is available here:
+
+=> gemini://xoc3.io/blog/2022-05-01 the ax shell v0.1
+
 i love shell programming, but i don't love the languages that are currently out there. sh doesn't have a modern feel and is pretty limited. bash is powerful, but has so many complex rules and gotchas that i still find myself referencing the man page after scripting for almost 10 years. zsh is pretty much the same as bash, but with more features. i've read up on the "nu" shell, while it's very different than existing shells, it introduces complexity in very different ways that i can't agree with. i like the direction the fish shell takes, but i still think a simpler solution can be achieved.
 
 with that said, over the past few weeks i've come up with the basic design for a new shell called "ax". while the design is by no means complete, final or without inconsistencies, i do like the general direction it's taking. this project is something i could see myself working on a year down the road after getting feedback and giving it more thought. the remainder of this article will describe the current design, syntax, and reasonings for the ax shell.
