@@ -1,4 +1,200 @@
 # issues and fixes for ax shell proposal
+A few ideas:
+- Probably shouldn't do the reverse pipe thing.
+- A string type that works with nested parenthesis would be useful maybe.
+- If and Loop maybe should actually work by parsing strings.
+
+There are technically efficiency concerns the way i do multiline/here docs with piping. It seems that bash gets around this with an ugly syntax of the heredoc starting on the below line. I don't want that. I could get around it with reversing the pipe order though. Processes start in a reverse order anyways. While that's a paradigm change for people, it does make more sense to see which process starts first. That's how filters in lisp work too. Making the syntax similar to lisp is a good idea.
+
+Reading on the fish shell, I see that it has some of the things I'm looking for in a shell. It's definitely the right direction, though I think it can be better.
+
+the "?" builtin can get past the argument length limit. ax can also get past
+env var limits. but when you run a program, you might run into the limit.
+
+how would ax react with a large ~ mmultiline ultilinemultiline smultiline tringmultiline ~ ?
+if going into a program argument, the kernel would complain.
+if going into the "?" operator, works as expected.
+
+
+Pipe max on system is equal to max file descriptor: /proc/sys/fs/file-max (insanely high)
+
+Env vars and arguments both have limits. Stdin/stdout does not.
+
+how to start somewhere in a script?
+
+$var     - local var command
+%var     - env var command
+:builtin - builtin command
+
+~str     - heredoc command
+?str     - join command
+`cmd     - regular command, remove the backslash when run
+
+only need to escape these characters: ( ) [ ] { } | ' "
+
+$ - anonymous variable
+% - anonymous variable
+
+special variables:
+9kk
+
+$var : stable,   untouched by builtins, completely local to the script
+%var : unstable, may be imported, builtins change some, may be exported
+:var : unstable, read only, may be variable or command, usage depends on documentation
+
+:.   : return/set the current directory
+
+echo [:.] # history of all directories in session
+
+$dirs_snapshot [:.]
+ls [:.]/[? a b]
+:. (%HOME)
+:. /bob
+
+: is the temporary system variable. used for arguments on startup and temporary variables in loops
+
+$args (:)
+
+ax.len ($args) | $len | :nil
+
+$1 (:|.ind 1)
+$2 (:|.ind 2)
+
+
+":" is the anonymous argument
+:forin %(env --keys) (
+    (:) (:)" "(pwd)
+)
+
+:exec
+    
+%(env --keys)
+env command
+
+shortcut system:
+fzf?
+
+
+
+hook for every builtin?
+
+
+%
+:
+
+:replace-with-env | ? 'HAPPY'
+? 'HAPPY' | :replace-with-env
+
+temporary env var:
+    %var foo; cmd; %var ''
+    ? foo | %var; cmd; %var unset
+    %var foo; cmd; :del %var
+
+%var foo; cmd; ?|%var
+?|%var
+%var ''
+
+if there is standard in, use that.
+if not, use arguments. arrays are supported.
+if both, idk.
+env var stdin
+    ? foo | %bar
+
+temporarily hide env var: 
+
+
+$~ ($HOME)
+$. ($..)
+
+hooks:
+    exit hook - called when you ":exit"
+    cd ($~)
+    cd ($..)
+    cd ($.)
+
+folder on path? that might be interesting. kinda serves as namespace.
+
+What is the line between a programming language and a shell?
+- a programming language works with some sort of machine instructions.
+- a shell is the glue that makes it easier to string text based programs together.
+
+Shell Program:
+- A program that accepts an argument list (argv), environment variables, and standard in.
+
+arg list, executable path, env variables, std in, files.
+
+Shell Program Inputs:
+- Current Directory
+- Parent PID
+- User
+- Environment Variables
+- File System
+- Program Arguments
+- Stdin
+- External Things
+
+Shell Program Outputs:
+- Stdout
+- Stderr
+- Return Code
+- File System
+- External Things
+
+stdin/out is both input and output.
+files are both input and output.
+stdin/out is just a special file.
+arg list, ret code, env vars are special things.
+arg list is a list. env vars are a map. ret code is a return value.
+
+I don't really like that return codes are the only number available. It could
+be empty string for 0 and error code for non zero error codes. That's kinda the
+opposite of a normal boolean though.
+
+Should there be first class support for files? I feel like that's really just
+add-ons. Like being able to tab complete for files.
+
+:if 
+
+ret code, stdout, stderr, files.
+
+
+A shell pro
+A shell works with a program that accepts a list of arguments, environment
+variables, and standard in.
+
+A shell is both the glue that combines text based programs. Shells
+
+## functions
+functions are useful in scripts, but it means they can't be used outside the script...
+also namespaces are a big problem...
+
+namespace can be solved by just updating your path. that doesn't sound hard.
+
+do you need to make a utility function for a script? Options:
+- embed the function in the script
+- separate the function into another script
+- write the function in another language
+- don't have a function
+
+function is like storing the code in memory. it's a temporary script. it's technically impossible for sub commands to execute the script
+
+there are local variables and env variables.
+
+why not local (function) and external commands? Commands are files. Stored on the disk. So it's a bit different. Best is to just require separate files. That's more efficient than making a file at startup. It's so easy to create a function/alias system. And so hard to design without one.
+
+You could just assume a specific directory isn't in your path, then add that directory to your path for this program. Also technically an external program can access your program from the file system. So that whole function thing doesn't really help. But local variables help declutter the environment variables. And keeps it somewhat more secure. But the PATH gets cluttered with bunches o aliases. So what. That's interactive. The language is meant for interactive use. You don't have to write scripts in ax. It's good at combining programs.
+
+
+That's a good question.
+
+
+
+Also it's annoying when not all your shells get an alias update. They could share the same path to fix that. That allows flexibility.
+
+And to make functions specific for your program, you could just define them at
+the top. There could be a separate command for storing stdin into a file. and add that to your path
+
+is there a way to figure out which executables are needed for a script?
 
 ## reference
 Help on implementing pipes: https://stackoverflow.com/questions/13636252/c-minishell-adding-pipelines/
@@ -457,12 +653,13 @@ echo -n 'hello world'
 !out "#!/bin/ax" "!out {2}" | tr \0 \n | tee {AX_BIN}/print-second
 
 # here is how you could make a shortcut for the above alias snippet using standard posix shell commands:
-!out ^EOF
+
+tee {AX_BIN}/alias | sed -E s/^ +//g | ? ~EOF
     #!/bin/ax
-    $AX_BIN [!out {PATH} | awk -F: '{print $2}' | tr -d \n]
-    !out "#!/bin/ax" "!out {2}" | tr \0 \n | tee {AX_BIN}/{1}
+    $AX_BIN (tr -d \n | awk -F: '{print $2}' | !out {PATH})
+    tee {AX_BIN}/{1} | tr \0 \n | ? (~ #!/bin/ax ~) "? {2}"
     !exit 0
-EOF | sed -E s/^ +//g | tee {AX_BIN}/alias
+EOF~
 
 # and using the above shortcut, you could end up creating aliases like this:
 alias print-second %!out {2}
