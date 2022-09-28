@@ -1,12 +1,13 @@
+I need anonymous named pipes.
+The ability to have a circular pipe is needed.
+Controlling buffer size of pipe is needed.
+https://github.com/flonatel/pipexec
+
 # issues and fixes for ax shell proposal
 A few ideas:
 - Probably shouldn't do the reverse pipe thing.
 - A string type that works with nested parenthesis would be useful maybe.
 - If and Loop maybe should actually work by parsing strings.
-
-There are technically efficiency concerns the way i do multiline/here docs with piping. It seems that bash gets around this with an ugly syntax of the heredoc starting on the below line. I don't want that. I could get around it with reversing the pipe order though. Processes start in a reverse order anyways. While that's a paradigm change for people, it does make more sense to see which process starts first. That's how filters in lisp work too. Making the syntax similar to lisp is a good idea.
-
-Reading on the fish shell, I see that it has some of the things I'm looking for in a shell. It's definitely the right direction, though I think it can be better.
 
 the "?" builtin can get past the argument length limit. ax can also get past
 env var limits. but when you run a program, you might run into the limit.
@@ -15,12 +16,120 @@ how would ax react with a large ~ mmultiline ultilinemultiline smultiline tringm
 if going into a program argument, the kernel would complain.
 if going into the "?" operator, works as expected.
 
-
 Pipe max on system is equal to max file descriptor: /proc/sys/fs/file-max (insanely high)
 
 Env vars and arguments both have limits. Stdin/stdout does not.
 
 how to start somewhere in a script?
+
+"HEOLL WORDU"
+'ease asouhn'
+
+execute string as script. if could be offloaded into separate program. 
+
+:exec [if (test -n ($hello)] 'text if true' 'command if false')
+:if [test -n $hello] (text if true) (command if false)
+:loop 
+
+[] # string
+() # command
+
+[] # 1 or more arguments
+{} # 0 or more arguments
+
+() # string
+(this is just plain text, everything before the first null character is interpreted. nothing is evaluated besides a closing ")')'"
+(just plain text how about embedded parantheses? you can embed parenthesis how about expansion operators? that would be useful too)
+and how about embedding quotes? Do i even need quotes now?
+
+(hello )[? city world]
+(? ) (hello )[? city world]
+(? ) hello city hello world
+
+:if (test -z {$var}) (? a[bc aa]) (? c[ba cc])
+
+`` `~
+`( `)
+`{ `}
+`[ `]
+
+(abc [ nothing ])
+
+:if (:if (true) (echo hi) (echo bye))
+
+(this is a set of parens: (), and this is a single paren: )`(
+~hello(
+)
+
+="hello world"
+echo (hello world ())
+
+( () () ( ( ) ) only paren )
+
+( ( ( [ { } ] ) ) )
+
+? (hello world here is a paren `( and here is another paren `). the backtick "``" is the escape character. )
+
+~EOS
+hello world
+EOS
+
+backtick just takes the next character as raw. There is no way to continue onto
+the next line unless there is a newline in the actual argument.
+
+
+
+
+
+echo ( testing some text)
+
+What works within parens?
+
+Backtick?
+Command expansion?
+
+no, expansion doesn't make this easy
+
+echo (this is some    great text. you just need a "`(" to escape a parethesis)
+
+there needs to be a way to escape parens somehow.
+` backtick
+' quote
+" quote
+
+`(
+
+Honestly, backtick is a pretty unused character, and looks like a backslash. So that's probably the best way to do it.
+
+echo alan's words are cool
+
+
+
+[? :cd /home echo hello | :f 1]
+
+(i am a string)
+echo (hello world) (This is another string) (
+
+echo (
+    it [$env] preserves whitespace
+)
+
+
+:if '' "echo hello"
+
+:if true ~(
+    :if false ~(
+        echo hello world
+        mktemp -d
+    ) ~(echo this is executed)
+) ~(
+    echo death to all
+    date
+)
+
+~(saoentu)~
+~[saoentu]~
+~{saoentu}~
 
 $var     - local var command
 %var     - env var command

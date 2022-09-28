@@ -1,0 +1,27 @@
+#- introducing radico8
+
+introducing "radico8", a 24/7 pico8 webradio. it's powered by a live pico8 console that plays specific tracks from specific carts from a playlist file stored on git. i'm going to announce this more publicly on twitter and lexaloffle tomorrow.
+
+radico8 is currently live on youtube:
+
+=> https://www.youtube.com/channel/UCNiwmNlnzY0Rg17Ii2RPIkw/live
+
+but for the gemini fundamentalists out there, it's also available as a raw ogg stream on this same gemini server:
+
+=> http://radico8.xoc3.io
+
+you can play it with mpv:
+
+```
+mpv http://radico8.xoc3.io
+```
+
+in fact the pico8 console powering radico8 is running headless inside a docker container on this same gemini server you are reading content on.
+
+i spent the weekend setting up radico8 after having the idea friday afternoon. it feels good to have finished something. i also went through lots of pico8 cartridges and added songs i like from them. there is currently over 80 songs on the webradio. i hope people submit more pico8 music to the stream though. i'd love to have a much bigger selection.
+
+anyways, more details can be found on the readme in the git repository:
+
+=> https://github.com/alanxoc3/radico8
+
+i'm excited to make this more public tomorrow. the webradio has been up mostly non-stop for the past 2 days already. it's getting late and i need to work tomorrow. so, until next time :).

@@ -26,12 +26,12 @@ like other shells, ax separates commands and arguments with spaces and strings a
 echo hello world
 echo hello world # this part is a comment
   echo  hello  world  
-echo 'hello world'
-echo "hello world"
-echo 'he'llo' '"wo"r'ld'
-echo -n hello; echo ' world'
-awk '{print $1 " world"}' | echo hello
-tr ! \n | echo -n hello world!
+echo (hello world)
+echo (hello )world
+echo (he)llo( )(wo)r(ld)
+echo -n hello; echo ( world)
+echo hello | awk ({print $1 " world"})
+echo -n hello world! | tr ! \n
 ```
 
 a few things to note from the above example:
@@ -48,11 +48,12 @@ one can easily join arguments together with the "?" syntax. by default, the "?" 
 some examples with the output in the comment to the right:
 
 ```
-        ? hello world # prints: "hello\0world" (\0 meaning the null character)
-tr \0 | ? hello world # prints: "hello,world"
-       ?, hello world # prints: "hello,world"
-     ?' ' hello world # prints: "hello world"
-   ?' . ' hello world # prints: "hello . world"
+? hello world         # prints: "hello\0world" (\0 meaning the null character)
+? hello world | tr \0 # prints: "hello,world"
+?, hello world        # prints: "hello,world"
+?( ) hello world      # prints: "hello world"
+(? ) hello world      # prints: "hello world"
+?( . ) hello world    # prints: "hello . world"
 ```
 
 one reason the join operator defaults to splitting with the null character is because of a unique property the null character has on unix systems. the null character is the only character that unix systems don't allow in environment variables, filenames, and command arguments. but the null character can of course be part of stdin and stdout.
@@ -60,25 +61,24 @@ one reason the join operator defaults to splitting with the null character is be
 ## expansion operators
 another reason the join operator defaults to splitting with the null character is to work with the expansion operators in ax. here are the three expansion operators:
 
-* () - expands to exactly 1 argument. only get the text up to right before the first null character.
-* [] - expands to 1 or more arguments. split on null character and unpack each item as a separate argument.
+* () - expands to 1 or more arguments. split on null character and unpack each item as a separate argument.
 * {} - expands to 0 or more arguments. split on null character and unpack each item as a separate argument, removing all empty strings.
 
 and here are examples with each one:
 
 ```
-echo (? hello world) (? world hello) # prints: "hello world"
-echo (? hello world)' kitty'         # prints: "hello kitty"
+echo (hello )[? kitty world]         # prints: "hello kitty hello world"
+echo (hello [? kitty world])         # prints: "hello kitty hello world"
 
-echo [? '' foo bar]bar               # prints: "bar foobar barbar"
-mv some_file[? '' .backup]           # expands to: mv some_file some_file.backup
+echo [? () foo bar]bar               # prints: "bar foobar barbar"
+mv some_file[? () .backup]           # expands to: mv some_file some_file.backup
 
 # equivalent to "ls ./*/" in bash (find and fd):
-ls {find -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' -print0}
+ls {find -mindepth 1 -maxdepth 1 -type d -not -path (*/.*) -print0}
 ls {fd --exact-depth 1 -0It d}
 
 # equivalent to "ls */*" in bash:
-ls {find -print0 -mindepth 2 -maxdepth 2 -not -path '*/.*'}
+ls {find -print0 -mindepth 2 -maxdepth 2 -not -path (*/.*)}
 ls {fd -0I --exact-depth 2}
 ```
 
