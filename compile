@@ -55,9 +55,13 @@ popd > /dev/null
 RSYNC_CHANGES=$(rsync -cir --delete "$TEMP_DIR/" .cap/)
 
 # STEP 4: If there were changes, send a push to antenna.
+# And restart the gemini server because of a bug with my gemini setup.
 if [[ -n "$RSYNC_CHANGES" ]]; then
     echo "CHANGES DETECTED ($(date -u +%F)). SENDING PUSH TO ANTENNA..."
     echo 'gemini://warmedal.se/~antenna/submit?xoc3.io' | ncat --ssl warmedal.se 1965
+
+    # this should be allowed in the sudoers config.
+    sudo systemctl restart gemini-server.service
 fi
 
 # STEP 5: Cleanup the temp dir.
