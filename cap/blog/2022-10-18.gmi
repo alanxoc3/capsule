@@ -1,0 +1,11 @@
+#- radio email gardening
+
+when i set up my pico-8 music stream, a college friend chatted with me on the youtube chat. he happened to see it because he subscribes to me on youtube and i don't post much online.
+
+i told him that my goal with this livestream is to make it popular enough for scammers to decide it's worth promoting their scam advertisements in the livestream chat. well, it's been a few weeks and the scammers have finally posted to the chat. i feel so accomplished.
+
+also, i found out that my email server has been down for like 4 months. lol, no wonder i wasn't getting emails. i run smtpd and apparently it failed a few months ago and systemd didn't decide to try to start it up again. i should fix that. i don't like how systemd by default tries to restart a service a bunch of times in a row, then never tries again if it wasn't able to restart the service in that super short timeframe.
+
+i should also start using my self-hosted email more. i'm still using gmail too much. it's fun to read emails in the commandline with himalaya.
+
+other than that, i've been doing yardwork. my wife and i moved from an apartment to a house a few months ago. we want to get into gardening in the spring. so in the meantime i started a compost pile. the pile is in a hole in the ground with a cover.

@@ -1,3 +1,350 @@
+? [echo some command]
+
+:script {
+
+:prompt {? '> '}
+  called before you type input. similar to the idea of "$PS1" in other shells. defaults to "{? '> '}" for interactive scripts. defaults to "{}" for non interactive scripts.
+
+:post {:get err,out}
+  called right before each command is executed in the current shell session. imagine this command being appended as the last pipe to the command about to be executed.
+
+:key modifiers key {event}
+  called right after a key is pressed. stdin is the current prompt text. stdout is the new prompt text. null character is the cursor position. only works in repl mode. key presses are not recognized until this command finishes
+
+:cd   -- change directory
+:exit -- exit shell
+
+:err  -- only capture stderr
+:out  -- only capture stdout
+:nil  -- ignore stdout
+:ret  -- get return codes of previous command
+
+:fork -- run commands in parallel and wait
+:loop -- loop on condition
+:if   -- conditionally execute statements
+:exec -- executes a string
+:str  -- turns statements into strings
+
+{} evaluating to a command works for hooks... maybe...
+
+in the ax shell there is a concept of things coming out of a program.
+namely: ret code, stderr, stdout
+
+other things come out of programs, but these are the only important ones for the shell.
+
+by default, nothing comes out of a program. you need to use the :hook command to make something come out.
+
+# default hook:
+:hook post {:fork {:out | line-buffer} {:err | line-buffer} {:ret | $? | :nil}}
+
+:hook post {:nil} # ignore all output
+:hook post {}
+
+channel
+
+:out 
+:err
+:ret
+
+ #  -- rest of line is ignored
+ ;  -- separates statements
+' ' -- string between quotes
+" " -- string between quotes
+
+pipe vs channel
+
+| :
+
+( ) -- unpack first    (exactly 1)
+[ ] -- unpack all      (1 or more)
+{ } -- unpack nonempty (0 or more)
+
+ |  -- pipes output between expressions
+ :  -- prefix for builtins
+ ?  -- prefix for joining
+ $  -- prefix for local variables
+ %  -- prefix for environment variables
+ ~  -- string between ~XYZ ... XYZ~
+
+mv {mv ($2) (%HOME)/.bin/($1)} (%HOME)/.bin/a
+a e {echo [$@]}
+a l {ls [$@]}
+a gs {git status [$@]}
+
+ax  - blah
+axu - axutils
+
+{echo hello ($1) ($PATH | axu range 3-4 :)} what
+
+{echo hello ($1) ($PATH | axu range 3-4 :)} what
+
+{scope}
+:command { some command } | tee file.txt
+(:str {echo [$@]} | axu bin blah) hello "" "" "" it's a wonderful world
+:exec (:str {echo [$@]})
+
+"what?"
+
+(? 'echo ($1)' | axu script) what
+
+:if {script} {script}
+
+:for () {}
+
+[%HOME]/.bin/e
+
+awk '{print $1}'
+
+evaluation order.
+echo {? $1 $2 $3} (blah blah blah)
+
+;cyclic pipe example:
+    |: :stream [echo hi apple; grep hi] | grep apple |:
+
+order of named pipe matters
+
+|& grep h; |& cat; echo hi |& # both cat and grep will run
+echo hi |&; |& grep h; |& cat # grep will print, but cat won't
+
+echo what |err # 
+echo what |out # 
+echo what |all # group stdout and stderr
+echo what |nil # point to /dev/null
+
+|- |err $var1 (nothing)
+|- |out $var2
+echo what |all |-
+
+if pipe input comes before output, only the next pipe will work
+if pipe output comes before input, nothing is printed until you get input
+
+  echo hi |
+| what
+
+| hey
+| you
+  yoyo ma |
+| testing
+
+
+# what does this mean?
+| cat    | what | buffer
+| grep h | what | buffer
+
+|out | tee out
+|err | tee err
+cat file |
+
+# if statement starts with pipe, don't execute until you find a statement that ends with a pipe.
+| :o | cat
+| :e | ? [while y [cat file]] |.
+|. cat |
+
+# don't execute until you find statement
+# or execute but buffer
+
+cat file |
+| blah
+
+# take input from nowhere and feed it into cat
+| cat
+
+# put the output nowhere
+cat file |
+| cat |
+| cat file.txt - |
+
+# means nothing, because no way to feed into anonymous pipe
+# actually means run this command as usual (for most commands)
+| cat
+
+# means nothing, because no way to read from anonymous pipe
+# actually, means run this command silently.
+cat | 
+
+# setup listener for b pipe. write to listener of b pipe.
+|b cat
+echo :ret
+cat blah |b
+
+cat blah | cat
+
+:wait {cat blah | awk | grep | sed | tac | :nil; ?' ' [:ret]} {other process}
+:spawn
+
+
+:fork # spawns threads and continues with program.          output is not displayed in terminal.
+:wait # spawns processes and waits for all of them to exit. output is     displayed in terminal.
+
+
+:bg {:fork {} {} {}}
+
+mv {echo $1} first
+
+:fork {} {} {}
+
+:help :bg
+
+:{? $2} arg1 arg2
+{? $2} arg1 arg2
+
+:script x {radico8} {what does this mean?}
+
+:blah blah blah
+
+:for 1 {radico8}
+
+function puts things on your path
+
+# prints "arg2"
+
+
+xargs vs expansion
+
+~ blah ~
+
+:{}
+:()
+:[]
+||
+
+{echo 
+
+
+
+# all commands are run in parallel unless attached to the current process.
+# only one command can be attached to the current process at a time
+
+# how do i know to continue to next line or not?
+
+
+| sed
+| grep |
+cat f |
+
+|a a |k
+|a b |k
+| c |a
+
+|a d |k
+|a e |k
+| f |a
+
+g |
+| f
+| c
+
+    d
+  f + e
+g +
+  c + a
+    b
+
+by default, stderr gets printed and stdout goes into command
+
+printing to stdout is a blocking operation no shell prompt when printing to stdout
+
+But if you setup a pipe away from stdout, that's the same as running a separate process
+
+and should there be support for file descriptors? idk. i also don't know if i would use that.
+
+cat f | grep | sed
+
+| nice
+
+  cat file |
+| grep hi  |
+| sed what |
+| sponge   |
+| tee file
+
+
+
+
+| yes
+| no
+
+defaults to "|all" if there is no pipe afterwards. or "|out" if no pipe before.
+
+:err {
+|:err
+
+echo 
+
+:if {} {} {} {} {}
+:if [? x y z]
+:if (! a b c)
+
+:ret 
+
+oh no, are there 2 data types? executables and strings.
+
+$a {.echo ($1)} 
+.mv ($a) (basename ($a))/first
+?' ' what is that; echo
+
+$a 'hey, what up'
+
+($a) 
+
+cat file |aa
+
+cat |   # pipe cat output to anonymous pipe, so stop taking input when the pipe buffer is full
+
+cat |aa # pipe cat to named pipe, stop taking input until pipe is read from
+
+cat file |. grep hi |. grep what |.
+
+:set |. 33
+|0
+|{name, buf size}
+
+how is a pipe buffered. what is the buffer size on a pipe.
+
+:fork {grep hello} {grep what}
+
+|1 grep --line-buffered |3
+|2 grep --line-buffered |3
+
+cat [fd -0 hello]
+
+[ fd -0 hello | tr '\0\0|^\0|\0$' ]
+
+:if {}
+
+{echo ($0) ($1)} hello
+    /tmp/bin/aoesntha hello
+
+:if (true) {echo hello} {}
+
+:if (:fd 14 true)
+
+
+? [grep]
+
+[ ] -- evaluates as strings
+`~        not multiline
+`#        not comment
+`:command not builtin
+
+Here is how pipexec does multiple file descriptors:
+    $ pipexec -- [ A /usr/bin/cmd1 ] [ B /usr/bin/cmd2 ] "{A:1>B:0}" "{B:1>A:0}"
+
+|1 |3
+
+|p1 grep hi |p1 apple
+
+|p1 awk '{print $1}'
+
+name processes
+:a | :b | :c
+
+utf8 is supported, because it has no null characters has prefix of 1.
+
+does the ax shell even need any notion of utf8? probably not. that's something that can be left up to the sub programs.
+
+Actually, ax needs to support the notion of utf8. For multiline strings.
+
 I need anonymous named pipes.
 The ability to have a circular pipe is needed.
 Controlling buffer size of pipe is needed.

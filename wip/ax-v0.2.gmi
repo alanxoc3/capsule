@@ -238,6 +238,7 @@ here are all the special characters in the ax shell:
  |  -- pipes output between expressions
 ( ) -- capture stdout from expression
 [ ] -- unpack arguments
+ :  -- prefix for builtins
  ?  -- prefix for joining
  $  -- prefix for local variables
  %  -- prefix for environment variables
