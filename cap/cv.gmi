@@ -1,26 +1,29 @@
 # contact & cv
 
-cv stands for curriculum vitae, which is latin for "course of life".
+cv stands for curriculum vitae, which is latin for "course of life". i like pico-8 and linux stuff mostly.
 
-=> mailto:alan@xoc3.io          alan@xoc3.io
-=> https://github.com/alanxoc3  github.com/alanxoc3
-=> https://twitter.com/alanxoc3 twitter.com/alanxoc3
-=> gemini://xoc3.io/gpg.txt     gpg public key
+=> mailto:alan@xoc3.io                   alan@xoc3.io
+=> https://github.com/alanxoc3           github.com/alanxoc3
+=> https://tilde.zone/@alanxoc3          @alanxoc3@tilde.zone (mastodon)
+=> https://lexaloffle.com/bbs/?uid=17205 lexaloffle account
+=> gemini://xoc3.io/gpg.txt              gpg public key
 
 ## professional experience
 
-### dev @ clearwater analytics | 2019 - now
+### sre @ clearwater analytics | 2022 - now
 
-* lead dev designing, implementing, and deploying large features.
-* led my division in creating dockerized tests for legacy applications.
-* helped migrate webservices to the cloud.
+* maintained thousands of linux vms hosted both on-prem and in the cloud.
+* managed technologies: nginx, jenkins, apache, tomcat, vault, consul, keepalived, graphite.
+
+### dev @ clearwater analytics | 2019 - 2021
+
+* designed, implemented, and deployed multiple large features for existing web applications.
 
 ### intern @ clearwater analytics | 2017 - 2018
 
-* created 1 react and 2 angular applications over 2 internships.
+* made react and angular applications over 2 internships.
 
 ### student, tutor & ta @ byui | 2015 - 2019
 
-* bachelors degree for computer science.
-* tutor for c++ courses. ta for computational theory.
-* leadership in coding clubs for 3 years.
+* bachelors in computer science.
+* tutor, ta, and coding clubs.

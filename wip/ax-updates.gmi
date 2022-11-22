@@ -1,32 +1,119 @@
+:cd     -- change directory
+:exit   -- exit shell
+:err    -- only capture stderr
+:out    -- only capture stdout
+:nil    -- ignore stdout
+:ret    -- get return codes of previous command
+:pre    -- run before every command. output goes to stdout
+:post   -- filter after every command
+:key    -- called after a keypress only for interactive mode
+:funcs  -- list the stored functions
+:str    -- turns statements into strings
+
+# these don't have to be in the shell, if the shell writes files for {} syntax
+# but that would be a huge performance hit
+:loop   -- loop on condition
+:if     -- conditionally execute statements
+:fork   -- run commands in parallel
+:wait   -- run commands in parallel and wait for them to finish running
+:buff   -- run commands in parallel, wait for all of them to finish running, print them to finish running
+:serial -- run commands in sequential order
+
+http://www.pixelbeat.org/programming/stdio_buffering/
+https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation
+http://www.linusakesson.net/programming/tty/
+
+Some good defaults:
+:pre ? '> '
+
+:post :buff '
+' {:out} {:err} {:nil | $? | :ret}
+
+pipe will control stdout, err, and ret code
+
+or maybe only capture 1 file descriptor?
+blah | (cat)
+
+ignore stderr?
+
+pipe ignores stderr?
+stderr and ret get sent to file?
+:err command # prints stderr
+:out command # prints stdout
+
+axu err command
+axu out command
+axu ret command
+axu get out,err,ret command
+
+variables are buffers?
+
+:set x=ret,y=err {command}
+"$" is like tee for variables
+command | :err | $x
+command | :fork {$y} # discards output
+$y # prints val of variable, or keeps printing until pipe is closed
+
+{} is command syntax. just saved as an in-memory script.
+
+command | :wait # keeps output?
+
+echo {echo hello} /tmp/ax-pid-uuid ~/.cache/ax/pid/aoeuaboen
+
+{echo hello}   # prints hello
+(? '' '') # tries running empty string
+[? '' ''] # tries running empty string with argument
+(? echo) hello # prints hello
+[? echo hello] # prints hello
+
+? {echo hello}        # prints: :aseontuhsaoenbusnth:
+:aseontuhsaoenbusnth: # prints hello
+
+OK, I actually like the reverse pipe.
+$lvar | grep he | awk // | :serial {?' ' hello world this is me} {echo hello} {echo bye} {echo hellew}
+
+:save | :builtins
+
+# print a new number every second
+while {sleep 1s; $i | trim | bc | ? ($i)+1} {echo ($i) whatever ($2)}
+
+tee file
+
+:fork {a} {b} {c} | 
+:wait
+:serial {a} {b} {c}
+:if {a} {b} {c}
+
+[{blah $0 $1 $2 $3} {heh} {yo}]
+command not found: 'blah'
+
+there is no going back.
+
+builtins are special, because they can access internal state
+
+%evar | $lvar
+%evar [$lvar]
+
+echo hi ; echo mwahahaha
+sed s|blah|blah|g
+
+
+:script {echo whatup}
+:fork (random {blah} {blow})
+
+err by default 
+
 ? [echo some command]
 
-:script {
-
-:prompt {? '> '}
-  called before you type input. similar to the idea of "$PS1" in other shells. defaults to "{? '> '}" for interactive scripts. defaults to "{}" for non interactive scripts.
+:pre {? '> '} called before you type input. similar to the idea of "$PS1" in other shells. defaults to "{? '> '}" for interactive scripts. defaults to "{}" for non interactive scripts.
 
 :post {:get err,out}
   called right before each command is executed in the current shell session. imagine this command being appended as the last pipe to the command about to be executed.
 
-:key modifiers key {event}
-  called right after a key is pressed. stdin is the current prompt text. stdout is the new prompt text. null character is the cursor position. only works in repl mode. key presses are not recognized until this command finishes
-
-:cd   -- change directory
-:exit -- exit shell
-
-:err  -- only capture stderr
-:out  -- only capture stdout
-:nil  -- ignore stdout
-:ret  -- get return codes of previous command
-
-:fork -- run commands in parallel and wait
-:loop -- loop on condition
-:if   -- conditionally execute statements
-:exec -- executes a string
-:str  -- turns statements into strings
 
 {} evaluating to a command works for hooks... maybe...
 
+:exec   -- executes a string # is this needed?
 in the ax shell there is a concept of things coming out of a program.
 namely: ret code, stderr, stdout
 
@@ -35,16 +122,6 @@ other things come out of programs, but these are the only important ones for the
 by default, nothing comes out of a program. you need to use the :hook command to make something come out.
 
 # default hook:
-:hook post {:fork {:out | line-buffer} {:err | line-buffer} {:ret | $? | :nil}}
-
-:hook post {:nil} # ignore all output
-:hook post {}
-
-channel
-
-:out 
-:err
-:ret
 
  #  -- rest of line is ignored
  ;  -- separates statements
