@@ -25,7 +25,7 @@ my use cases for pgp were primarily for encrypting passwords and signing git com
 
 => https://github.com/FiloSottile/age age
 
-
+age is a very 
 
 
 luckily, my gpg key isn't even on a keyserver and i'm pretty sure no one relies on it besides myself. so no need for a revocation certificate. 
@@ -35,6 +35,12 @@ so
 
 
 
+migration from pass to age:
+
+https://github.com/biox/pa/pull/6
+
+pushd ~/.password-store; for f in $(fd -t f | rg '.*\.gpg$' | sed 's/\.gpg$//g'); do pass show "$f" | age -R ~/.config/pa/pubkeys -e -o ~/.local/share/pa/"$f.age"; done; popd
+pushd ~/.password-store; for f in $(fd -t d); do mkdir -p ~/.local/share/pa/"$f"; done; popd
 
 
 

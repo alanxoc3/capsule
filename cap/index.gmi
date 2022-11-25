@@ -1,7 +1,6 @@
 # alanxoc3 | alan morgan
 
-* age pubkey: TODO
-* minisign pubkey: TODO
+* minisign pubkey: RWQSThSNSs4HlDm748OVT9F/tYaxZwW2Gu1Ysg0En+5aBjPuLTsVIpfq
 
 ## contact
 
