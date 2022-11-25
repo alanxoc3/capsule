@@ -1,0 +1,9 @@
+#- no more pgp
+
+for the longest time, i thought pgp was really cool. living j
+
+https://latacora.micro.blog/2019/07/16/the-pgp-problem.html
+https://github.com/FiloSottile/age
+https://github.com/jedisct1/minisign
+https://github.com/biox/pa
+https://leahneukirchen.org/dotfiles/bin/git-signify

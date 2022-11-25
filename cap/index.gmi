@@ -1,10 +1,5 @@
 # alanxoc3 | alan morgan
 
-* tech: cli apps. kakoune. pico-8. arch linux. gemini.
-* other: mandarin. piano. classic books.
+=> gemini://xoc3.io/me about me
 
 {{blog}}
-
-────────────────────────────────────────────────────────────
-
-=> gemini://xoc3.io/cv contact & cv
