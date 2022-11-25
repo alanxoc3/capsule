@@ -1,5 +1,5 @@
 #- coexist with AI
-algorithms, machine learning or not, are already better than people at many things. the main problem is that the current machine learning algorithms are limited to pretty specific domains and it's a pain to teach them how to learn new things unless you have lots and lots of data. the next big leap for AI would be creating an algorithm that learns how to learn. this means that AI entities would eventually be able to replace all the engineering jobs that were used to create the itself as well as continue to progress at a much faster rate than humans due to various advantages computers have over human intellect.
+algorithms, machine learning or not, are already better than people at many things. the main problem is that the current machine learning algorithms are limited to pretty specific domains and it's a pain to teach them how to learn new things unless you have lots and lots of data. the next big leap for AI would be creating an algorithm that learns how to learn. this means that AI entities would eventually be able to replace all the engineering jobs that were used to create the ai itself, as well as continue to progress at a much faster rate than humans due to various advantages computers have over human intellect.
 
 so what will you do with your life if AI powered algorithms and robots can do anything you can do but better?
 
