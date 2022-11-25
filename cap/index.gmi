@@ -1,28 +1,24 @@
 # alanxoc3 | alan morgan
 
-* age encryption key: TODO
-* minisign signature: TODO
-
-## interests
-
-* tech: cli apps. pico-8. linux. smolnet.
-* other: mandarin. piano. minimalism. history.
+* age pubkey: TODO
+* minisign pubkey: TODO
 
 ## contact
 
 => mailto:alan@xoc3.io                   email: alan@xoc3.io
 => https://github.com/alanxoc3           github: alanxoc3
-=> https://tilde.zone/@alanxoc3          mastodon: @alanxoc3@tilde.zone (mastodon)
+=> https://tilde.zone/@alanxoc3          mastodon: @alanxoc3@tilde.zone
 => https://lexaloffle.com/bbs/?uid=17205 lexaloffle: alanxoc3
+
+## interests
+
+* tech: pico8. linux. smolnet.
+* other: mandarin. piano. history.
 
 ## cv
 
-* 2022 - pres | clearwater analytics | sre
-* 2019 - 2021 | clearwater analytics | developer
-* 2017 - 2018 | clearwater analytics | intern
-* 2017 - 2018 | byu idaho            | ta
-* 2015 - 2017 | byu idaho            | tutor
-* 2015 - 2019 | byu idaho            | student
+* 2017 - pres | intern, dev, sre @ clearwater analytics
+* 2015 - 2019 | student, tutor, ta @ byui
 
 ## blog
 
