@@ -1,0 +1,97 @@
+#- no more pgp for me
+
+it all started when i wanted to find a cli based pgp utility that was simpler than gnupg. i've been using gnupg off and on for years and if you have tried it, you'd know too how terrible the user experience is. my search led me to trying out sequoia:
+
+=> https://sequoia-pgp.org sequoia
+
+the commandline interface for sequoia is very nice, but it's not a complete pgp implementation yet. i quickly came into a current limitation with the project when i tried to manage my gnupg subkeys. my curiosity led me to reading the pgp specification and trying to understand the packet structure of private/public keys.
+
+=> https://datatracker.ietf.org/doc/html/rfc4880 pgp specification
+
+after a day and a half of nonsense, i started wondering if there are any good pgp replacements. specifically wondering about a more minimalistic approach to the various encryption services pgp provides. that led me to this article, which i strongly recommend reading:
+
+=> https://latacora.micro.blog/2019/07/16/the-pgp-problem.html the pgp problem
+
+a few highlights of what the article tries to convey:
+
+* pgp is old and painful to manage
+* the poster-child implementation is terrible (gnupg)
+* most people don't actually use the web of trust
+* there are some modern alternatives that can replace parts of pgp
+
+i'll go through my migration journey and thoughts for the rest of this post.
+
+## file transfer
+
+one way to easily & securely transfer files is with magic-wormhole:
+
+=> https://github.com/magic-wormhole/magic-wormhole magic-wormhole
+
+but magic-wormhole is a python application with lots of dependencies. if i want to install it on my system, i need 44 packages at 82 mb in total. luckily there is a go implementation that is a fraction of that size called wormhole-william:
+
+=> https://github.com/psanford/wormhole-william wormhole-william
+
+but i actually ended up not using magic-wormhole or wormhole-william as my goto file transfer utility. i opted for a third one called croc:
+
+=> https://github.com/schollz/croc croc
+
+based on my understanding, magic-wormhole has ~600 thousand default password possibilities, while croc has ~42 trillion default password possibilities. croc also has some extra features that magic-wormhole doesn't.
+
+however, one issue i have with both croc and magic-wormhole is that verification from the sending end is not a default setting. which makes it slightly easier for an attacker to intercept files with either utility. so be sure to add the verification option to whichever utility you end up using:
+
+```
+magic-wormhole send -v
+wormhole-william send -v
+croc --ask send
+```
+
+## file encryption
+
+i now use age for file encryption:
+
+=> https://github.com/FiloSottile/age age
+
+i really have nothing bad to say about age. it's a very minimal and well planned utility. public keys are way smaller than gnupg public keys. multiple public and private keys can be used with the encrypt/decrypt commands. it also supports password encryption, so you can easily encrypt your private key with a password if you want.
+
+under my gnupg setup, i was using "pass" to store my passwords:
+
+=> https://www.passwordstore.org pass
+
+but now that i use age, i found a shell script someone wrote that is like a stripped down version of pass but for age instead of gnupg:
+
+=> https://github.com/biox/pa pa
+
+i actually forked that script and added multiple public key encryption to it as well as a general code cleanup and improved help text. it's not merged yet, so i'm currently using my forked version instead:
+
+=> https://github.com/alanxoc3/pa forked pa
+
+pass uses git to backup the passwords to a central location. i decided to just opt for a simple backup solution for my pa setup.
+
+i used these commands to migrate from pass (gnupg) to my fork of pa (age):
+
+```
+cd ~/.password-store
+for f in $(fd -t f | rg '.*\.gpg$' | sed 's/\.gpg$//g'); do
+    pass show "$f" | age -R ~/.config/pa/pubkeys -e -o ~/.local/share/pa/"$f.age"
+done
+
+for f in $(fd -t d); do
+    mkdir -p ~/.local/share/pa/"$f"
+done
+```
+
+## file signing
+
+the last big thing to replace from pgp is signing files. there is another modern & minimalist utility for this called minisign:
+
+=> https://github.com/jedisct1/minisign minisign
+
+minisign uses a private and public keypair to let you sign and validate files. the private key here is kind of like your gnupg private key. this would be your identity, so you want to keep it extra safe. your public key is how people know you authored a message. there is no central authority with minisign. you distribute your public key in whichever way you see fit. i have mine on my blog/capsule homepage.
+
+keys don't expire with minisign and they can't be revoked too. if you really want to expire a key in minisign, maybe you could just sign a message saying it is expired, then never sign another message again. and if you want to revoke a key in minisign, you could just sign a message saying it is revoked and any further message is not from you. so you may want to have a backup of your private key in for that revoking scenario. these are not automated solutions like what pgp has, but they are also edge cases that rarely happen so they don't really need to be automated.
+
+git doesn't support signing commits with minisign right now. but it does support signing with ssh keys. if you really want to sign your commits but don't want to touch gnupg, you could use the ssh key you already likely use to push to your git server. you could sign a message with minisign stating that ssh key belongs to you if you really want as well.
+
+## conclusion
+
+well, that's all i have. i hope you have enough information to stop using gnupg.
