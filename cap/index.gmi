@@ -1,23 +1,10 @@
 # alanxoc3 | alan morgan
 
-RWQSThSNSs4HlDm748OVT9F/tYaxZwW2Gu1Ysg0En+5aBjPuLTsVIpfq
-
-## contact
-
+=> https://jedisct1.github.io/minisign   RWQSThSNSs4HlDm748OVT9F/tYaxZwW2Gu1Ysg0En+5aBjPuLTsVIpfq
 => mailto:alan@xoc3.io                   email: alan@xoc3.io
 => https://github.com/alanxoc3           github: alanxoc3
 => https://tilde.zone/@alanxoc3          mastodon: @alanxoc3@tilde.zone
 => https://lexaloffle.com/bbs/?uid=17205 lexaloffle: alanxoc3
-
-## interests
-
-* tech: pico8. linux. smolnet.
-* other: mandarin. piano. history.
-
-## cv
-
-* 2017 - pres | intern, dev, sre @ clearwater analytics
-* 2015 - 2019 | student, tutor, ta @ byui
 
 ## blog
 
