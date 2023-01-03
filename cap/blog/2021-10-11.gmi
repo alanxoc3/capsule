@@ -1,5 +1,7 @@
 #- setting up an email server
 
+* 2022-12-28: since writing this guide up, i switched from postfix to opensmtpd. i recommend opensmtpd over postfix, because it is much easier to understand and has a cleaner configuration syntax.
+
 today i set up the basics for an email server. receiving emails works fine, but sending emails doesn't because i'm waiting on a support request from linode to unblock outgoing smtp ports. though i don't have a complete mail setup yet, i'll go over the basics of what i learned.
 
 ## dns stuff

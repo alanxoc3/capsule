@@ -1,0 +1,893 @@
+#- 2022 devlog
+i started a devlog at the beginning of 2022. a year later, here it is:
+
+## 2022-01-03
+use this to see which processes are tied to which ports. you need to run it as root to atually see the process id:
+
+```
+sudo ss -tulpn
+```
+
+i normally use rg. but this is the grep equivalent to `rg -l`:
+
+```
+grep -rl
+```
+
+i also learned that journalctl has a `-f` option for following output. just like `tail -f`:
+
+```
+journalctl -fu tomcat
+```
+
+some memory stuff. first up is free. i feel like i was forgetting about free and using something like htop or top to see the memory. but free is much better.
+
+```
+free -h
+```
+
+next up is drop_caches. this is a kernel file. writing to this file triggers a command in the kernel. more memory is usually freed if you run `sync` first:
+
+```
+echo 1 > /proc/sys/vm/drop_caches # prog & file
+echo 2 > /proc/sys/vm/drop_caches # buffer (directory, inode, os)
+echo 3 > /proc/sys/vm/drop_caches # drop all caches
+```
+
+another kernel thing, but unrelated to memory is strace.
+
+```
+# attach to a process, telling which system calls the process is making
+strace -p 737
+```
+
+## 2022-01-10
+you can convert an epoch time to a normal human readable date with this cli command:
+
+```
+date --date=@<epoch-time>
+```
+
+## 2022-01-12
+some useful apt logs are sometimes stored here:
+
+```
+/var/log/apt/history.log
+```
+
+simple ubuntu advantage commands:
+
+```
+ua disable livepatch
+ua status
+```
+
+there are a few aws concepts i want to go over. ami means "amazon machine image". this is a snapshot of multiple ebs volumes and must include a boot volume. ebs stands for "elastic block store" and this would be a snapshot of the volume/hard disk. so if i want to create an image that has all our configuration, i could capture an ebs snapshot of the hard drive.
+
+onto jenkins notes now. here are a few terms to get down:
+
+```
+Controller | The master node in jenkins. This serves the UI and connects to agents.
+Agent      | Service that runs on slaves and listens to job requests.
+Executor   | A thread that actually runs a job. The number of executors available to an agent is the number of stages that can be run in parallel.
+```
+
+## 2022-01-13
+minikube and kubernetes are pretty much the same thing. minikube is like a beginner friendly version of kubernetes and only runs on your local machine. kubernetes can run on many machines.
+
+with jenkins, the number of executors for an agent shouldn't exceed the number of cpus. also, most things are pretty much located in one directory with jenkins. labels on an agent are useful, because it lets you build on an agent that has "docker" or "maven", or agents can have a label for itself to target a specific build box. a controller and agent should both have the same version of java installed & have java_home setup correctly.
+
+unrelated to that, 10.0.0.0 is an ip address block for private networks. also, for aws security groups, all outbound ports are allowed by default (the app sending requests somewhere else), but all inbound ports are denied by default (no one can access the app).
+
+actually, there are 3 blocks of ip addresses that are reserved for private use. these are:
+
+```
+10.0.0.0/8     - 10.255.255.255
+172.16.0.0/12  - 172.31.255.255
+192.168.0.0/16 - 192.168.255.255
+```
+
+nacl means "network access control list". like a firewall for things going into and out of a network.
+
+## 2022-01-17
+hosted zones in route 53 for aws are just groups for sub domains. for example, "test.xoc3.io" could be a hosted zone. then records in that zone could be "bob.test.xoc3.io" or "hi.test.xoc3.io".
+
+## 2022-02-01
+traefik is some sort of reverse proxy thing for orchestration:
+
+```
+https://github.com/traefik/traefik
+```
+
+## 2022-02-14
+show all environment variables for a given process.
+
+```
+sudo cat /proc/$PID/environ | tr '\0' '\n'
+```
+
+## 2022-03-07
+jenkins automatically backs up changes to the main configuration in `~/config-history/config/`. useful if jenkins breaks because of configuration issues.
+
+## 2022-03-17
+how to run command in jenkins script console:
+
+```
+println 'df -h'.execute().text
+```
+
+and a command with a pipe:
+
+```
+def proc = "df -h".execute() | "head -n 1".execute()
+proc.waitFor()
+println proc.text
+```
+
+how to get details from a certificate:
+
+```
+openssl x509 -in cert.txt -noout -text
+```
+
+how to get a java flight recording on a host:
+
+```
+jcmd <PID> JFR.start duration=60s filename=/tmp/myrecording.jfr
+```
+
+## 2022-03-24
+if you want to see the plain text value for all the credentials in jenkins, execute this script in the script console (available to admins):
+
+```
+def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+    com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
+    Jenkins.instance,
+    null,
+    null
+);
+for (c in creds) {
+     println( ( c.properties.privateKeySource ? "ID: " + c.id + ", UserName: " + c.username + ", Private Key: " + c.getPrivateKey() : ""))
+}
+for (c in creds) {
+     println( ( c.properties.password ? "ID: " + c.id + ", UserName: " + c.username + ", Password: " + c.password : ""))
+}
+```
+
+that hack is taken from here:
+
+=> https://medium.com/@eng.mohamed.m.saeed/show-all-credentials-value-in-jenkins-using-script-console-83784e95b857
+
+## 2022-03-25
+is something listening on a port?
+
+```
+sudo netstat -tulpn | grep LISTEN | grep 5701
+```
+
+in kubernetes, a restart will retain the pods. a redeploy will replace the pods.
+
+## 2022-03-29
+how to make puppet read from a different branch:
+
+```
+puppet agent -t --environment <branch-name> # replacing all / and - with _
+```
+
+## 2022-03-30
+list files in a tar archive:
+
+```
+tar -tvf archive.tar.gz
+```
+
+jenkins has a reload endpoint that you can hit from your browser if your user has permissions:
+
+```
+https://<jenkinsurl>/reload
+```
+
+here is an initramfs fsck command to fix a filesystem:
+
+```
+fsck -yf /dev/<partition>
+```
+
+one way to restart a bunch of things in docker swarm:
+
+```
+for svc in `docker service ls --filter 'mode=replicated' -q`; do docker service update --force $svc &; done; wait
+```
+
+one way to restart one thing in docker swarm:
+
+```
+docker service scale service=0
+docker service scale service=1
+```
+
+## 2022-03-31
+mongo db crash course:
+
+```
+show dbs # show all dbs
+use <db> # use a specific db
+show collections # show collections in the current db
+db # the database you're in
+db.createCollection(<string>) # create a collection in the current db
+db.find().limit(1) # get one record
+```
+
+## 2022-04-18
+to send a metric to graphite, use this:
+
+```
+echo "sandbox.test 4 $(date +%s)" | nc <graphite-url> 2003
+```
+
+ldap catalog and ldap global catalog are 2 different things. ldap catalog does more stuff and is slower, while global catalog does less and is faster. ldap catalog runs on port 636. ldap global catalog runs on port 3269. so if your ldap connection is slow, maybe switch from port 636 to 3269.
+
+## 2022-04-20
+with ansible, you can use this option to start at a specific task:
+
+```
+--start-at-task TASK_NAME
+```
+
+## 2022-04-21
+use this to test if a tcp port is open:
+
+```
+nc -zvw 5 <URL> <PORT>
+```
+
+and this to test if a udp port is open:
+
+```
+nc -zvuw 5 <URL> <PORT>
+```
+
+## 2022-04-25
+remove artifactory artifact through api...
+
+```
+# Get an API key from Edit Profile -> Generate API Key
+ APIKEY=<secret-api-key>
+curl -D - -H "X-JFrog-Art-Api: $APIKEY" -XDELETE 'https://<artifactory-url>/path/to/artifact'
+```
+
+## 2022-04-29
+some useful commands to check on pbis:
+
+```
+/opt/pbis/bin/get-status
+/opt/pbis/bin/config --show RequireMembershipOf
+getent passwd $user
+id $user
+```
+
+a way to restart pbis:
+
+```
+sudo /opt/pbis/bin/lwsm restart lsass
+```
+
+a way to setup pbis:
+
+```
+sudo /opt/pbis/bin/domainjoin-cli join --ou OU=<ou>,DC=<dc> <domain> <ldap-user>
+```
+
+a way to add ldap user/group to login access:
+
+```
+sudo /opt/pbis/bin/config RequireMembershipOf <prev-ldap-1> <prev-ldap-2>... <new-group>
+```
+
+## 2022-05-03
+to decrypt "enc[pkcs7,...]" things, you need the eyaml program. install it like so:
+
+```
+gem install eyaml
+```
+
+encrypt and decrypt secrets with:
+
+```
+eyaml encrypt -o string --stdin
+eyaml decrypt --stdin
+```
+
+## 2022-05-04
+some rabbitmq terminology:
+
+```
+Connection: box to rabbit
+Channel:    box can have multiple ports to rabbit
+Exchanges:  route messages to one or many queues
+Queues:     a queue of messages
+```
+
+how to delete all messages in a queue:
+
+```
+rabbitmq purge_queue <queue>
+```
+
+in crisis mode, you could block all senders, but allow all consumers. this is how you do that:
+
+```
+rabbitmq set_vm_high_watermark_absolute 0
+```
+
+## 2022-05-18
+in xen orchestration, you can search for a name like so:
+
+```
+name_label:/^(...)$/
+```
+
+## 2022-05-23
+to use kubectl in gcp, you can connect using:
+
+```
+gcloud auth login
+gcloud container clusters get-credentials ...
+```
+
+after that, kubernetes commands work. here is one simple kubernetes command that gets the namespace:
+
+```
+kubectl get ns
+```
+
+## 2022-05-24
+a few useful consul commands someone showed me:
+
+```
+consul members list           # Show the nodes in the cluster.
+consul force-leave            # Force a node to leave the cluster. Useful if there is a bad node.
+consul catalog services -tags # Show all the services in consul, with the associated tags
+```
+
+## 2022-05-31
+some useful aws commands:
+
+```
+# show the current aws account id
+aws sts get-caller-identity --query Account --output text
+```
+
+```
+# update the aws secret value
+aws secretsmanager update-secret --secret-id <secret-id> --secret-string <secret-value>
+```
+
+## 2022-06-01
+the "script" and "scriptreplay" commands can be used to record a terminal session. basically the same as asciinema but less hyped:
+
+```
+script -qf --timing=f.time f.data --command=/bin/bash
+scriptreplay -t f.time f.data
+```
+
+## 2022-06-06
+to enable tomcat debugging, you can add these to the java startup command:
+
+```
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.rmi.port=21556
+-Dcom.sun.management.jmxremote.port=21555
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Xdebug
+```
+
+some things that could go in a sudoers file:
+
+```
+Defaults umask_override
+Defaults umask=0022
+<username/group> ALL = (ALL) ALL
+```
+
+and this is a hack to fix brew to work only for your user:
+
+```
+sudo chown -R "$USER":admin /usr/local/*
+```
+
+## 2022-06-07
+learned more iptables stuff today. some useful commands:
+
+```
+sudo iptables-save > somebackupfile    # create save
+sudo iptables -nL                      # show rules
+sudo iptables -nL --line-numbers       # show the line numbers
+sudo iptables -F                       # KILL IT ALL!
+sudo iptables-restore < somebackupfile # restore save
+sudo iptables -D <CHAIN> <LINE-NUMBER> # remove a rule
+sudo iptables -A <CHAIN> -j ACCEPT     # not complete, but add a rule
+```
+
+## 2022-06-13
+this is pretty good at finding the largest files in a directory:
+
+```
+sudo find . -xdev -type f -size +100M
+```
+
+but this is better, because it gives you folder sizes too:
+
+```
+sudo du -xcha --max-depth=1 . | grep -E "^[0-9\.]*[MGT]"
+```
+
+## 2022-06-24
+you can force a bad node in consul to leave the cluster with something like this:
+
+```
+consul force-leave -token <TOKEN> <HOST>
+```
+
+dead nodes will eventually leave, but that makes it actually leave immediately.
+
+## 2022-07-08
+when puppet starts, it loads facts first. these are just variables that puppet populates based on files and stuff on the system. you can use the facter command to see the basic values:
+
+```
+facter
+```
+
+for more specific facts that are related to puppet, use the puppet facts subcommand:
+
+```
+puppet facts
+```
+
+## 2022-07-13
+lvm is logical volume management. this guide is great:
+
+=> https://opensource.com/business/16/9/linux-users-guide-lvm
+
+and this one is good too:
+
+=> https://bencane.com/2011/12/19/creating-a-new-filesystem-with-fdisk-lvm-and-mkfs
+
+if you have a raw disk, you can create an lvm thing on top of it. or you could create a linux partition first, then install lvm on the linux partition.
+
+commands for setting this up from scratch:
+
+```
+pvcreate /dev/disk # create a "physical volume". these are disks that the central "volume group" can use.
+lvcreate vol_name /dev/disk # create a "volume group", and attach 1 disk to it. this is what glues disks together.
+pvscan # shows a list of all physical volumes with attributes.
+pvdisplay # similar to pvscan, but different format.
+lvcreate # create a "partition" or "logical volume" on the "volume group".
+lvdisplay # show "partitions" on a "volume group".
+```
+
+steps for an actual data copy:
+
+```
+sudo pvcreate /dev/mapper/<partition>
+sudo vgcreate <vol-name> /dev/mapper/<partition>
+sudo lvcreate -l '100%FREE' -n <part-name> <vol-name>
+sudo lvdisplay
+sudo mkfs -t ext4 /dev/<vol-name>/<part-name>
+sudo mkdir /mnt/iscsi-mount
+sudo mount /dev/<vol-name>/<part-name> /mnt/iscsi-mount
+sudo rsync -a --info=progress2 <path> /mnt/iscsi-mount
+```
+
+```
+# and finally, edit the fstab file. the mount should look like this:
+# /dev/mapper/<vol-name>-<part-name> <path> ext4 _netdev 0 2
+```
+
+## 2022-07-19
+here's how you check which package owns a file with apt:
+
+```
+dpkg -S /path/to/file
+```
+
+## 2022-07-27
+dbus is the thing that replaces the "unix pipe" in your shell. basically just a more standard pipe. systemd depends on dbus and ensures a dbus daemon is executed on startup. dbus is the reason various "ctl" commands work. for example, systemctl commands will send a message to the systemd daemon.
+
+initramfs is a "temporary ram filesystem". when linux boots up, this file system is mounted before the real root filesystem mounts. if the root filesystem has an issue booting, the boot sequence can be halted. busybox is a collection of core programs that the init filesystem might contain. optionally, you could use klibc utils instead of busybox, though klibc utils generally require more memory overall.
+
+this command can show you what the installed dependencies are for a package:
+
+```
+apt-cache depends --installed <package-name>
+```
+
+this command can show you what the installed reverse dependencies are for a package:
+
+```
+apt-cache rdepends --installed <package-name>
+```
+
+## 2022-08-03
+a few ways to kill jobs in jenkins. you can press the "x" button on the build job. you can go to the build job and append a "/stop", "/term" or "/kill" to the url. if the job still doesn't stop, this command ran in the script console will force the job to stop:
+
+```
+Jenkins.instance
+.getItemByFullName("<JOB NAME>")
+.getBranch("<BRANCH NAME>")
+.getBuildByNumber(<BUILD NUMBER>)
+.finish(hudson.model.Result.ABORTED, new java.io.IOException("Aborting build"));
+```
+
+## 2022-08-05
+some vault commands for older versions of vault:
+
+```
+vault auth -tls-skip-verify
+vault list -tls-skip-verify secret/...
+vault read -tls-skip-verify secret/...
+vault unseal -tls-skip-verify
+shred ~/.vault-token; rm ~/.vault-token
+```
+
+you'd need a token for the auth step. this can be found in keeper. don't forget to remove it once you're done!
+
+## 2022-08-16
+is docker complaining that there isn't enough space in your little container? no need to worry! this short command will solve all your immediate needs:
+
+```
+docker system prune -a --volumes
+```
+
+start a shell from a docker image:
+
+```
+docker run -it <image-name> sh
+```
+
+connect to a shell in a running docker container:
+
+```
+docker exec -it <container-id> sh
+```
+
+## 2022-08-18
+2 great terminal commands i learned about today:
+
+```
+sponge   # get all of stdin, then pipe that to a file
+unbuffer # trick output into thinking it's a tty device
+```
+
+## 2022-09-09
+this is cool. you can print out pings that get sent to a box:
+
+```
+tcpdump -i eth0 icmp and icmp[icmptype]=icmp-echo
+```
+
+## 2022-09-16
+useful options on ps:
+
+```
+ps -eo pid,rss,%mem,cmd
+```
+
+rss is resident memory, the more useful memory metric.
+
+get all keys from consul, with base64 encoded values:
+
+```
+curl http://127.0.0.1:8500/v1/kv/\?recurse=true
+consul kv get -recurse -base64
+```
+
+## 2022-10-10
+you can get system properties from a running tomcat instance:
+
+```
+sudo jcmd <pid> VM.system_properties
+```
+
+and you can see the currently running java version:
+
+```
+sudo jcmd <pid> VM.version
+```
+
+but be careful, because there is an uncommon bug where some jvms will kill themselves when you run those jcmd commands:
+
+=> https://bugs.openjdk.org/browse/JDK-8279124
+
+## 2022-10-20
+how to list enabled services in systemd:
+
+```
+sudo systemctl list-unit-files --state=enabled
+```
+
+how to list the files that belong to a package for apt/ubuntu:
+
+```
+dpkg -L
+```
+
+for newer versions of vault, here are some useful snippets to view secrets:
+
+```
+ export VAULT_SKIP_VERIFY=true VAULT_TOKEN=secret-vault-token
+vault kv list secret
+vault kv get secret/...
+```
+
+## 2022-11-08
+you can print the contents of a file within a zip archive to stdout with the unzip command:
+
+```
+unzip -p path/to/file.zip path/in/archive.txt
+```
+
+same command can be used for java jars. for example this will print the java manifest:
+
+```
+unzip -p path/to/file.jar META-INF/MANIFEST.MF
+```
+
+you can restore a consul snapshot like so:
+
+```
+ export CONSUL_HTTP_TOKEN=secret
+consul snapshot restore path/to/snapshot
+```
+
+## 2022-12-13
+with systemctl, you can enable user-level scripts to startup at boot-time & continue after logout with lingering:
+
+```
+loginctl enable-linger <username>
+```
+
+arch linux package for mgba currently doesn't support scripting (it's broken for me at least). the app image straight from the mgba website works fine however.
+
+## 2022-12-18
+"network.target" in systemd does not mean you have internet connection.
+
+by default in linux, upload/download speed is not limited. but you can limit it with "tc", or use an easier script/wrapper:
+
+=> https://github.com/magnific0/wondershaper
+
+this is a pretty good guide on understanding how linux deals with networks:
+
+=> https://www.redhat.com/sysadmin/beginners-guide-network-troubleshooting-linux
+
+this ip link command gives cleaner output:
+
+```
+ip -br link
+```
+
+you can see what your router address is with this ip command:
+
+```
+ip neighbor show
+```
+
+that could also be a good way to check internet connectivity.
+
+arp is the low level protocol that maps ip address to mac address. it can get cached on your computer, so here is a way to delete the cache:
+
+```
+ip neighbor delete <ip>        dev <interface>
+ip neighbor delete 192.168.0.1 dev wlan0
+```
+
+one way to easily spawn many parallel processes and be able to kill them all with ctrl-c is:
+
+```
+(trap 'kill 0' SIGINT; prog1 & prog2 & prog3)
+```
+
+though from my trying it, sometimes killing it doesn't work.
+
+## 2022-12-19
+bios stands for "basic input output system".
+
+this url has some good details on how drivers work:
+
+=> https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os
+
+run this to get information about a linux driver/module:
+
+```
+modinfo <module>...
+```
+
+a pci device is any device that can connect directly to the computer motherboard via pci slots.
+
+this url has instructions on how to find which device in "dev" corresponds to which driver:
+
+=> https://unix.stackexchange.com/questions/97676/how-to-find-the-driver-module-associated-with-a-device-on-linux
+
+this command will clearly show the module dependencies for a given module:
+
+```
+modprobe --show-depends <module>
+```
+
+that command is better than using something like "modinfo", because it shows dependencies recursively and also takes into account aliases.
+
+`lsmod` is basically the same as `cat /proc/modules`, but prettier.
+
+some useful keyboard shortcuts in feh:
+
+```
+! - Zoom to fill bg
+* - Zoom to 100%
+A - toggle anti-aliasing
+```
+
+the "/sys/bus" directory contains one subdirectory for each of the bus types in the kernel. there are 2 subdirectories in each bus type, "devices" & "drivers".
+
+## 2022-12-20
+
+this is a great paper to help understand sysfs (usually /sys):
+
+=> https://mirrors.edge.kernel.org/pub/linux/kernel/people/mochel/doc/papers/ols-2005/mochel.pdf
+
+this command is really useful:
+
+```
+lspci -k
+```
+
+`lspci` will show the devices connected to the motherboard. the `-k` option shows the current kernel driver loaded for that device as well as the available kernel modules.
+
+this blogpost is also excellent at explaining how to understand your hardware:
+
+=> https://cromwell-intl.com/open-source/sysfs.html
+
+`lspci` lists pci busses (plus the device the bus is connected to) and bridges. pci bridges allow you to add more busses. i guess it makes things more modular in a way. if you want to connect to the motherboard, you must use pci. usb was created, because making a cable that uses pci is costly and maybe bulky. a usb cable is much cheaper, though is not as fast as a pci bus. though thunderbolt is comparatively as fast as pci right now. thunderbolt therefore must be built into the computer and can't just be added on.
+
+kernel drivers are code that interacts with hardware. kernel modules are code that can be loaded/unloaded at runtime. most kernel drivers are also modules, but some are statically linked in kernel. for embedded systems, you can statically link all drivers if you want.
+
+`lsmod` or `/proc/modules` shows all the dynamic modules on the system. these is code that can be added or removed during runtime. `/sys/module` shows both all the dynamic modules and modules built into the kernel, so that's why it contains more files than lsmod.
+
+## 2022-12-21
+in kernel module programming, there are two special calls you can look for to find where the module code starts and exits:
+
+```
+module_init(...);
+module_exit(...);
+```
+
+the kernel also has a function called "request_module":
+
+=> https://elixir.bootlin.com/linux/latest/source/kernel/kmod.c#L124
+
+kernel modules can call that function to load another module. here is an article with more information:
+
+=> https://lwn.net/Articles/740455
+
+this came up for me because i realized that the "iwlwifi" driver is tied to my network card (lspci -k). but it is also a dependency for iwlmvm. if i unload "iwlmvm", "iwlwifi" also gets unloaded. if i load "iwlwifi", "iwlmvm" also gets loaded. i found out about the "request_module" function by looking at the kernel code for iwlwifi. there is debate about how this functionality can create vulnerabilities, especially for less-maintained drivers.
+
+this is a useful shell snippet to show a graph of all your kernel modules:
+
+```
+lsmod | perl -e 'print "digraph \"lsmod\" {";<>;while(<>){@_=split/\s+/; print "\"$_[0]\" -> \"$_\"\n" for split/,/,$_[3]}print "}"'
+```
+
+you need to display the text in a graphviz visualizer like:
+
+=> http://viz-js.com
+
+in firefox, use the "*" prefix to search bookmarks and "^" to search history.
+
+in kernel module development, instead of using `module_init` and `module_exit`, you could also just use `module_driver`. that's a macro that just does the very basic work for `module_init` and `module_exit`.
+
+here's a short book that goes over customizing your own kernel:
+
+=> http://files.kroah.com/lkn
+
+here is a quote about kernel modules:
+
+```
+"Nothing, though, is for free and there is a slight performance and memory penalty associated with kernel modules. There is a little more code that a loadable module must provide and this and the extra data structures take a little more memory."
+```
+
+taken from here:
+
+=> https://tldp.org/LDP/tlk/modules/modules.html
+
+so technically, you could get a slightly faster/memory efficient system if you don't use kernel modules. that's assuming your hardware doesn't change too.
+
+configuring the kernel is similar to buildroot (it seems like buildroot is just a layer on top of the kernel configuration honestly...). if you have the kernel source code on your machine, you can run:
+
+```
+make menuconfig
+```
+
+and that gives you the nice gui with all the kernel options inside you can select from. it saves your configuration in a `.config` file. the kernel usually saves the configuration it was built with in the /proc/config.gz file. so if you build the kernel with the contents of that gzip file, you should have an identical kernel to the one you currently use.
+
+the `/lib/modules/<kernel-version>` directory contains all the kernel modules included with your kernel. depmod will get a list of all those modules and put them in the `modules.dep` (human readable) and `modules.dep.bin` (modprobe readable) files. modprobe can use those files to see figure out dependencies when loading new modules.
+
+lwn.net is the linux weekly news. the articles are pretty good there too.
+
+there is an "init_module" (not to be confused with module_init) system call. that system call is what actually loads kernel modules. so a tool like modprobe probably calls that systemcall (or finit_module) under the scenes).
+
+## 2022-12-22
+this command will give you the vendor & device id for your pci devices:
+
+```
+rg '' /sys/bus/pci/devices/*/{vendor,device} | sort -u
+```
+
+to get usb vendor & device ids, just use lsusb.
+
+when you have the vendor & device ids, you can grep through the kernel source code with the vendor id first, then the device id. by going through the code, you can hopefully find which driver is associated with that device.
+
+if kernel code is a module, you can set module parameters with modprobe. eg:
+
+```
+modprobe usbcore blinkenlights=1
+```
+
+if the kernel code is built into the kernel, you'd need to pass the parameter into the kernel before it loads (bootloader). the parameter would look like "<module-name>.<option>=<value>". eg:
+
+```
+usbcore.blinkenlights=1
+```
+
+udev stands for "userspace /dev". it used to be an independent project, but eventually merged with systemd. here's a funny post about udev:
+
+=> https://lwn.net/Articles/65197
+
+/dev/shm is similar to the /tmp directory. they are both world writable. the difference is that /dev/shm is *always* stored in ram (if available to your distribution) and the available space is configurable. "/tmp" on the otherhand is usually stored in ram, but is configurable by the user to store it on disk too. better to rely on /tmp, because that is more likely to be available.
+
+systemd has a concept of "api filesystems". these are filesystems that systemd mounts early on to specific places, without needing to specify them in fstab. though you can override the configuration for many of these filesystems with fstab. more description here:
+
+=> https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+
+the `mount` command will show you all the mounts, including those "api filesystem" mounts. by default, df doesn't show you all the mounts. but you can pass the `-a` option to show all the mounts as well. there is also the `-t` option, which will show the file system type as well:
+
+```
+df -Tha
+```
+
+here are the different filesystem types mounted for my laptop as an example (coming from the `-t` option):
+
+```
+binfmt_misc, bpf, btrfs, cgroup2, configfs, debugfs, devpts, devtmpfs, efivarfs, fusectl, fuse.portal, hugetlbfs, mqueue, proc, pstore, ramfs, securityfs, sysfs, tmpfs, tracefs, vfat
+```
+
+if you want to know about one of the file systems, the best place might be the kernel source, under the `fs` directory. specifically, check the `kconfig` files.
+
+`binfmt_misc` is a cool kernel module. it makes it so you can execute files that require an interpreter, without needing to specify the interpreter, like python, java, or exe files. to use it, you need to make sure the module is loaded, make sure it's mounted to /proc/sys/fs/binfmt_misc.
+
+systemd automounts use the kernel's "autofs". when enabled, automounts will display an "autofs" mount with the mount command or dashes with df:
+
+```
+> mount | rg /proc/sys/fs/binfmt_misc
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=34,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=26165)
+> df -Tha | rg /proc/sys/fs/binfmt_misc
+systemd-1      -               -     -     -    - /proc/sys/fs/binfmt_misc
+```
+
+if you try to actually access that directory, then the autofs kicks in and actually mounts it right as you try accessing it.
+
+you can create character and block devices with the `mknod` command. this is mostly replaced by udev, because udev automatically creates character and block devices in the /dev directory for most linux distributions. anyways, to create the character or block device, you pass a file name, type (character or block), device major version (mapped to a driver), device minor version (used by the driver).
+
+to help with writing udev rules, you can use this command:
+
+```
+udevadm info /sys/path/to/device/dir
+```
+
+it will give you the values for different udev attributes.
+
+## 2022-12-23
+`fbv` is a linux framebuffer image viewer. that's cool.
+
+you can run an sdl application in the linux framebuffer with the environment variable `sdl_videodriver=kmsdrm`. input requires libevdev and for your user to have read access to `/dev/input/*`.
+
+`evtest` is a cli utility part of evdev. you can use it to test things like a mouse and keyboard. just run `evtest` without parameters to see available inputs to test on.
