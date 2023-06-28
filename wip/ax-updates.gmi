@@ -14,14 +14,165 @@
 # but that would be a huge performance hit
 :loop   -- loop on condition
 :if     -- conditionally execute statements
-:fork   -- run commands in parallel
-:wait   -- run commands in parallel and wait for them to finish running
-:buff   -- run commands in parallel, wait for all of them to finish running, print them to finish running
-:serial -- run commands in sequential order
+:fork   -- run commands in parallel & wait for all to finish
 
 http://www.pixelbeat.org/programming/stdio_buffering/
 https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation
 http://www.linusakesson.net/programming/tty/
+
+$var local var
+%var exported env var
+:builtin
+
+Core concepts:
+
+    array  - args
+    keyval - env vars
+    stdin  - input  (sequential)
+    stdout - output (sequential)
+    stderr - error  (sequential)
+    fildes - pipes
+
+Buffered (configure buffer) & unbuffered
+
+Buffered (configure buffer)
+
+:bg
+cat | :fork (awk  | $3 param)
+            (sed  | $2 param)
+            (grep | $1 param)
+:fg
+
+Are arguments an array? Or are they a configuration language?
+
+$3
+
+$1 (?) # set var to empty string
+$1 ""  # set var to empty string
+
+[$1]
+
+
+lines starting with spaces mean a continuation of the previous command
+
+have a configuration that specifies which file descriptors are bound to the shell. input and output file descriptors.
+
+:pipebuf 0 # in bytes, set the size of the pipe buffer
+
+|< :min
+|> :blah
+
+| 1 0 2 3 4 5
+
+cat file |1 :split (:fd 2 | 01) (:fd 1 | 31) (:fd 0)
+
+
+cat file | $pi | awk | :bg
+
+cat meow | awk
+
+awk | $pi
+
+
+
+
+
+1 | 01 | 01 |
+
+:take 1
+:give
+
+Pipe types:
+buffer
+no buffer
+
+files  - storage/system
+
+new thoughts:
+- {} is more of a string.
+- () and [] are the same
+should it evaluate at all?
+
+()
+
+a echo {some string}
+
+"" ''
+
+{} ` ~~
+
+Special chars: # | () []
+string chars: ` {} "" ''
+command chars: $ % :
+
+awk {{print "blah"}}
+
+awk (? {{print "blah"}} | tr ' ' '\0')
+awk '
+
+awk {{print "blah"}}
+
+i wonder if the "~" multiline syntax is even needed then? Because {} is just soo useful.
+
+also, there should be a hook for multiline strings
+
+:aoseutnh invalid
+
+:$ list of env vars
+:% list of local vars
+
+env vars are a hashmap.kk
+
+for the most part, just the first character of the first command has special meaning.
+
+:: that should have a meaning
+
+| is the pipe operator
+
+:fork ~(echo what) (echo hi)
+echo what > cat < echo hi
+
+code is in strings.
+
+kak has this %{} string thing, which is pretty useful.
+
+a shortcut that adds to the ax_path might be cool.
+
+:a
+
+builtins can control evaluation
+
+[] is just a string
+
+if one of the brackets were a string instead, that would be nice. Like what kakoune does.
+
+()
+
+[:first]
+`( )
+
+[]
+
+:if [echo hi] [
+    :if []
+] []
+
+
+
+printf ~~
+#!/bin/bash
+what is this?
+%s
+~~ thing
+
+
+~~ blah
+
+() - current shell
+
+%() - string
+
+:set var val
 
 Some good defaults:
 :pre ? '> '

@@ -1,0 +1,70 @@
+#- assist llm
+
+Add to a git hook or watch based on file change.
+
+al ls    [group]
+al forget group <file>
+al learn  group <file>...
+
+    Stores folders and files into the database.
+    --overlap how many tokens to overlap
+    --window  how large the window is
+
+    Types of embeddings:
+    - Directory structure
+    - File content
+    - File summary
+
+al ask 'question'
+
+    Asks a question given context.
+    --num how many results to put in the context
+    --no-cache dont use the answer cache. generate a new answer. overwrites cached answer.
+    --temperature
+
+Data structure:
+    - directory
+    - shasum
+    - filename
+    - git info
+
+--
+
+File content:
+    - type file
+    - group
+    - path
+    - shasum
+    - part
+    - content
+
+Dir content:
+    - type file
+    - group
+    - path
+    - shasum
+    - part
+    - content (hierarchy)
+
+Answer:
+    - type answer
+    - text
+    - shasum
+    - questionhash
+
+Question:
+    - type text
+    - text
+    - shasum
+
+
+
+Can I have a github copilot-like pthere be a copilot plugin for Open
+
+create an open source github copilot-like system that works with the openai api (and maybe eventually any llm). how would this work?
+
+Give it a list of git repos. Create embeddings for every text file. The embedding has sha256sum, filepath, 
+
+AL - Assist LLM
+
+create an open source github copilot-like system that works with the openai api. (and magit repos.
