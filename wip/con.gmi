@@ -1,0 +1,146 @@
+# idea for the "con" console
+
+# specs
+128x128 screen
+4 color greyscale palette (default vm color codes: #333333 #666666 #999999 #cccccc, inspired from UXN kindof)
+2 or 4 mb of lua memory. (pico8 has 2mb lua memory too)
+customizable instruments similar to picotron
+throttles cpu on lua instructions (pico8 is 4M vm insts/sec)
+64kb cartridge format (0x0000 - 0xffff): similar to UXN, twice the size of pico8. 64kb is pretty, because it can be addressed with 2 hexadecimal numbers
+6 buttons available to games (4-way dpad, A, B)
+1 menu button. 1 power button. and maybe 2 volume buttons.
+games are written in lua (or a modified lua maybe)
+games run at 30 FPS. _update could be called more than _draw for CPU intensive carts. _draw could be throttled to sub 30 fps. This is like pico-8. pico-8 can run at 60 fps, which i think is unnecessary and might not be feasable for a lightweight handheld. i want every game that can run in the VM to be able to run on a handheld. no exceptions!
+
+# naming
+currently calling it "CON", because "console", but also because i designed an example ".con.png" cartridge format that has uses a 3x3 pixel font. "c", "o", and "n" are 3 of the few letters that are actually readable in a 3x3 font size.
+
+# goal
+CON is designed to be a physical handheld and a cross platform & easy to use VM/fantasy console.
+
+the VM should be cross platform. embedable into browsers/arm/m1/32bit/64bit/linux/windows/mac. super fast compile like pico8. 1 command exports to every platform immediately.
+
+the VM is open source. firmware for the official handheld could be closed source.
+
+if possible, write some parts in zig, but might have to do c. use SDL too. VM should have cool things like gif record (in pico-8). Ziglua: https://github.com/natecraddock/ziglua
+
+CON is designed to have a limited API to enforce constraints on games.
+- Pico8 can chain carts together to have a multicart game. CON cannot do that by design.
+  - No multicarts enforces you to keep a smaller game, or encourages you to do crazy-cool compression stuff.
+- Pico8 allows you to use a mouse/keyboard in your game. CON does not.
+  - Some pico8 games are unplayable on handhelds, because of keyboard/mouse. All CON games are playable on handhelds since there is no keyboard/mouse support.
+  - There may be keyboard/mouse support in the system cartridge, so you can use it while developing your game.
+
+CON also takes care of some things for games:
+- The menu button swaps back to the system cartridge with options for a pause menu somehow. This way, games don't have to implement a custom pause menu, the system defines the pause menu. And they can't unless they want to sacrifice A/B for a pause menu.
+
+# handheld
+some handheld specs:
+- bluetooth: for 2-player games
+- nfc chip & reader: for connecting 2 devices together
+- A/B, D-PAD, MENU
+
+there could be an nfc reader on the top of the back side of the device. then an nfc chip at the bottom of the back of the device.
+
+if you touch two CONs together, back to back and flipped upsidedown, they simutaneously read the other nfc chip, both turn on bluetooth (it should be off normally to save power) and share a bluetooth connection. you can now play a 2 player game together.
+
+CON can only connect 2 handhelds together. No more than 2. (preserve battery, unsure on how many bt connections a battery can handle, and lets face it... developing a 3+ player game on a 128x128 screen isn't so easy).
+
+the VM will be able to simulate 2 handhelds connecting together in a split screen mode (one player wasdzx, and one arrows+./ maybe).
+
+ideally, the handheld would have 2 banks of memory (1 for the system state, the other for the game state). Each bank is 2mb of lua memory, 64kb of writable cartridge memory, and maybe something else.
+
+there could be some custom handhelds that have a normal LCD screen of course, but I think the official one would have a reflective greyscale screen like the playdate.
+
+there would be internal storage. no microsd card slot. like the playdate. since games are only 64kb. 100,000 games fits in ~6gb.
+
+# colors
+i mentioned a 4-color greyscale palette, but there is a catch to this.
+
+the handheld is limited to only a 4 color screen, so it can't change its palette at all. but the cartridge has 4 bytes that allow for the shade of grey to slightly change color, while still staying the same shade/darkness.
+
+a single byte that modifies a palette color works like this:
+- 5 bits to modify hue (0-31, 0=redish, 16=turquosish, 31=redish. full hue spectrum like any normal hsv color picker)
+- 3 bits to modify saturation. 0-7 (0 is 0 on a normal hsv selector. 7 is 100 on a normal hsv selector)
+- when saturation is 0, the hue doesn't matter. so the hue can be used to represent a slight alteration to the value shade. changing the value from -16 to +15. (32 possible slight shade of grey variants)
+
+a game cannot change its palette mid-game. (or can it?). this is done so game designers don't have to think too much about palette choices and to prevent anyone from making a game that alternates between 2 colors every frame.
+
+# cartridge
+in CON, there are 2 types of cartridges. system cartridges and game cartridges.
+
+both system and game cartridges are a 64kb file. the file has code, gfx, sfx, music, etc.
+
+game cartridges are downloadable from the internet and bootable from a system cartridge.
+the system cartridge is what the vm boots into. you have to manually replace this file if you don't want the default system.
+
+system cartridges and game cartridges have the same format. the main difference is that system cartridges have more functions available to it in the api.
+
+the OS system cartridge (the one that CON booted in from) can boot other system cartridges. non-OS system cartridges cannot boot other system cartridges or games. only the OS system cartridge can boot games. (this could change I guess)
+
+after the initial boot screen (think the gameboy/gamecube intro before you play the game), CON boots straight into a specific system cartridge. so to change the default operating system, you can just replace the system cartridge that came with the console.
+
+# api
+there are no namespaces or importing required. the entire api is readily available.
+
+every api function should be short, but also start with an underscore. should be short, because source code length is a constraint
+
+system cartridges have the same api as game cartridges, but more things. api isn't fleshed out, but some example functions that could be available in the system cartridge, but not game cart are:
+- _change_palette(): be able to change the palette on the fly for games not running on a handheld, this lets someone create their own palette-picking tool in the system.
+- _keyboard_press(): get a keyboard press not on the gamepad. could be used to create a code editor.
+- _mouse(): return x, y of mouse coordinates (0 to 127). can be used in a sprite editor.
+- _curl(): get a resource/cartridge from online?
+
+some api functions that could be available to games (and system carts of course):
+- _step(), _draw(): these would be overwritten by the developer, called every frame, the game loop.
+- _circ(filled?): draw a circ
+- _rect(filled?): draw a rect
+- _sfx(): play a sfx
+- _code(): compile a string into lua byte code & load it in. returns nil if successful. returns error text if not as a string. this would be a slower function, so a person wouldn't want to call it every frame.
+
+# code format
+you may have noticed the idea of a "code" function in the game api above.
+
+pico8 has a dedicated area of about 15,000 bytes to store code. because that's not a lot of room for code, pico8 auto compresses code, which introduces a compression limit on code size.
+
+pico8 also introduces a synthetic token limit, which isn't identical to lua bytecode and is simply there to give the developer constraints.
+
+CON has no synthetic token limit. CON also doesn't compress source code, so there is no compression code limit. CON also doesn't restrict on code length. you could have a cartridge with zero sfx/gfx and mostly just code.
+
+source code is limited on character length. For small games, this isn't a problem and the source code is stored in the cartridge. For larger games, there is a "_code()" loading function available. So community members could come up with some minified compression algorithms to paste in the code area, then store the rest of their code compressed. This way, you could have a game twice or more the size of a pico8 game.
+
+So yeah, a big reason for being able to load code on the fly is to allow people to write their own code decompression functions. but also it lets people write games that let you code lua I guess too.
+
+For example, pico8 has a custom compression function: https://github.com/dansanderson/lexaloffle/blob/main/p8_compress.c
+
+It would be fun if someone converts that to lua and minifies it so others can use it in their carts.
+
+# number format
+numbers are the same as in pico8. they are 4-byte fixed point. 2 bytes for integer part. 2 bytes for fraction part.
+
+sin/cos work like pico8. from 0 to 1. That's so much easier to work with than having PI in there.
+
+numbers have no suprises when they are fixed point. you don't need large numbers for tiny games. and they are fun to work with like this.
+
+# multiplayer
+CON is a 1-player console that can connect to 1 other CON device, which makes it 2 player.
+
+# cartridge format
+here's the idea so far:
+
+0x0000: label image (32x32 2-bit color label image. a system cartridge could use this label image to show a preview of your game)
+0x0100: 4 bytes of color modifications
+0x0104: con version
+0x0105: code length
+??????: CODE
+??????: THEN FREE DATA SECTION (map/spr/sfx/mus/...)
+
+# possible multiplayer functionality
+when 2 handhelds connect via bluetooth for multiplayer (and in the vm when enabling split handheld multiplayer mode) here is a possible solution for how it works.
+
+an area in game accessible memory of 64 or 128 bytes is synced between the devices every frame (30 frames per second). use this area to communicate with the other handheld. for transmission, some sort of checksum is there to ensure it transmitted successfully (maybe bluetooth takes care of that). 64 bytes is 512 bits, 512*30fps = ~2% of the average bluetooth connection transfer rate limit (1mbit per second)
+
+and that's it. maybe instead of game accessible memory, it's just a function.
+
+# unorganized thoughts
+ziglua: https://github.com/natecraddock/ziglua

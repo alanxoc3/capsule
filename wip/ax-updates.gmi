@@ -1,3 +1,130 @@
+variables that represent a stream & varia
+
+All variables are a stream of bytes.
+
+$abc (cat file
+$abc | grep hello
+$bcd ($abc | grep bye
+
+~ EOF blahEOF
+
+~"Hello, this is a string "what kind of string"."~
+
+~~{hello}~~
+~~{hello}~~
+~~~  ~~~
+~  ~
+` -- backtick takes the very next character and translates it into a single character string
+~ -- tilde takes the very next character and starts a heredoc string. another tilde would be another sequence for the string
+
+~~"hello world"~~
+
+` -- escape a character to be a string
+~ -- heredoc string
+# ignore a string to end of line
+
+# noop command
+
+ #  -- rest of line is ignored
+
+( ) -- unpack first    (exactly 1)
+[ ] -- unpack all      (1 or more)
+{ } -- unpack nonempty (0 or more)
+
+ |  -- pipes output between expressions
+ ~  -- string between ~XYZ ... XYZ~
+ `  -- single character string
+ :  -- prefix for builtins
+ ?  -- prefix for joining
+ $  -- prefix for local variables
+ %  -- prefix for environment variables
+
+`:exit # runs the ":exit" program in the path
+:exit  # runs the exit builtin
+[? :exit 3]
+%PATH 
+
+
+$ hello world
+% awk -F ;
+
+$ | [%] ~ {print $1} ~
+$ | [%] ~ {print $2} ~
+$ | [%] ~~{print $3}~~
+$ | [%] "{print \$3 \$4}"
+
+(? {print $3} | tr \0 ' ')
+awk {{print $3}}
+
+awk {\d {print $3} world {print $4}
+
+{line 1}`
+{line 2}`
+{line 3}`
+{line 4}`
+
+$ (? ~~
+  apple
+  banana
+  yes
+  me
+  crab-ale
+  grabes
+~~ | axu r {
+   | awk {{print $3}}
+   | grep {yes me}
+   | tee f)
+
+? ($)
+
+% could be command line arguments
+$ could be the output of the previous command
+
+
+awk #hello world i am alan
+awk '{print $1}'
+
+
+~{hello world}~
+
+  what~ the~ ~yes
+  $a ~~
+  hello world
+  ~~ # Sets "a" to "hello world". This works because the thing after "~" is a newline.
+
+Tilde rules: If the very next thing is a tilde, look for the next character. One a non-tilde character is found, that is the delimiter. Everything is a string from the delimiter to the next delimiter.
+
+awk -F , .~|thing|~.hello
+
+
+awk -F : `~ {print "$0"}
+
+Here is a terse example. The following sets a heredoc string to the empty variable. Then prints the empty variable
+  $ {this is a string}
+  ? ($
+
+  $ ~~
+  this is a string
+  ~~
+
+? hello world this is a test
+
+{} -- env variable
+~(~)
+~{
+
+apple~
+
+{} -- string
+
+
+$ local var
+% env var
+
+
+
+What if the current directory was just an env var
+
 :cd     -- change directory
 :exit   -- exit shell
 :err    -- only capture stderr
@@ -12,26 +139,57 @@
 
 # these don't have to be in the shell, if the shell writes files for {} syntax
 # but that would be a huge performance hit
-:loop   -- loop on condition
-:if     -- conditionally execute statements
-:fork   -- run commands in parallel & wait for all to finish
 
 http://www.pixelbeat.org/programming/stdio_buffering/
 https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation
 http://www.linusakesson.net/programming/tty/
 
-$var local var
-%var exported env var
-:builtin
+? :err    -- only capture stderr
+? :out    -- only capture stdout
+? :nil    -- ignore stdout
+? :ret    -- get return codes of previous command
+? :funcs  -- list the stored functions
+? :str    -- turns statements into strings
+? :key    -- called after a keypress only for interactive mode
+? :post   -- filter after every command
 
-Core concepts:
+$var   -- local var
+%var   -- exported env var
+:cd    -- change directory
+:exit  -- exit shell
 
-    array  - args
-    keyval - env vars
-    stdin  - input  (sequential)
-    stdout - output (sequential)
-    stderr - error  (sequential)
-    fildes - pipes
+:loop  -- loop on condition
+:if    -- conditionally execute statements
+:fork  -- run commands in parallel & wait for all to finish
+:pre   -- run before every command top level command (defaults to: ? '> ')
+
+{} - string
+() - dont expand
+[] - expand
+
+`  - 1 char string or escape character?
+~  - heredoc
+
+[$func {ls (something) ($)} arg arg arg]
+[$func]
+
+$v [$v | del from start to first \0] # pop first
+$v [$v | del from last backwards to last \0] # pop last
+
+managing vector can be done with other tools
+
+Responsibilities:
+    - cli args
+    - env vars
+    - connecting stdin & stdout
+    - displaying stderr
+
+I want:
+- to save commands as scripts
+- to expand arrays
+
+11. You didn't state how to perform command history and retrieval, which is quite important in a shell.
+8. However, does the shell support string manipulation functions? How does it handle file operations?
 
 Buffered (configure buffer) & unbuffered
 
@@ -276,12 +434,6 @@ by default, nothing comes out of a program. you need to use the :hook command to
 
  #  -- rest of line is ignored
  ;  -- separates statements
-' ' -- string between quotes
-" " -- string between quotes
-
-pipe vs channel
-
-| :
 
 ( ) -- unpack first    (exactly 1)
 [ ] -- unpack all      (1 or more)
