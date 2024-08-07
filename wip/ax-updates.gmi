@@ -17,7 +17,74 @@ $bcd ($abc | grep bye
 ` -- backtick takes the very next character and translates it into a single character string
 ~ -- tilde takes the very next character and starts a heredoc string. another tilde would be another sequence for the string
 
-~~"hello world"~~
+~ hello world ~
+
+$
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hello world i am a cool guy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+: - executes blocks in order
+
+
+()
+[]
+{}
+
+$ and %...
+
+$x
+$x [$x] apple
+$x {$x | ax rng 1 3} apple
+
+$ could either be the default parameters. Or all variables
+
+in ax, everything is a command. all variables are strings.
+
+$ is just a temp variable. it has the arguments that were sent to the command
+
+{:vars}hello world
+
+:var - builtin
+$var - variable
+%var - command source (you can edit commands like this)
+ var - command on filesystem
+
+%cmd :(
+here is a cool command. it is for cool people
+)
+
+$x a b c d e f g
+
+# :vn is var-names
+$x (rg 'PATH|LANG|IDK' | :vn) # these could be env vars that would be filtered out for commands
+
+# I actually do like reversing the pipes. i know i've had a back-n-forth on this many times before. Reversing allows pipes to be started in the order they appear in the source (source code can be streamed)
+%cmd (rg 'hx' | :in)
+
+# There could be another type that is syntax tree
+%append $(.0|$) [$(.0|$)] [.1: | $]
+
+append x a b c d e f g
+$x [$x] (cat file) (cat otherfile) {}
+
+# pipe doesnt make sense for variable
+
+# command generator idea. current file is one generator, you can append commands to that though in your file, why not?
+
+cmd
+
+# here, the :ns stands for namespace. it uses the variable x a:() syntax is trying to demonstrate that env vars could be forced like this.
+:ns [$x]
+:ps a b c de f ghij k # (path namespace)
+cat file | rg hello
+
+
+
+: ~(
+  ? ~(this is the story of me..)~ ($) | ax.tr \0 \n
+  ? as you can see i am cool.
+)~
 
 ` -- escape a character to be a string
 ~ -- heredoc string
@@ -31,6 +98,9 @@ $bcd ($abc | grep bye
 [ ] -- unpack all      (1 or more)
 { } -- unpack nonempty (0 or more)
 
+~{ hello world }~
+~{
+
  |  -- pipes output between expressions
  ~  -- string between ~XYZ ... XYZ~
  `  -- single character string
@@ -42,8 +112,14 @@ $bcd ($abc | grep bye
 `:exit # runs the ":exit" program in the path
 :exit  # runs the exit builtin
 [? :exit 3]
-%PATH 
+%PATH
 
+only 2 types of variables: arrays of characters.
+only 1 return value, and its a stream.
+functions have a single array as well as env vars.
+ax-like could be available in con.
+
+should ax rethink about how the path is handled?
 
 $ hello world
 % awk -F ;
@@ -841,6 +917,9 @@ echo (
     it [$env] preserves whitespace
 )
 
+:if '' `(
+
+) `()
 
 :if '' "echo hello"
 
@@ -849,10 +928,10 @@ echo (
         echo hello world
         mktemp -d
     ) ~(echo this is executed)
-) ~(
+)~ ~(
     echo death to all
     date
-)
+)~
 
 ~(saoentu)~
 ~[saoentu]~
