@@ -1,0 +1,31 @@
+# resume | alan morgan
+
+hi! i like chunky pixels and hacky code.
+
+i currently have a decent job and not looking for work. however i might reconsider if you sufficiently bribe me, my wife, and my 2 (soon to be 1) fish with enough $$$.
+
+anyways, here is my resume.
+
+## dev/devops/sre @ symplsoft | 2023 - now
+
+=> https://symplsoft.io
+
+* setup enterprise-level infrastructure from the ground up.
+* technical lead in acquiring soc ii compliance.
+* architect and maintainer of complex data pipelines.
+
+## intern/dev/sre @ clearwater analytics | 2017 - 2023
+
+=> https://clearwateranalytics.com
+
+* maintained thousands of linux vms hosted on-prem, gcp, and aws.
+* managed technologies: nginx, jenkins, apache, tomcat, vault, consul, keepalived, graphite.
+* designed, implemented, and deployed large features for java/angular/react web applications.
+
+## student/tutor/ta @ byui | 2015 - 2019
+
+=> https://www.byui.edu
+
+* bachelors in computer science.
+* leadership in many programming clubs.
+* fantastic student with bad grades.

@@ -1,10 +1,10 @@
 # alanxoc3 | alan morgan
 
 => https://jedisct1.github.io/minisign   RWQSThSNSs4HlDm748OVT9F/tYaxZwW2Gu1Ysg0En+5aBjPuLTsVIpfq
-=> mailto:alan@xoc3.io                   email: alan@xoc3.io
 => https://github.com/alanxoc3           github: alanxoc3
 => https://tilde.zone/@alanxoc3          mastodon: @alanxoc3@tilde.zone
 => https://lexaloffle.com/bbs/?uid=17205 lexaloffle: alanxoc3
+=> gemini://xoc3.io/resume               resume: alan morgan
 
 ## blog
 
