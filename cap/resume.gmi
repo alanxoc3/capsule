@@ -6,7 +6,7 @@ i currently have a decent job and not looking for work. however i might reconsid
 
 anyways, here is my resume.
 
-## dev/devops/sre @ symplsoft | 2023 - now
+## 2023-now | dev@symplsoft
 
 => https://symplsoft.io
 
@@ -14,15 +14,15 @@ anyways, here is my resume.
 * technical lead in acquiring soc ii compliance.
 * architect and maintainer of complex data pipelines.
 
-## intern/dev/sre @ clearwater analytics | 2017 - 2023
+## 2017-2023 | dev@clearwater
 
 => https://clearwateranalytics.com
 
-* maintained thousands of linux vms hosted on-prem, gcp, and aws.
-* managed technologies: nginx, jenkins, apache, tomcat, vault, consul, keepalived, graphite.
-* designed, implemented, and deployed large features for java/angular/react web applications.
+* maintained thousands of on-prem/gcp/aws linux vms.
+* implemented large features for complex legacy apps.
+* nginx, jenkins, apache, tomcat, vault, consul, graphite.
 
-## student/tutor/ta @ byui | 2015 - 2019
+## 2015-2019 | student@byui
 
 => https://www.byui.edu
 
