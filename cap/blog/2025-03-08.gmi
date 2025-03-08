@@ -1,0 +1,34 @@
+#- Picodex & Picodex Dual
+Haven't made a gemini blog post for 2 years. Wow... I'm really not much of a blogger, none-the-less my gemini server is still here and very rarely I do check some recent blog posts on Antenna.
+
+Since then I got a great new job, went to China again with my wife and son, and we had another baby girl. I have two very young children now. The past two years seem like they've gone very fast. I didn't mean to talk about my personal life, but it's just amazing that a lot has happened since then.
+
+What I really wanted to write about was my thoughts on my 2 biggest hobby programming achievements from the past 2 years.
+
+From January to April 2023, I recreated the Gen 1 Pokemon battle system in PICO-8.
+
+=> https://www.lexaloffle.com/bbs/?tid=52388 Picodex - A Pokemon Battle Sim
+
+After making Picodex, I was able to make a writeup on how I made it for the PICO-8 picoview zine.
+
+=> https://nerdyteachers.com/PICO-8/Pico-View/?issue=4#picodex The Making of Picodex
+
+It got great reception and I was very proud of it. All the programming/design was done by my. I tag-teamed with my brother on the sprites though. This project is definitely the tiniest Pokemon battle simulator that exists for Gen 1 Pokemon, as the entire game fits into just a 32kb cartridge.
+
+However, after thinking about it for a few months, I decided to try to create a Gen 2 Pokemon battle simulator starting at the end of 2023. This was a much much more ambition proect because gen 2 pokemon has twice as much data and complexity than gen 1, but I wanted it to also fit in just 32kb. This project took much longer, about 14 months in total. But finally I finished and released it on the 25th anniversary of Pokemon Gold/Silver.
+
+=> https://www.lexaloffle.com/bbs/?tid=145427 Picodex Dual - A Gen 2 Pokemon Battle Sim
+
+This game didn't have the same aesthetics as the first game. It doesn't have a toy Pokedex or colors for Pokemon, because it is completely packed. It may be the most, data packed PICO-8 game that even exists. I got some visibility on Reddit, but aside from that, the second iteration wasn't nearly as successful as the first one despite being much more fun gameplay wise and a much much bigger technical achievement. I was able to write about this game on the PICO-8 zine though.
+
+=> https://nerdyteachers.com/PICO-8/Pico-View/15#picodex2 Data Packing for Picodex Dual
+
+So yeah, Picodex Dual is one of my biggest technical achievements but it didn't get as much visibility as smaller projects I've done. Like many of my Ludum Dare entries. Or the first Picodex. But I'm still extremely proud of it.
+
+There are actually 2 small oversights I realized a few weeks after releasing the game that I want to patch up, but never did because no one really plays it anyways. I should still make that patch. The 2 issues are that thunder should have a 50% accuracy during harsh sunlight, and the freezing status condition shouldn't be allowed to trigger during harsh sunlight. I'm not aware of any bugs or oversights in all the other 250+ moves in the game.
+
+I worked so hard on that second iteration. All my free time was focused just on that, which is the main reason I didn't blog in 2024. I had to wake up early some days when my son and wife were sleeping. I had to take my son to a 2-hour daycare after work so I could spend 2 hours programming for that game. And I had to keep up these routines for most of the year of 2024.
+
+Well those are my thoughts on this topic. If you come across this post and happen to play one of those games, please let me know! It would really mean a lot. But don't feel pressured to. This is my personal blog, so I can just ramble about my thoughts I guess.
+
+My current hobby project is a bit secretive, but when I have the design scoped out, I'll be sure to share it in a blog post. And that's it!
