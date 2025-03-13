@@ -9,10 +9,7 @@ To make it as fast as possible, your dockerignore could look like this:
 *
 !./pyproject.toml
 !uv.lock
-
-# only py files in src, because there could be cache files here too.
 !./src/**/*.py
-!./src/cdi
 ```
 
 The top line `*` ignores all files, then use `!` to include certain files or file paths. It uses a globbing syntaxt similar to gitignore files.
