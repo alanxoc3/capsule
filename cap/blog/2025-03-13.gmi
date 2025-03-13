@@ -1,0 +1,79 @@
+#- TIL - Docker Context
+TIL: Some things about docker I really should have known by now but didn't.
+
+If you have a slow docker build due to loading the build context, you should setup a dockerignore file.
+
+To make it as fast as possible, your dockerignore could look like this:
+
+```
+*
+!./pyproject.toml
+!uv.lock
+
+# only py files in src, because there could be cache files here too.
+!./src/**/*.py
+!./src/cdi
+```
+
+The top line `*` ignores all files, then use `!` to include certain files or file paths. It uses a globbing syntaxt similar to gitignore files.
+
+I also learned another (newer) way to add files/directories not in the current directory to the docker build context. Using a ../ in the copy command is generally not allowed:
+
+```
+FROM busybox
+COPY ../common ./common # this doesn't work!
+```
+
+Because only the current directory is in the build context. I already knew of a hack with symlinks and tar that works something like this.
+
+```
+#!/bin/bash
+cat << EOF > Dockerfile
+FROM busybox
+COPY common ./common
+EOF
+
+ln -s ../common ./common
+tar -ch . | docker build -
+```
+
+However that is a hack! And today I found out that it ignores all `.dockerignore` files! So be prepared for a long build context import unless you specify files in the tar command. Luckily there is a relatively newer way to add paths outside the current directory with the `--build-context` option.
+
+=> https://docs.docker.com/build/concepts/context/#named-contexts Build Context Documentation
+
+That solution looks like this:
+
+```
+#!/bin/bash
+cat << EOF > Dockerfile
+FROM busybox
+COPY --from=com / ./common/
+EOF
+
+docker build . --build-context com=../common
+```
+
+This is a much better solution. It is built-in to newer versions of docker. And it works with .dockerignore files from all locations.
+
+Finally, it was tricky to figure out how to debug which files were ending up in the docker context. Here is a tiny script that prints out all files in your context:
+
+```
+#!/bin/bash
+# Help came from: https://stackoverflow.com/a/40966234
+docker image build "$@" --no-cache -t tmp-build-context -f - . <<EOF 2>&1
+FROM busybox
+WORKDIR /tmp-build-context
+COPY --from=common / ./common/
+COPY . .
+CMD find .
+EOF
+
+docker container run --rm tmp-build-context
+docker image rm tmp-build-context
+```
+
+That script basically came from stack overflow.
+
+=> https://stackoverflow.com/a/40966234
+
+Some people in the comments tried making optimizations by replacing the CMD with RUN. But for contexts with lots of files, the list gets truncated by docker build because there is a log limit on how many lines a cache step can produce. So the CMD approach is needed if you want to guarantee you see all the files.
