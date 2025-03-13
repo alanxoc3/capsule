@@ -1,4 +1,4 @@
-#- TIL - Docker Context
+#- TIL: Docker Context Stuff
 TIL: Some things about docker I really should have known by now but didn't.
 
 If you have a slow docker build due to loading the build context, you should setup a dockerignore file.
