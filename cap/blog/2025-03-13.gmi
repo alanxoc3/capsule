@@ -63,7 +63,6 @@ Finally, it was tricky to figure out how to debug which files were ending up in 
 docker image build "$@" --no-cache -t tmp-build-context -f - . <<EOF 2>&1
 FROM busybox
 WORKDIR /tmp-build-context
-COPY --from=common / ./common/
 COPY . .
 CMD find .
 EOF
@@ -77,3 +76,5 @@ That script basically came from stack overflow.
 => https://stackoverflow.com/a/40966234
 
 Some people in the comments tried making optimizations by replacing the CMD with RUN. But for contexts with lots of files, the list gets truncated by docker build because there is a log limit on how many lines a cache step can produce. So the CMD approach is needed if you want to guarantee you see all the files.
+
+That script doesn't work with build contexts outside the current directory, but could be modified easily to do so.
