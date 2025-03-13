@@ -56,7 +56,6 @@ Finally, it was tricky to figure out how to debug which files were ending up in 
 
 ```
 #!/bin/bash
-# Help came from: https://stackoverflow.com/a/40966234
 docker image build "$@" --no-cache -t tmp-build-context -f - . <<EOF 2>&1
 FROM busybox
 WORKDIR /tmp-build-context
