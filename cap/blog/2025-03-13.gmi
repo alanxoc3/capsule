@@ -1,9 +1,9 @@
 #- TIL: Docker Context Stuff
 TIL: Some things about docker I really should have known by now but didn't.
 
-If you have a slow docker build due to loading the build context, you should setup a dockerignore file.
+If you have a slow docker build due to loading the build context, you should setup a .dockerignore file.
 
-To make it as fast as possible, your dockerignore could look like this:
+To make it as fast as possible, your .dockerignore could look like this:
 
 ```
 *
@@ -34,7 +34,7 @@ ln -s ../common ./common
 tar -ch . | docker build -
 ```
 
-However that is a hack! And today I found out that it ignores all `.dockerignore` files! So be prepared for a long build context import unless you specify files in the tar command. Luckily there is a relatively newer way to add paths outside the current directory with the `--build-context` option.
+However that is a hack! And today I found out that it ignores all .dockerignore files! So be prepared for a long build context import unless you specify files in the tar command. Luckily there is a relatively newer way to add paths outside the current directory with the `--build-context` option.
 
 => https://docs.docker.com/build/concepts/context/#named-contexts Build Context Documentation
 
