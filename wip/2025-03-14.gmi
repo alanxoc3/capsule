@@ -1,0 +1,3 @@
+I like this approach to running tests compared to test containers. I can guarantee no internet access like this with internal docker network.
+
+https://jetthoughts.com/blog/running-tests-in-containers-with-docker-compose-coding-tutorial/

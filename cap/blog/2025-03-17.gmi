@@ -1,0 +1,39 @@
+#- Connect Docker to Localhost
+
+If you want to connect docker to access any port on your computer's localhost, here is what worked for me.
+
+When you start your container, use the `--add-host` option.
+
+```
+docker run --add-host host.docker.internal:host-gateway -it docker.io/busybox cat /etc/hosts
+```
+
+Running that command, you can see that the /etc/hosts file was populated with a host.docker.internal line:
+
+```
+...
+172.17.0.1      host.docker.internal
+...
+```
+
+The `host.docker.internal` part is customizable, you can make it `localhost` or anything you want. Use that hostname in your application to communicate to localhost. And `host-gateway` is what refers to localhost.
+
+Here is an example, curling an http web server on localhost:
+
+```
+docker run --add-host host.docker.internal:host-gateway -it docker.io/alpine sh -c 'echo installing curl...; apk add curl >/dev/null; curl http://host.docker.internal:3001'
+```
+
+Initially, the above command would hang for me. I needed to configure my UFW firewall. It blocks local ip ranges by default, so after some investigation with wireshark, I added this firewall rule.
+
+```
+sudo ufw allow from 172.16.0.0/12 to 172.16.0.0/12
+```
+
+If you need to investigate similar firewall issues with UFW, you could try disabling your firewall and running wireshark to investigate. Here are useful commands if you find yourself in a similar situation:
+
+```
+sudo ufw disable
+tshark -f tcp -i any
+sudo ufw enable
+```
