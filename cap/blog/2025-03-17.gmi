@@ -30,6 +30,8 @@ Initially, the above command would hang for me. I needed to configure my UFW fir
 sudo ufw allow from 172.16.0.0/12 to 172.16.0.0/12
 ```
 
+Maybe there is a better/more targeted way to update your firewall. But that's what worked for me. I'm not the best with networking and it's hard to find stuff like this on the internets.
+
 If you need to investigate similar firewall issues with UFW, you could try disabling your firewall and running wireshark to investigate. Here are useful commands if you find yourself in a similar situation:
 
 ```
