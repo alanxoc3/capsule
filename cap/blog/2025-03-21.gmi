@@ -1,0 +1,97 @@
+#- No-Internet Integration Tests
+For work I setup a fast, simple, and effective integration testing framework. It runs an application and dependencies through docker compose in an internal network that cannot access the internet.
+
+Restricting internet access in tests is important for me, because as software scales, someone is bound to accidentally introduce code in tests that access the broader network. Then your tests break when something is down in the company network or internet and tests become flaky.
+
+Test Containers is a popular way to containerize tests. I had used it years ago at my last job, but I didn't want to set it up here for a few issues:
+- Dependencies run in containers, however the tests themselves do not! So nothing is stopping a test from accessing something on the local machine or external network.
+- Test Containers try to encourage you to spin up and tear down many containers as part of your integration test runs. While this sounds great in theory, in practice people abuse it and make integration tests that are so slow. It's not too hard/problematic to just clear state between tests. Or writing the docker compose commands to create new containers.
+- Test Containers is a layer on docker compose. Docker compose is a layer on docker. Docker is a layer on an OS configuration. I'm a fan of less layers, because less things can go wrong. Not including Test Containers removes a layer of complexity.
+
+Again at my last job, I had used WireMock as a mock webservice. WireMock is a java-based project and while it doesn't what language it is based on since it runs in docker, I have a bias against java-based projects. Java projects are often bloated/large binary sizes. I searched around and found a newer-ish mock server called Mockoon. Mockoon is great, the entire mock server configuration is contained in a single json file. It also comes with an electron based-UI you can use just for editing that schema file. You can import mocks from a swagger OpenAPI configuration or run a proxy from the Mockoon server to help generate mocks. It was a great experience compared to what I remembered with WireMock ~5 ago.
+
+The integration test also has a postgres instance. The postgres instance starts with an empty database/schema, then has a schema applied to it with dbmate. Dbmate is a language agnostic sql changeset management tool, there are so many changeset management tools built into different ORMs, but really like having a tool that is agnostic. We may refactor our application to use a different language or db framework later and not being locked into a specific ORM's changeset tool is one less headache to think about. The schema is applied nearly instantly. After that, mock data is inserted from another container by connecting to the db from the internal network.
+
+And finally, the application is run in a container on the docker network and the tests are run in a separate container.
+
+Here is a sample docker-compose.yaml file that demonstrates how the containers are all setup:
+
+```
+name: some-app
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: lumi-postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - internal-network
+    volumes:
+      - ../../db:/sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 1s
+      retries: 10
+
+  mock-someapi:
+    image: mockoon/cli:latest
+    container_name: mock-openai
+    command: -d /data.json -p 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./mock/mock-someapi.json:/data.json:ro
+    user: "${UID:-1000}:${GID:-1000}"
+    networks:
+      - internal-network
+    # wait until mock service is ready. i mocked the root / endpoint just for an easy health check.
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "--tries=1", "--timeout=2", "http://localhost:3000"]
+      interval: 1s
+      timeout: 2s
+      retries: 10
+
+  app:
+    .... # app configuration could go here
+
+  tests:
+    .... # a separate test image could go here
+
+networks:
+  internal-network:
+    driver: bridge
+    internal: true # this controls internet access, may want to disable it to generate mocks.
+
+```
+
+And then you can just have a simple shell script that can patch the integration test together:
+
+```
+
+#!/bin/bash
+set -e # give up if a command fails.
+
+# good idea to pull and build first
+docker compose pull
+docker compose build
+
+# Clear an old run, ignoring exit status if this fails.
+docker compose down || true
+
+# Start the database.
+docker compose up --remove-orphans -d db --wait
+
+# You can apply a schema with psql directly from the db image. Or use an image with dbmate installed to apply migrations.
+docker compose exec db psql postgres://postgres:postgres@db -f /sql/schema.sql
+
+# Run your application.
+SOME_APP_ENV_VAR=something docker compose run app ...
+
+# And finally run your tests!
+docker compose run tests ...
+```
+
+This approach to integration testing can be very fast. In my case, it currently takes about 45 seconds for downloading/pulling docker images. Then only 15 seconds for starting the containers, setting up the schema, and running some tests. My tests currently run on Github Actions. The state docker layer caching between builds on Github Actions kinda sucks, so I'm hoping to try it in CircleCI or another service later on. But there you have it! A simple template for to how you can setup isolated integration testing using docker compose.
