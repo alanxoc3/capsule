@@ -1,0 +1,12 @@
+#-
+
+the state of chinese input is too annoying. i want something like keyd. have it work on the kernel level.
+https://www.mdbg.net/chinese/dictionary?page=cc-cedict
+
+Plum installs yaml files in .config/ibus/rime. You can use those.
+https://github.com/rime/plum
+
+fzf is extremely fast. wmenu/et al are not as fast.
+
+i want keyd to handle typing input method. it can do unicode in a certain way.
+https://github.com/rvaiya/keyd/commit/2a38fa22d0e7bb86e41f4b0eb4141111f57f5058
