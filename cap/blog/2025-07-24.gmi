@@ -1,0 +1,31 @@
+#- playtester guide
+
+i was looking through old files on my computer and came across this one. a small playtester guide i wrote to have people help me playtest "picodex dual".
+
+here is what it looked like:
+
+```
+the things i'm looking for a playtest:
+- pokemon names must be 8 letters. items must be 6. moves must be 6. let me know if any of the names i came up with is way off and if you have a better short name for that pokemon/item/move.
+- if the game crashes, could you screenshot it? i can decode the error message. and try to tell me how to reproduce it.
+- if any of the trainers are too hard, let me know. (besides horde mode, that is supposed to be hard.)
+- my sprites are still in progress and some are not complete yet, but you can still let me know if you have suggestions to improve some sprites.
+
+and of course any other feedback you have.
+
+playetester secrets
+
+i don't plan on releasing this information with the game. so you get to hear some secrets:
+
+when you select a pokemon for your team, there is a 1/8192 chance that your pokemon is shiny.
+
+when a battle starts, each pokemon has a 1/16384 chance to have pokerus.
+  pokerus works slightly different than in the og games.
+  it gives you +1 atk/def/sat/sdf/spd as long as you have pokerus.
+  it also functions as a major status condition, so you are protected from other status conditions unless you use a self-inflicting status condition move (eg: rest).
+
+i think horde mode is possible to beat. i have ideas, though i haven't tried them. if you beat horde mode, you unlock missingno.
+  missingno combines the movesets of a few related glitch pokemon from rby, as well as the best stats of missingno from each of those games. making missingno one of the most powerful pokemon.
+  missingno is the only pokemon that naturally learns 2 moves (can learn 2 waterguns).
+  when missingno is unlocked, a glitch move tm05 is also unlocked. this is a glitch move from rby that increases the user's evasion stat by 2.
+```
