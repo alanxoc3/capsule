@@ -26,6 +26,6 @@ however i may reconsider if sufficiently bribed... here is my resume!
 
 => https://www.byui.edu
 
-* bachelors in computer science.
-* leadership in many programming clubs.
-* fantastic student with bad grades.
+* bachelors in cs. tutored c++/algorithms.
+* leadership in acm. started pico8 club.
+* c++, java, rust, python, lisp, go, arch.
