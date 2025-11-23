@@ -11,7 +11,7 @@ the ax shell (pronounced "acks") is an acronym for "[a]n e[x]treme [shell]". thi
 
 "straight forward syntax". the entire syntax should be reasonably easy to memorize. this is very unlike many unix shells currently available. for example, after years of using bash/zsh, i still don't know all the syntax rules. not to mention the massive man pages you have to go through to find what you want.
 
-"text is the only datatype". having only one datatype simplifies the shell language and encourages the use of other command line programs. arrays are represented by splitting on the null character and booleans are represented with an empty/non-empty string. mathematical operations should be done through a program suited for math.
+"text is the only datatype". having only one datatype simplifies the shell out of the language and encourages the use of other command line programs. arrays are represented by splitting on the null character and booleans are represented with an empty/non-empty string. mathematical operations should be done through a program suited for math.
 
 "executables extend functionality". the list of builtins is fixed and there is no support for aliases or functions, forcing you to create executables instead. while this may sound limiting at first, you'll be suprised at how it simplifies your shell experience and empowers your system as a whole.
 
@@ -93,13 +93,13 @@ this is a here doc
 the delimiter is EOF followed by ~
 EOF~
 
-# prints the following with no trailing newline:
-this is a here doc
-the delimiter is EOF followed by ~
-```
+? ~this is a here doc
+  ~the delimiter is EOF followed by
+| tr \0 \n
 
+?`n ~this is another
+    ~multiline string
 
-```
 # these are equivalent:
 ? 'hello world' | tee file.txt;
 ? ~ hello world ~ | tee file.txt;
@@ -120,6 +120,15 @@ EOF~ | tee file.txt;
 
 as shown in the example above, the text after the first "~" and before the whitespace character is the delimiter that is also used to end the string. the end delimiter must be the same as the start delimiter, but with a whitespace character before it and a "~" after.
 
+## stdin
+by default, the first command of each expression must be a source command.
+
+```
+:ax  # run the builtin "vim" command, but this isnt a builtin, so... negligable.
+!vim # run command in interactive mode
+vim # run command without interactive mode
+```
+
 ## vars
 in ax, a command prefixed with "$" is actually a local variable. commands prefixed with "%" are environment variables. variable commands ignore stdin. variables commands with no arguments simply return their value, with arguments their value is set with null in between each argument and printed to stdout. here are some examples:
 
@@ -136,7 +145,9 @@ ls {%PATH | tr : \0}
 
 # create a directory with an executable file, add the directory to the path, and run the new command
 mkdir -p ($LOCALBIN (%HOME)/.local/bin)
-? "#!/bin/ax" "echo it works!" | tr \0 \n | tee ($LOCALBIN)/testenv | true
+? ~#!/bin/ax
+  ~echo it works!
+  | tr \0 \n | tee ($LOCALBIN)/testenv | true
 chmod u+x ($LOCALBIN)/testenv
 %PATH ($LOCALBIN):(%PATH)
 testenv # prints: "it works!"
@@ -170,6 +181,16 @@ cat (? {%APP_CONFIG_DIR}/config {%XDG_CONFIG_HOME}/app/config {%HOME}/.config/ap
 
 ## builtins
 builtins are prefixed with a ":". each builtin has special properties unique to that builtin. starting with ":cd" and ":exit":
+
+  | :out
+  | :err
+  | :nil
+
+yes | nil
+yes | nil
+yes |
+
+!out:nil
 
 ```
 :cd /var/cache # absolute dir

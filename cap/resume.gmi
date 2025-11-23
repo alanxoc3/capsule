@@ -2,17 +2,17 @@
 
 hi! i like chunky pixels and hacky code.
 
-i currently have a decent job and not looking for work. however i might reconsider if you sufficiently bribe me, my wife, and my 2 fish (soon to be 1 fish) with enough $$$.
+i currently have a fun job, so i'm not actively looking for work.
 
-anyways, here is my resume.
+however i may reconsider if sufficiently bribed... here is my resume!
 
 ## 2023-now | dev@symplsoft
 
 => https://symplsoft.io
 
-* setup enterprise-level infrastructure from the ground up.
-* technical lead in acquiring soc ii compliance.
-* architect and maintainer of complex data pipelines.
+* created soc ii compliant gcp/k8s/tofu infra from scratch.
+* architected complex data pipelines as the data team lead.
+* postgres, argo, cloudflare, sentry, uv, posthog, powerbi.
 
 ## 2017-2023 | dev@clearwater
 
