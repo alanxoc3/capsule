@@ -1,0 +1,38 @@
+#- arch linux base install on a framework 12
+i just got a framework 12 laptop, so i could give my framework 13 to my brother. the 12 is slightly smaller, with a bunch of hardware design improvements, a slower cpu, and a touchscreen. i loved the netbook i used years ago and the framework 12 reminds me a little more of that.
+
+=> https://frame.work/laptop12 framework 12
+
+i've been using arch linux for over 10 years and the way i installed it this time is waaaay cooler than every previous install i've done.
+
+the partition layout uses the gpt partitioning scheme, and the hard drive is split into 3 partitions:
+- 1 gib fat32 efi boot partition.
+- 8 gib swap have 3 partitions
+- 456 gib luks encrypted btrfs root partition.
+
+my boot partition has only a few files:
+
+```
+/boot
+├── EFI
+│   ├── arch-linux.efi
+│   └── arch-linux-fallback.efi
+└── vmlinuz-linux
+```
+
+notice how there is no bootloader! every other arch/linux installation i have ever done had a bootloader. but now there is a cool new kid on the block called uki (unified kernel image). in arch linux you can now configure mkinitcpio to create a single efi .img file that boots up linux with no bootloader needed!
+
+but i'm not done! by setting my partition type ids correctly, i enabled a systemd feature that can auto mount my root/swap/boot partitions.
+
+=> https://uapi-group.org/specifications/specs/discoverable_partitions_specification/ partition type ids for automounting
+
+furthermore, systemd will autodetect luks encrypted root filesystems. no need to set a kernel cmdline parameter or fstab entry anymore for luks encryption. in fact my fstab file is empty and i have a fully mounted system!
+
+in my previous arch installs, i have:
+- gone without disk encryption
+- used ecryptfs to only encrypt my home directory
+- encrypted the root partition, but had to type in a decryption password every boot
+
+but this time i setup luks with tpm + secure boot. this means i get full disk encryption without the need to ever enter a decryption password at boot time!
+
+this setup is way more slick than any of my previous arch linux installs. i'm stoked to start using my new laptop.
