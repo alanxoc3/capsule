@@ -1,0 +1,27 @@
+#- modernizing cli utilities
+again, haven't been writing here much. why not ramble for a minute so people in the tiny web have something to read in their downtime.
+
+i just replaced sed with sd. sd is so much simpler (which means better) for cli find and replace tasks.
+
+=> https://github.com/chmln/sd sd
+
+it uses modern regex by default
+
+how come i have never heard of redox-os until today?
+
+=> https://www.redox-os.org redox operating system
+
+i'm wondering how i can be a little more active online without spending too much time on it. not sure.
+
+i deleted my linked-in a few years ago. haven't felt regret since. i saw a random tweet, i think from a dev at opencode, that said the best thing you can do for your career development is to get away from linkedin. lol.
+
+random thought on llms:
+
+* i have run into reasoning constraints even with claude opus 4.6 (current SOTA model)
+* i find they cannot speed up thinking/designing a solution
+* however they are fantastic for getting ballpark estimates
+* llms are great for throwaway code and unimportant grunt work
+
+i don't have negative views with llms. i was a little scared at the beginning. i'm imagining a future 10 years for now where we have starwars like R2D2s and C3POs, where they are close to human, but not quite there and still have their little quirks.
+
+that's it for now. maybe i'll do this again!
