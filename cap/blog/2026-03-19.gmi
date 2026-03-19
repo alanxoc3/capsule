@@ -1,0 +1,23 @@
+#- thank you antenna, agate, amfora, and kineto
+
+i really wouldn't consider myself very active in the gemini space. but i have had a gemini server running for almost 5 years now!
+
+and i occasionally love to read the small posts people put on antenna. so thank you for sharing your random thoughts or learnings!
+
+my server for (almost) 5 years has been agate:
+
+=> https://github.com/mbrubeck/agate agate (gemini server)
+
+with a modified kineto as an http proxy:
+
+=> https://github.com/trixmoe/kineto kineto (gemini to http/html proxy)
+
+browser has been amfora:
+
+=> https://github.com/makew0rld/amfora amfora (cli-based gemini browser)
+
+and occasionally reading blogs on antenna:
+
+=> gemini://warmedal.se/~antenna/about.gmi antenna (gemini aggregator)
+
+it's also nice to see that agate and amfora are still active projects.
