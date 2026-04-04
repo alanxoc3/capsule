@@ -1,0 +1,9 @@
+#- llms and programming again
+
+i wrote the thought a few weeks ago that llms cannot really help me think through or design a good solution. i've been thinking about that more and really think it is true.
+
+i also found two similar articles from mastodon that i really agree with:
+
+=> https://andrewmurphy.io/blog/if-you-thought-the-speed-of-writing-code-was-your-problem-you-have-bigger-problems code generation was never the bottleneck
+
+=> https://ergosphere.blog/posts/the-machines-are-fine/ the next generation is in trouble
