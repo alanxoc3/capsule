@@ -1,0 +1,37 @@
+#- HP LaserJet Pro M15w Printer Setup for Linux
+
+i have this printer and had to set it up today. the issue is the m15w is not an available model in the "hplip" hp printer driver package.
+
+=> https://developers.hp.com/hp-linux-imaging-and-printing hplip website
+
+searching online isn't helpful, you get results:
+
+=> https://forums.opensuse.org/t/driver-support-hp-laserjet-m15w/139363/7 like this
+
+=> https://forums.linuxmint.com/viewtopic.php?t=359387 and this
+
+basically, if you don't have cups and hplip, get them. on arch linux this is:
+
+```
+sudo pacman -S cups hplip
+```
+
+run:
+
+```
+lsusb
+```
+
+and you should see an m14-m17 entry. then go to:
+
+=> http://localhost:631/
+
+in there go to the admin section, login with your linux user account. add a printer. select your printer that is plugged in.
+
+select "hp" as the manufacturer, and in the model list, you will NOT find "m15w" or even "m15". i found that this model does work after i tried a few.
+
+```
+HP LaserJet Pro MFP m25nw, hpcups 3.25.8 (grayscale)
+```
+
+then it all works, you can print a test page from the cups interface or from whatever your application is.
