@@ -1,31 +1,33 @@
 # resume | alan morgan
 
-hi! i like chunky pixels and hacky code.
+not actively looking for work, but hit me up if you wanna talk.
 
-i currently have a fun job, so i'm not actively looking for work.
-
-however i may reconsider if sufficiently bribed... here is my resume!
-
-## 2023-now | dev@symplsoft
+## 2023-2026 | symplsoft | dev & sre
 
 => https://symplsoft.io
 
-* created soc ii compliant gcp/k8s/tofu infra from scratch.
-* architected complex data pipelines as the data team lead.
-* postgres, argo, cloudflare, sentry, uv, posthog, powerbi.
+* created & maintained soc-ii compliant gcp/k8s/tofu infra.
+* architected complex llm-centered data pipelines in python.
 
-## 2017-2023 | dev@clearwater
+## 2017-2023 | symplsoft | dev & sre
 
 => https://clearwateranalytics.com
 
 * maintained thousands of on-prem/gcp/aws linux vms.
-* implemented large features for complex legacy apps.
-* nginx, jenkins, apache, tomcat, vault, consul, graphite.
+* developed data pipelines for financial regulatory compliance.
 
-## 2015-2019 | student@byui
+## 2015-2019 | byui | student & tutor & ta
 
 => https://www.byui.edu
 
-* bachelors in cs. tutored c++/algorithms.
+* bachelors in cs. tutored & ta-ed c++/algorithms.
 * leadership in acm. started pico8 club.
-* c++, java, rust, python, lisp, go, arch.
+
+## enterprise technologies
+
+* bigdata: powerbi, bigquery, sigma computing, snowflake, neon, pg_mooncake, pg_ivm, mongodb.
+* devops: terraform, terragrunt, kubernetes, argo cd, argo workflow, jenkins, github actions.
+* clouds: gcp, aws, azure, cloudflare, linode, digital ocean, citrix xenserver.
+* vendors: posthog, checkly, vercel, mageai, sentry, dragonfly.
+* selfhost: nginx, jenkins, apache, tomcat, vault, consul, graphite, elk.
+* langs: python, lua, c++, java, rust, lisp, go, javascript, typescript.
